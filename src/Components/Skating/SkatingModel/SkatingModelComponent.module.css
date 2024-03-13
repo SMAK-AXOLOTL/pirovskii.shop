@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2vh 0;
+    align-items: center;
+    box-sizing: border-box;
+}
+.wrapper > img {
+    max-width: 40%;
+}
+.sizesTableContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    background-color: white;
+}
+
+.sizesTable {
+    display: flex;
+    flex-direction: column;
+}

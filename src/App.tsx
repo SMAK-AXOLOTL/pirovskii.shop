@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Suspense} from 'react';
 import './App.css';
+import HeaderComponent from "./Components/Header/HeaderComponent";
+import LandingComponent from "./Components/Landing/LandingComponent";
+import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import SkatingComponent from "./Components/Skating/SkatingComponent";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return <div className="App">
+      <HashRouter>
+          <HeaderComponent/>
+          <div className='Content'>
+              <Suspense>
+                  <Routes>
+                      <Route path={'/landing'} element={<LandingComponent/>}/>
+                      <Route path={'/skating/:modelId?'} element={<SkatingComponent/>}/>
+                      <Route path={'/easter-egg'} element={<div>You found me!</div>}/>
+
+                      <Route path={''} element={<Navigate to={'/landing'}/>}/>
+                  </Routes>
+              </Suspense>
+          </div>
+      </HashRouter>
     </div>
-  );
 }
 
 export default App;

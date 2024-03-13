@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2vh 0;
+    align-items: center;
+    border-radius: 5vh;
+}
+
+.buttonsContainer {
+    margin: 5vh 0;
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.buttonsContainer > button {
+    background-color: var(--peltonen-red);
+    color: var(--button-text);
+    height: 5vh;
+    border-radius: 3vh;
+}
