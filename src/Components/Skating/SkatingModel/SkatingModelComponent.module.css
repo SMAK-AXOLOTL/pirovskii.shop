@@ -8,15 +8,28 @@
 }
 .wrapper > img {
     max-width: 40%;
+    margin-bottom: 3%;
 }
+
+.wrapper .modelName {
+    color: var(--button-border);
+    background-color: white;
+}
+
 .sizesTableContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 60%;
-    background-color: white;
 }
 
 .sizesTable {
     display: flex;
     flex-direction: column;
+    color: var(--button-border);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2vh;
+    padding: 1vh;
+    margin: 0 5vh;
+    min-width: 33%;
 }

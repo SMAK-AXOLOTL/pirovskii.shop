@@ -2,16 +2,18 @@
   --peltonen-red: #ff3403;
   --button-border: #000000;
   --button-text: #fff;
+  --background-color: #eeeeee;
 
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-image: url("media/forest-background.jpg");
+  color: white;
 }
 
 button {
-  border: none;
+  background-color: white;
+  border: 1px solid #d9d9d9;
   border-radius: 1vh;
   font-size: 2vh;
   padding: 0.1vh 3vh;

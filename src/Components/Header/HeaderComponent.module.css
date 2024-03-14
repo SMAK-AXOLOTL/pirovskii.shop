@@ -5,4 +5,10 @@
     padding: 1vh 5%;
     justify-content: space-between;
     width: 100%;
+    height: 5vh;
+}
+.wrapper button:hover {
+    color: var(--peltonen-red);
+    background-color: white;
+    cursor: pointer;
 }

@@ -1,29 +1,49 @@
 import React from "react";
 import styles from './SkatingModelComponent.module.css'
-import long_skies from '../../../media/long_skies.png'
+import {useSelector} from "react-redux";
+import {selectSkating} from "../skatingSlice";
+import {useParams} from "react-router-dom";
+import LengthItemComponent from "./lengthItemComponent/lengthItemComponent";
 
-type PropsType = {
-    modelId: string | undefined
-}
+const SkatingModelComponent = () => {
+    const {modelId} = useParams()
+    const skating = useSelector(selectSkating)
+    let actualSkating = skating.models[0]
 
-const SkatingModelComponent: React.FC<PropsType> = ({modelId}) => {
-
+    switch (modelId){
+        case 'supra_x': {
+            actualSkating = skating.models[0]
+            break
+        }
+        case 'supra_c': {
+            actualSkating = skating.models[1]
+            break}
+        case 'acadia': {
+            actualSkating = skating.models[2]
+            break}
+    }
 
     return <div className={styles.wrapper}>
-        <img src={long_skies} alt={modelId}/>
+        <img src={actualSkating.skiImg} alt={modelId}/>
         <div className={styles.sizesTableContainer}>
-            <div className={styles.sizesTable}>
-                <h2>
-                    Жесткие
-                </h2>
-                <div>Model_sizes</div>
-            </div>
-            <div className={styles.sizesTable}>
-                <h2>
-                    Универсальные
-                </h2>
-                <div>Model_sizes</div>
-            </div>
+            {actualSkating.hardTrack !== undefined &&
+                <div className={styles.sizesTable}>
+                    <h2>
+                        Жесткие
+                    </h2>
+                    {actualSkating.hardTrack.map((h) =>
+                        <LengthItemComponent key={h.lengthString} length={h}/>)}
+                </div>
+            }
+            {actualSkating.universalTrack !== undefined &&
+                <div className={styles.sizesTable}>
+                    <h2>
+                        Универсальные
+                    </h2>
+                    {actualSkating.universalTrack.map((u) =>
+                        <LengthItemComponent key={u.lengthString} length={u}/>)}
+                </div>
+            }
         </div>
     </div>
 }
