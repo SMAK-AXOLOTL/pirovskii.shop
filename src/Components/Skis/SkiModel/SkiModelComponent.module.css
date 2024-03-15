@@ -1,4 +1,8 @@
 .wrapper {
+    width: 100%;
+}
+
+.classicModelContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -6,12 +10,13 @@
     align-items: center;
     box-sizing: border-box;
 }
-.wrapper > img {
+
+.classicModelContainer  img {
     max-width: 40%;
     margin-bottom: 3%;
 }
 
-.wrapper .modelName {
+.classicModelContainer .modelName {
     color: var(--button-border);
     background-color: white;
 }

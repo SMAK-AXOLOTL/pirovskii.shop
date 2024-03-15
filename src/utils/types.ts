@@ -1,8 +1,9 @@
-export type skatingType = {
-    models: skatingModelType[]
+export type skiType = {
+    models?: skiModelType[]
 }
 
-export type skatingModelType = {
+export type skiModelType = {
+    id: string,
     name: string,
     skiImg: string,
     hardTrack?: lengthType[],

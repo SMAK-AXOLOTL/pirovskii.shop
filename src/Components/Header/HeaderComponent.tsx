@@ -15,7 +15,7 @@ const HeaderComponent = () => {
         <NavLink to={'/skating/supra_x'}>
             <button>Коньковый Ход</button>
         </NavLink>
-        <NavLink to={'/skating/supra_x'}>
+        <NavLink to={'/classic/supra_x'}>
             <button>Классика</button>
         </NavLink>
         <NavLink to={'/contacts'}>

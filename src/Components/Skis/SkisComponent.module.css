@@ -26,7 +26,7 @@
     margin: 5vh 0;
     display: flex;
     width: 60%;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .buttonsContainer  button {

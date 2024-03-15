@@ -55,10 +55,12 @@ const LandingComponent = () => {
                 <NavLink to={'/skating/supra_x'}>
                     <button>Коньковый Ход</button>
                 </NavLink>
-                <NavLink to={'/easter-egg'}>
+                <NavLink to={'/contacts'}>
                     <button>Связаться с нами</button>
                 </NavLink>
-                <button>Классика</button>
+                <NavLink to={'/classic/supra_x'}>
+                    <button>Классика</button>
+                </NavLink>
             </div>
         </div>
     </div>

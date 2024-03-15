@@ -1,12 +1,12 @@
-import {skatingType} from "../utils/types";
-import supra_xImg from '../media/Supra-X.png';
-import supra_cImg from '../media/long_skies.png';
-import acadiaImg from '../media/peltonen_acadia_classic.png';
+import supra_xImg from '../../media/Supra-X.png';
+import supra_cImg from '../../media/long_skies.png';
+import acadiaImg from '../../media/peltonen_acadia_classic.png';
 
-export const skatingDataMock: skatingType = {
+export const skatingDataMock = {
     models: [
         {
-            name: 'Supra X',
+            id: 'supra_x',
+            name: 'Super Supra',
             skiImg: supra_xImg,
             hardTrack: [
                 {
@@ -74,7 +74,8 @@ export const skatingDataMock: skatingType = {
                 }]
         },
         {
-            name: 'Supra C',
+            id: 'supra_c',
+            name: 'Supra Cheap',
             skiImg: supra_cImg,
             universalTrack: [
                 {
@@ -92,7 +93,8 @@ export const skatingDataMock: skatingType = {
             ]
         },
         {
-            name: 'Acadia',
+            id: 'acadia',
+            name: 'Macadamia',
             skiImg: acadiaImg,
             hardTrack: [
                 {
