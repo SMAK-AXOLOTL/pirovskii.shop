@@ -1,0 +1,12 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    background-color: var(--background-color);
+    color: black;
+}
+
+.column{
+    border: 1px solid black;
+}

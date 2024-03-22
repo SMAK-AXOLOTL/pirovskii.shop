@@ -1,4 +1,4 @@
-export const skiTypeEnums = {
-    classic: 'classic',
-    skating: 'skating'
+export enum skiTypeEnum {
+    CLASSIC = 'classic',
+    SKATING = 'SKATING'
 }

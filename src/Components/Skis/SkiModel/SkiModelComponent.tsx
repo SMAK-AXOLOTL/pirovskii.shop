@@ -12,18 +12,20 @@ const SkiModelComponent = () => {
 
     switch (modelId){
         case 'supra_x': {
-            if (skating.models)
-            actualSkating = skating.models[0]
+            if (skating)
+            actualSkating = skating[0]
             break
         }
         case 'supra_c': {
-            if (skating.models)
-            actualSkating = skating.models[1]
-            break}
+            if (skating)
+            actualSkating = skating[1]
+            break
+        }
         case 'acadia': {
-            if (skating.models)
-            actualSkating = skating.models[2]
-            break}
+            if (skating)
+            actualSkating = skating[2]
+            break
+        }
     }
 
     return <div className={styles.wrapper}>

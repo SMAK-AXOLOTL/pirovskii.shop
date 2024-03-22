@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
-import {skisApi} from '../api/skisApi'
+import {api} from '../api/api'
 import {skiType} from "../utils/types";
 
 type initialStateType = {
@@ -10,7 +10,7 @@ type initialStateType = {
 }
 
 const initialStateData: initialStateType = {
-    skiData: {},
+    skiData: [],
     status: 'idle',
     err: undefined
 }
@@ -28,7 +28,7 @@ export const skisSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            .addCase(getClassicData.pending, (state, action) => {
+            .addCase(getClassicData.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(getClassicData.fulfilled, (state, action) => {
@@ -39,7 +39,7 @@ export const skisSlice = createSlice({
                 state.status = 'failed'
                 state.err = action.error.message
             })
-            .addCase(getSkatingData.pending, (state, action) => {
+            .addCase(getSkatingData.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(getSkatingData.fulfilled, (state, action) => {
@@ -50,6 +50,17 @@ export const skisSlice = createSlice({
                 state.status = 'failed'
                 state.err = action.error.message
             })
+            .addCase(getAllSkisData.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(getAllSkisData.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.skiData = action.payload
+            })
+            .addCase(getAllSkisData.rejected, (state, action) => {
+                state.status = 'failed'
+                state.err = action.error.message
+            })
     }
 })
 export const selectSkis = (state: RootState) => state.skis.skiData
@@ -57,10 +68,14 @@ export const selectSkiStatus = (state: RootState) => state.skis.status
 export const {setSkiData, setSkiStatus} = skisSlice.actions
 
 export const getClassicData = createAsyncThunk('skis/getClassicData', async () => {
-    return skisApi.getAllClassic()
+    return api.getAllClassic()
 })
 export const getSkatingData = createAsyncThunk('skis/getSkatingData', async () => {
-    return skisApi.getAllSkating()
+    return api.getAllSkating()
+})
+
+export const getAllSkisData = createAsyncThunk('skis/getAllSkisData', async () => {
+    return api.getAllSkis()
 })
 
 export default skisSlice.reducer

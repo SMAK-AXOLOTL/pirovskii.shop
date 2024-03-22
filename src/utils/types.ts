@@ -1,9 +1,10 @@
-export type skiType = {
-    models?: skiModelType[]
-}
+import {skiTypeEnum} from "./skiTypeEnum";
+
+export type skiType = skiModelType[]
 
 export type skiModelType = {
     id: string,
+    skiType: skiTypeEnum,
     name: string,
     skiImg: string,
     hardTrack?: lengthType[],
@@ -18,4 +19,13 @@ export type lengthType = {
 export type weightType = {
     weightString: string,
     isReserved: boolean
+}
+
+export type skiPolesType = skiPoleType[]
+
+export type skiPoleType = {
+    id: string,
+    name: string,
+    poleImg: string,
+    lengthArray?: string[]
 }

@@ -5,7 +5,7 @@ import {NavLink, useLocation, useParams} from "react-router-dom";
 import {getClassicData, getSkatingData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../../redux/store";
-import {skiTypeEnums} from "../../utils/skiTypeEnum";
+import {skiTypeEnum} from "../../utils/skiTypeEnum";
 
 type PropsType = {
     typeEnum: string
@@ -15,7 +15,7 @@ const SkisComponent: React.FC<PropsType> = ({typeEnum}) => {
     const {modelId} = useParams()
     const dispatch = useDispatch() as AppDispatch
     const status = useSelector(selectSkiStatus)
-    const skiModels = useSelector(selectSkis).models
+    const skiModels = useSelector(selectSkis)
     const location = useLocation().pathname
 
 
@@ -26,11 +26,11 @@ const SkisComponent: React.FC<PropsType> = ({typeEnum}) => {
     useEffect(() => {
         if (status === 'idle') {
             switch (typeEnum){
-                case skiTypeEnums.skating: {
+                case skiTypeEnum.SKATING: {
                     dispatch(getSkatingData())
                     break
                 }
-                case skiTypeEnums.classic: {
+                case skiTypeEnum.CLASSIC: {
                     dispatch(getClassicData())
                     break
                 }
@@ -45,7 +45,8 @@ const SkisComponent: React.FC<PropsType> = ({typeEnum}) => {
     return <div className={styles.wrapper}>
         {skiModels && <div className={styles.skatingContainer}>
             <div className={styles.buttonsContainer}>
-                {skiModels.map(n => <NavLink key={n.id} to={'/' + typeEnum + '/' + n.id}>
+                {skiModels.map(n =>
+                    <NavLink key={n.id} to={'/' + typeEnum + '/' + n.id}>
                         <button className={activeColorSetter(modelId, n.id)} id={n.id}>{n.name}</button>
                     </NavLink>
                 )}

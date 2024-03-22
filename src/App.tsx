@@ -5,11 +5,13 @@ import LandingComponent from "./Components/Landing/LandingComponent";
 import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
 import ContactsComponent from "./Components/Contacts/ContactsComponent";
 import SkisComponent from "./Components/Skis/SkisComponent";
-import {skiTypeEnums} from "./utils/skiTypeEnum";
+import {skiTypeEnum} from "./utils/skiTypeEnum";
+import DashboardComponent from "./Components/Dashboard/DashboardComponent";
 
 //todo: responsive design
 //todo: manage colors better
-
+//todo: rename files
+//todo: add ski pole component
 function App() {
   return <div className="App">
       <HashRouter>
@@ -18,9 +20,10 @@ function App() {
               <Suspense>
                   <Routes>
                       <Route path={'/landing'} element={<LandingComponent/>}/>
-                      <Route path={'/skating/:modelId?'} element={<SkisComponent typeEnum={skiTypeEnums.skating}/>}/>
-                      <Route path={'/classic/:modelId?'} element={<SkisComponent typeEnum={skiTypeEnums.classic}/>}/>
+                      <Route path={'/skating/:modelId?'} element={<SkisComponent typeEnum={skiTypeEnum.SKATING}/>}/>
+                      <Route path={'/classic/:modelId?'} element={<SkisComponent typeEnum={skiTypeEnum.CLASSIC}/>}/>
                       <Route path={'/contacts'} element={<ContactsComponent/>}/>
+                      <Route path={'/dashboard'} element={<DashboardComponent/>}/>
 
                       <Route path={''} element={<Navigate to={'/landing'}/>}/>
                   </Routes>
