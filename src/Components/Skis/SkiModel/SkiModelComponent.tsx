@@ -1,32 +1,14 @@
 import React from "react";
 import styles from './SkiModelComponent.module.css'
-import {useSelector} from "react-redux";
 import {selectSkis} from "../../../redux/skisSlice";
 import {useParams} from "react-router-dom";
 import LengthItemComponent from "./lengthItemComponent/lengthItemComponent";
+import {useAppSelector} from "../../../hooks/reduxHooks";
 
 const SkiModelComponent = () => {
     const {modelId} = useParams()
-    const skating = useSelector(selectSkis)
-    let actualSkating = null
-
-    switch (modelId){
-        case 'supra_x': {
-            if (skating)
-            actualSkating = skating[0]
-            break
-        }
-        case 'supra_c': {
-            if (skating)
-            actualSkating = skating[1]
-            break
-        }
-        case 'acadia': {
-            if (skating)
-            actualSkating = skating[2]
-            break
-        }
-    }
+    const skating = useAppSelector(selectSkis)
+    const actualSkating = skating.find( (x) => x.id === modelId)
 
     return <div className={styles.wrapper}>
         {actualSkating && <div className={styles.classicModelContainer}>

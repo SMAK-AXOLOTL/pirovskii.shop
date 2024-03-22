@@ -1,0 +1,38 @@
+.wrapper {
+    width: 100%;
+}
+
+.skiPolesContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2vh 0;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.skiPolesContainer  img {
+    max-width: 40%;
+    margin-bottom: 3%;
+}
+
+.skiPolesContainer .modelName {
+    color: var(--button-border);
+    background-color: white;
+}
+
+.lengthTableContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.tableRow {
+    max-height: 4vh;
+    width: 25%;
+    margin: 0 1vh 1vh;
+    font-size: 3vh;
+    color: black;
+    background-color: white;
+}

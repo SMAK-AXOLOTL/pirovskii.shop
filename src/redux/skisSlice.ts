@@ -19,9 +19,6 @@ export const skisSlice = createSlice({
     name: 'skis',
     initialState: initialStateData,
     reducers: {
-        setSkiData: (state, action) => {
-            state.skiData =  action.payload
-        },
         setSkiStatus: (state, action) => {
             state.status = action.payload
         }
@@ -65,7 +62,7 @@ export const skisSlice = createSlice({
 })
 export const selectSkis = (state: RootState) => state.skis.skiData
 export const selectSkiStatus = (state: RootState) => state.skis.status
-export const {setSkiData, setSkiStatus} = skisSlice.actions
+export const { setSkiStatus} = skisSlice.actions
 
 export const getClassicData = createAsyncThunk('skis/getClassicData', async () => {
     return api.getAllClassic()

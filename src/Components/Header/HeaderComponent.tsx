@@ -12,11 +12,14 @@ const HeaderComponent = () => {
         <NavLink to={'/landing'}>
             <button>Главная</button>
         </NavLink>
+        <NavLink to={'/classic/supra_x'}>
+            <button>Классика</button>
+        </NavLink>
         <NavLink to={'/skating/supra_x'}>
             <button>Коньковый Ход</button>
         </NavLink>
-        <NavLink to={'/classic/supra_x'}>
-            <button>Классика</button>
+        <NavLink to={'/ski-poles/palka1'}>
+            <button>Лыжные палки</button>
         </NavLink>
         <NavLink to={'/contacts'}>
             <button>Контакты</button>

@@ -1,35 +1,31 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styles from './DashboardComponent.module.css'
-import {useDispatch, useSelector} from "react-redux";
-import {
-    getAllSkisData,
-    getClassicData,
-    getSkatingData,
-    selectSkis,
-    selectSkiStatus,
-    setSkiStatus
-} from "../../redux/skisSlice";
+import {getAllSkisData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
 import {AppDispatch} from "../../redux/store";
 import {useLocation} from "react-router-dom";
-import {skiTypeEnum} from "../../utils/skiTypeEnum";
-import DashboardItemComponent from "./dashboardItem/DashboardItemComponent";
+import {getAllSkiPolesData, selectSkiPoles, selectSkiPolesStatus, setSkiPolesStatus} from "../../redux/skiPolesSlice";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 
 const DashboardComponent = () => {
-    const allSkisData = useSelector(selectSkis)
-    const dispatch = useDispatch() as AppDispatch
-    const status = useSelector(selectSkiStatus)
+    const allSkisData = useAppSelector(selectSkis)
+    const allSkiPolesData = useAppSelector(selectSkiPoles)
+    const dispatch = useAppDispatch() as AppDispatch
+    const skiStatus = useAppSelector(selectSkiStatus)
+    const skiPoleStatus = useAppSelector(selectSkiPolesStatus)
     const location = useLocation().pathname
 
 
     useEffect(() => {
         dispatch(setSkiStatus('idle'))
-    }, [location])
+        dispatch(setSkiPolesStatus('idle'))
+    }, [dispatch, location])
 
     useEffect(() => {
-        if (status === 'idle') {
+        if (skiStatus === 'idle' && skiPoleStatus === 'idle') {
             dispatch(getAllSkisData())
+            dispatch(getAllSkiPolesData())
         }
-    }, [location, status, dispatch])
+    }, [location, skiStatus, skiPoleStatus, dispatch])
 
     return (
         <div className={styles.wrapper}>
@@ -47,24 +43,35 @@ const DashboardComponent = () => {
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>name</th>
-                            <th>type</th>
-                            <th>imgPath</th>
-                            <th>hardTrack</th>
-                            <th>uniTrack</th>
+                            <th>Название</th>
+                            <th>Тип</th>
+                            <th>Путь до картинки</th>
+                            <th>Свойства</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {allSkisData.map(s =>
+                        {allSkisData.map(s => (
                             <tr>
                                 <th>{s.id}</th>
                                 <td>{s.name}</td>
                                 <td>{s.skiType}</td>
                                 <td>{s.skiImg}</td>
-                                <td>s.hardTrack</td>
-                                <td>s.universalTrack</td>
+                                <td>
+                                    <button>Перейти</button>
+                                </td>
                             </tr>
-                        )}
+                        ))}
+                        {allSkiPolesData.map(sp => (
+                            <tr>
+                                <th>{sp.id}</th>
+                                <td>{sp.name}</td>
+                                <td>Палка</td>
+                                <td>{sp.poleImg}</td>
+                                <td>
+                                    <button>Перейти</button>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
 

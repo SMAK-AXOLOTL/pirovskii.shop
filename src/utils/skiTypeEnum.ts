@@ -1,4 +1,4 @@
 export enum skiTypeEnum {
     CLASSIC = 'classic',
-    SKATING = 'SKATING'
+    SKATING = 'skating'
 }

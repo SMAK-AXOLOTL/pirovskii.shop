@@ -21,18 +21,16 @@
     margin-top: 1%;
     justify-content: space-evenly;
 }
+
 .subCategory {
     width: 80%;
     align-self: flex-end;
 }
+
 .controlElements button {
     height: 16.5%;
 }
-.controlElements button:hover {
-    cursor: pointer;
-    border: 1px solid var(--peltonen-red);
-    color: var(--peltonen-red)
-}
+
 .dashboardTable{
     flex: 6;
     margin: 1% 0% 0% 1%;
@@ -41,9 +39,17 @@
     flex-direction: column;
     color: black;
 }
+
 .dashboardTable table {
     background-color: white;
 }
+
 .dashboardTable th, .dashboardContainer td {
     border: 1px solid black;
+}
+
+button:hover {
+    cursor: pointer;
+    border: 1px solid var(--peltonen-red);
+    color: var(--peltonen-red)
 }

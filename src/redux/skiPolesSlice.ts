@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {api} from '../api/api'
-import {skiPolesType, skiType} from "../utils/types";
+import {skiPolesType} from "../utils/types";
 
 type initialStateType = {
     skiPolesData: skiPolesType,
@@ -19,9 +19,6 @@ export const skiPolesSlice = createSlice({
     name: 'skiPoles',
     initialState: initialStateData,
     reducers: {
-        setSkiPolesData: (state, action) => {
-            state.skiPolesData =  action.payload
-        },
         setSkiPolesStatus: (state, action) => {
             state.status = action.payload
         }
@@ -43,7 +40,7 @@ export const skiPolesSlice = createSlice({
 })
 export const selectSkiPoles = (state: RootState) => state.skiPoles.skiPolesData
 export const selectSkiPolesStatus = (state: RootState) => state.skiPoles.status
-export const {setSkiPolesStatus, setSkiPolesData} = skiPolesSlice.actions
+export const {setSkiPolesStatus} = skiPolesSlice.actions
 
 export const getAllSkiPolesData = createAsyncThunk('skis/getAllSkiPolesData', async () => {
     return api.getAllSkiPoles()
