@@ -7,7 +7,7 @@ import {skiType} from "../../utils/types";
 export const skiDataMock:skiType = [
         {
             id: 'supra_x',
-            skiType: skiTypeEnum.CLASSIC,
+            type: skiTypeEnum.CLASSIC,
             name: 'Supra X',
             skiImg: supra_xImg,
             hardTrack: [
@@ -77,7 +77,7 @@ export const skiDataMock:skiType = [
         },
         {
             id: 'supra_c',
-            skiType: skiTypeEnum.CLASSIC,
+            type: skiTypeEnum.CLASSIC,
             name: 'Supra C',
             skiImg: supra_cImg,
             universalTrack: [
@@ -105,7 +105,7 @@ export const skiDataMock:skiType = [
         },
         {
             id: 'supra_x',
-            skiType: skiTypeEnum.SKATING,
+            type: skiTypeEnum.SKATING,
             name: 'Super Supra',
             skiImg: supra_xImg,
             hardTrack: [
@@ -175,7 +175,7 @@ export const skiDataMock:skiType = [
         },
         {
             id: 'supra_c',
-            skiType: skiTypeEnum.SKATING,
+            type: skiTypeEnum.SKATING,
             name: 'Supra Cheap',
             skiImg: supra_cImg,
             universalTrack: [
@@ -195,7 +195,7 @@ export const skiDataMock:skiType = [
         },
         {
             id: 'acadia',
-            skiType: skiTypeEnum.SKATING,
+            type: skiTypeEnum.SKATING,
             name: 'Macadamia',
             skiImg: acadiaImg,
             hardTrack: [

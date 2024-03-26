@@ -1,41 +1,6 @@
-import {skiModelType} from "../utils/types";
+import axios from "axios";
 
-export const api = {
-    async getAllSkating() {
-        const res = await fetch("http://localhost:3000/skis", {
-            method: "get"
-        });
-        const data = await res.json();
-
-        return data.filter(function (entry: skiModelType) {
-            return entry.skiType === 'skating'
-        })
-    },
-    async getAllClassic() {
-        const res = await fetch("http://localhost:3000/skis", {
-            method: "get"
-        });
-        const data = await res.json();
-
-        return data.filter(function (entry: skiModelType) {
-            return entry.skiType === 'classic'
-        })
-    },
-    async getAllSkis() {
-        const res = await fetch("http://localhost:3000/skis", {
-            method: "get"
-        });
-
-        return await res.json();
-    },
-    async getAllSkiPoles() {
-        const res = await fetch("http://localhost:3000/skipoles", {
-            method: "get"
-        });
-
-        return await res.json();
-    }
-}
-
-
-
+//todo fix authentication
+export const instance = axios.create({
+    baseURL: "http://localhost:8083"
+})

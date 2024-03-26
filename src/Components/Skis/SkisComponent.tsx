@@ -3,7 +3,6 @@ import styles from './SkisComponent.module.css'
 import SkiModelComponent from "./SkiModel/SkiModelComponent";
 import {NavLink, useLocation, useParams} from "react-router-dom";
 import {getClassicData, getSkatingData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
-import {AppDispatch} from "../../redux/store";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 
@@ -13,7 +12,7 @@ type PropsType = {
 
 const SkisComponent: React.FC<PropsType> = ({typeEnum}) => {
     const {modelId} = useParams()
-    const dispatch = useAppDispatch() as AppDispatch
+    const dispatch = useAppDispatch()
     const status = useAppSelector(selectSkiStatus)
     const skiModels = useAppSelector(selectSkis)
     const location = useLocation().pathname
@@ -21,7 +20,7 @@ const SkisComponent: React.FC<PropsType> = ({typeEnum}) => {
 
     useEffect( () => {
         dispatch(setSkiStatus('idle'))
-    }, [location, dispatch])
+    }, [dispatch, location])
 
     useEffect(() => {
         if (status === 'idle') {
@@ -36,7 +35,7 @@ const SkisComponent: React.FC<PropsType> = ({typeEnum}) => {
                 }
             }
         }
-    }, [typeEnum, location, modelId, status, dispatch])
+    }, [dispatch, location, status, typeEnum])
 
     function activeColorSetter (modelId: string | undefined, buttonId:string) {
         return modelId === buttonId? styles.active : styles.notActive

@@ -14,21 +14,21 @@ const SkiModelComponent = () => {
         {actualSkating && <div className={styles.classicModelContainer}>
             <img src={actualSkating.skiImg} alt={modelId}/>
             <div className={styles.sizesTableContainer}>
-                {actualSkating.hardTrack !== undefined &&
+                {actualSkating.hardTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>
                             Жесткая трасса
                         </h2>
-                        {actualSkating.hardTrack.map((h) =>
+                        {actualSkating.hardTrack && actualSkating.hardTrack.map((h) =>
                             <LengthItemComponent key={h.lengthString} length={h}/>)}
                     </div>
                 }
-                {actualSkating.universalTrack !== undefined &&
+                {actualSkating.universalTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>
                             Универсальные
                         </h2>
-                        {actualSkating.universalTrack.map((u) =>
+                        {actualSkating.universalTrack && actualSkating.universalTrack.map((u) =>
                             <LengthItemComponent key={u.lengthString} length={u}/>)}
                     </div>
                 }

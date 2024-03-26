@@ -4,7 +4,7 @@ export type skiType = skiModelType[]
 
 export type skiModelType = {
     id: string,
-    skiType: skiTypeEnum,
+    type: skiTypeEnum,
     name: string,
     skiImg: string,
     hardTrack?: lengthType[],

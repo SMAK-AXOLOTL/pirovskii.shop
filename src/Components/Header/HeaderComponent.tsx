@@ -9,7 +9,7 @@ const HeaderComponent = () => {
             <img src={logo} alt={'peltonen'}/>
             В СПб и ЛО
         </div>
-        <NavLink to={'/landing'}>
+        <NavLink to={'/'}>
             <button>Главная</button>
         </NavLink>
         <NavLink to={'/classic/supra_x'}>
@@ -23,6 +23,9 @@ const HeaderComponent = () => {
         </NavLink>
         <NavLink to={'/contacts'}>
             <button>Контакты</button>
+        </NavLink>
+        <NavLink to={'/dashboard'}>
+            <button>админ</button>
         </NavLink>
     </div>
 }

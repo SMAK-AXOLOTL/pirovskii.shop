@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import skisReducer from "./skisSlice";
 import skiPolesReducer from './skiPolesSlice'
+import appStateReducer from './appStateSlice'
 
 export const store = configureStore({
     reducer: {
         skis: skisReducer,
-        skiPoles: skiPolesReducer
+        skiPoles: skiPolesReducer,
+        appState: appStateReducer
     }
 })
 

@@ -7,6 +7,25 @@
 }
 
 .dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1% 0;
+}
+
+.createNewButton{
+    height: 4vh;
+    border: 1px solid var(--peltonen-red);
+    border-radius: 5vh;
+    background-color: var(--peltonen-red);
+    color: white;
+}
+
+.createNewButton:hover{
+    background-color: white;
+    color: var(--peltonen-red);
+}
+
+.controlsAndTableContainer {
     padding: 0% 1%;
     display: flex;
     flex-direction: row;
@@ -52,4 +71,10 @@ button:hover {
     cursor: pointer;
     border: 1px solid var(--peltonen-red);
     color: var(--peltonen-red)
+}
+
+.updateUi {
+    position: absolute;
+    background-color: black;
+    color: white;
 }
