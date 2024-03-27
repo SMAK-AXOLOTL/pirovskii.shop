@@ -20,9 +20,7 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState: initialStateData,
     reducers: {
-        setAppStateStatus: (state, action) => {
-            state.status = action.payload
-        }
+
     },
     extraReducers(builder) {
         builder
@@ -32,7 +30,6 @@ export const appStateSlice = createSlice({
             .addCase(tryLogin.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 state.isAuth = true
-                console.log(action.payload)
                 state.accessToken = action.payload
             })
             .addCase(tryLogin.rejected, (state, action) => {
@@ -42,9 +39,6 @@ export const appStateSlice = createSlice({
     }
 })
 export const selectIsAuth = (state: RootState) => state.appState.isAuth
-export const selectAccessToken = (state: RootState) => state.appState.accessToken
-export const selectAppStateStatus = (state: RootState) => state.appState.status
-export const {setAppStateStatus} = appStateSlice.actions
 
 export const tryLogin = createAsyncThunk('appState/getAuthData', async (userData: {login: string, password: string}) => {
     return authApi.login(userData.login, userData.password)

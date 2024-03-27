@@ -1,0 +1,12 @@
+.manageWeightsUi {
+    position: absolute;
+    margin: -25% 65%;
+    width: 50%;
+    background-color: white;
+    border: 1px solid black;
+}
+.changeWeightUi {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+}

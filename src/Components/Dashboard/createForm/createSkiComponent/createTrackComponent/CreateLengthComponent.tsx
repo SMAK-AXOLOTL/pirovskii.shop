@@ -1,25 +1,16 @@
 import React, {useState} from "react";
-import styles from './CreateLengthComponent.module.css'
 import {lengthType} from "../../../../../utils/types";
+import ManageWeightsComponent from "./manageWeightsComponent/ManageWeightsComponent";
 
 type PropsType = {
     track: lengthType,
-    skiName: string,
-    trackType: string,
+    trackIndex: number,
+    trackType: 'hard' | 'universal',
     filterOutLength: (track: lengthType) => void
 }
 
-export const CreateLengthComponent: React.FC<PropsType> = ({track, skiName, trackType, filterOutLength}) => {
+const CreateLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, filterOutLength}) => {
     const [isCreateWeightUiOpen, setIsCreateWeightUiOpen] = useState(false)
-
-    function createWeight(trackType: string) {
-        switch (trackType) {
-            case 'hard':
-                return <h3>{skiName} Жесткая Трасса</h3>
-            case 'universal':
-                return <h3>{skiName} Универсальные</h3>
-        }
-    }
 
     return <div>
         <div>
@@ -30,20 +21,8 @@ export const CreateLengthComponent: React.FC<PropsType> = ({track, skiName, trac
                 X
             </button>
         </div>
-        {isCreateWeightUiOpen && <div className={styles.manageWeightsUi}>
-            {createWeight(trackType)}
-            <h2>
-                {track.lengthString}
-                <button>+</button>
-            </h2>
-            <div>
-                {track.weights.map(w =>
-                    <div>
-                        {w.weightString}
-                        <button onClick={() => w.isReserved = !w.isReserved}>R</button>
-                        <button>X</button>
-                    </div>)}
-            </div>
-        </div>}
+        {isCreateWeightUiOpen && <ManageWeightsComponent track={track} trackIndex={trackIndex} trackType={trackType}/>}
     </div>
 }
+
+export default CreateLengthComponent

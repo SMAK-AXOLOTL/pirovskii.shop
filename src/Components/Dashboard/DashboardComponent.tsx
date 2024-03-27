@@ -1,24 +1,16 @@
 import React, {useEffect, useState} from "react";
 import styles from './DashboardComponent.module.css'
-import {
-    deleteSkiById,
-    getAllSkisData,
-    selectSkis,
-    selectSkiStatus,
-    setSkiStatus,
-    updateOneSkiData
-} from "../../redux/skisSlice";
+import {deleteSkiById, getAllSkisData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
 import {AppDispatch} from "../../redux/store";
 import {useLocation} from "react-router-dom";
 import {getAllSkiPolesData, selectSkiPoles, selectSkiPolesStatus, setSkiPolesStatus} from "../../redux/skiPolesSlice";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {skiModelType} from "../../utils/types";
 import UpdateFormComponent from "./updateForm/UpdateFormComponent";
 import {useAuthRedirect} from "../../hooks/useAuthRedirect";
 import CreateFormComponent from "./createForm/CreateFormComponent";
 
 
-//todo: finish updating and creating weights
+//todo: finish updating and creating remaining entities
 const DashboardComponent = () => {
     const [isUpdateUiOpen, setUpdateUiOpen] = useState(false)
     const [isCreateUiOpen, setCreateUiOpen] = useState(false)
@@ -51,10 +43,11 @@ const DashboardComponent = () => {
     function handleClick(id:string) {
         dispatch(deleteSkiById(id))
     }
-    function handleUpdate(id:string, data:skiModelType){
+    /*function handleUpdate(id:string, data:skiModelType){
         const requestData = {id: id, data: data}
         dispatch(updateOneSkiData(requestData))
-    }
+    }*/
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.dashboardContainer}>
