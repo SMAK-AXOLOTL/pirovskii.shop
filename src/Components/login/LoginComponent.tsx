@@ -31,16 +31,20 @@ export function LoginComponent() {
         Login Form
         <div className={styles.loginForm}>
             <div>
-                <label>Login</label>
-                <div>
-                    <input onChange={handleLoginChange} value={login}></input>
-                </div>
+                <label>
+                    Login
+                    <div>
+                        <input onChange={handleLoginChange} value={login}></input>
+                    </div>
+                </label>
             </div>
             <div>
-                <label>Password</label>
-                <div>
-                    <input type={"password"} onChange={handlePasswordChange} value={password}></input>
-                </div>
+                <label>
+                    Password
+                    <div>
+                        <input type={"password"} onChange={handlePasswordChange} value={password}></input>
+                    </div>
+                </label>
             </div>
             <button onClick={() => handleSubmit(login, password)}>Login</button>
         </div>

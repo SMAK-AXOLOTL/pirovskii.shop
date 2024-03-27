@@ -26,7 +26,7 @@ const DashboardComponent = () => {
     useEffect(() => {
         dispatch(setSkiStatus('idle'))
         dispatch(setSkiPolesStatus('idle'))
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(setSkiStatus('idle'))
