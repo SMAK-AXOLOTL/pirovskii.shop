@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from './ManageWeightsComponent.module.css'
-import {lengthType, weightType} from "../../../../../../utils/types";
+import {skiLengthType, skiWeightType} from "../../../../../../utils/types";
 import {useAppDispatch, useAppSelector} from "../../../../../../hooks/reduxHooks";
 import {
     addNewSkiHardTrackWeight,
@@ -12,7 +12,7 @@ import {
 import ChangeWeightComponent from "./changeWeightComponent/ChangeWeightComponent";
 
 type PropsType = {
-    track: lengthType,
+    track: skiLengthType,
     trackIndex: number,
     trackType: 'hard' | 'universal'
 }
@@ -60,7 +60,7 @@ const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackTy
         return 'R'
     }
 
-    const WeightComponent:React.FC<{w: weightType, index: number}> = ({w, index}) => {
+    const WeightComponent:React.FC<{w: skiWeightType, index: number}> = ({w, index}) => {
         const [isChangeWeightStringUiOpen, setIsChangeWeightStringUiOpen] = useState(false)
 
         return <div>

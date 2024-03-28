@@ -13,10 +13,15 @@ const SkiPoleModelComponent = () => {
         {actualSkiPole && <div className={styles.skiPolesContainer}>
             <img src={actualSkiPole.poleImg} alt={modelId}/>
             <div className={styles.lengthTableContainer}>
-                {actualSkiPole.lengthArray?.map((x) => (
-                    <button className={styles.tableRow}>
-                        {x}
-                    </button>
+                {actualSkiPole.lengthArray?.map((x, index) => (
+                    x.isReserved ?
+                        <button key={x.lengthString + index} disabled={true} className={styles.tableRow}>
+                            Бронь
+                        </button>
+
+                        : <button key={x.lengthString + index} className={styles.tableRow}>
+                            {x.lengthString}
+                        </button>
                 ))}
             </div>
         </div>}

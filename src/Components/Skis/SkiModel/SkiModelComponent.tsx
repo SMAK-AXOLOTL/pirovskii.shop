@@ -8,7 +8,7 @@ import {useAppSelector} from "../../../hooks/reduxHooks";
 const SkiModelComponent = () => {
     const {modelId} = useParams()
     const skating = useAppSelector(selectSkis)
-    const actualSkating = skating.find( (x) => x.id === modelId)
+    const actualSkating = skating.find((x) => x.id === modelId)
 
     return <div className={styles.wrapper}>
         {actualSkating && <div className={styles.classicModelContainer}>
@@ -20,7 +20,9 @@ const SkiModelComponent = () => {
                             Жесткая трасса
                         </h2>
                         {actualSkating.hardTrack && actualSkating.hardTrack.map((h) =>
-                            <LengthItemComponent key={h.lengthString} length={h}/>)}
+                            <LengthItemComponent key={h.lengthString} length={h}/>
+                        )
+                        }
                     </div>
                 }
                 {actualSkating.universalTrack?.length !== 0 &&
@@ -29,7 +31,9 @@ const SkiModelComponent = () => {
                             Универсальные
                         </h2>
                         {actualSkating.universalTrack && actualSkating.universalTrack.map((u) =>
-                            <LengthItemComponent key={u.lengthString} length={u}/>)}
+                            <LengthItemComponent key={u.lengthString} length={u}/>
+                        )
+                        }
                     </div>
                 }
             </div>

@@ -40,16 +40,16 @@ const ChangeWeightComponent: React.FC<PropsType> = ({trackIndex, trackType, weig
             <button onClick={() => handleChangeWeightClick(weightIndex, weightString, isReserved)}>x</button>
         </span>
         <div>
-            <label>
+            <p>
                 Вес
                 <input onChange={(e) => setWeightString(e.target.value)} value={weightString}/>
-            </label>
+            </p>
         </div>
         <div>
-            <label>
+            <p>
                 Бронь
                 <input type={"checkbox"} onChange={() => setIsReserved(true)} defaultChecked={isReserved}/>
-            </label>
+            </p>
         </div>
     </div>
 }

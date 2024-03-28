@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styles from './CreateFormComponent.module.css'
 import CreateSkiComponent from "./createSkiComponent/CreateSkiComponent";
+import CreateSkiPoleComponent from "./createSkipoleComponent/CreateSkiPoleComponent";
 
 
 const CreateFormComponent = () => {
@@ -15,7 +16,7 @@ const CreateFormComponent = () => {
                     <option value={'skipole'}>Палки</option>
                 </select>
                 {createType === 'ski' && <CreateSkiComponent/>}
-                {createType === 'skipole' && <div>Тут будут палки</div>}
+                {createType === 'skipole' && <CreateSkiPoleComponent/>}
             </div>
         </div>
     );

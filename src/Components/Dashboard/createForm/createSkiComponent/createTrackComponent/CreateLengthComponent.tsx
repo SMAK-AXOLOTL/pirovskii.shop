@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import {lengthType} from "../../../../../utils/types";
+import {skiLengthType} from "../../../../../utils/types";
 import ManageWeightsComponent from "./manageWeightsComponent/ManageWeightsComponent";
 
 type PropsType = {
-    track: lengthType,
+    track: skiLengthType,
     trackIndex: number,
     trackType: 'hard' | 'universal',
-    filterOutLength: (track: lengthType) => void
+    filterOutLength: (track: skiLengthType) => void
 }
 
 const CreateLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, filterOutLength}) => {

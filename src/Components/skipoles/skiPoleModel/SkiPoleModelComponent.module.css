@@ -28,11 +28,29 @@
     width: 60%;
 }
 
+
+
 .tableRow {
-    max-height: 4vh;
-    width: 25%;
-    margin: 0 1vh 1vh;
-    font-size: 3vh;
+    background-color: var(--background-color);
     color: black;
-    background-color: white;
+    border: 1px solid var(--background-color);
+    border-radius: 1vh;
+    padding: 0.1vh 0.5vh;
+    width: 28%;
+    font-size: 3vh;
+    margin: 0.5vh;
+}
+
+.tableRow:hover{
+    background-color: var(--peltonen-red);
+    border: var(--peltonen-red);
+    color: var(--button-text);
+    cursor: pointer;
+}
+
+.tableRow:disabled{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    cursor: auto;
 }

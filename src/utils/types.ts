@@ -7,16 +7,16 @@ export type skiModelType = {
     type: skiTypeEnum,
     name: string,
     skiImg: string,
-    hardTrack: lengthType[],
-    universalTrack: lengthType[]
+    hardTrack: skiLengthType[],
+    universalTrack: skiLengthType[]
 }
 
-export type lengthType = {
+export type skiLengthType = {
     lengthString: string,
-    weights: weightType[]
+    weights: skiWeightType[]
 }
 
-export type weightType = {
+export type skiWeightType = {
     weightString: string,
     isReserved: boolean
 }
@@ -27,5 +27,10 @@ export type skiPoleType = {
     id: string,
     name: string,
     poleImg: string,
-    lengthArray: string[]
+    lengthArray: skiPoleLengthType[]
+}
+
+export type skiPoleLengthType = {
+    lengthString: string,
+    isReserved: boolean
 }

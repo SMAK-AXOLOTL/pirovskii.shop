@@ -1,26 +1,31 @@
 import React, {useEffect, useState} from "react";
-import styles from './CreateSkiComponent.module.css'
+import styles from './UpdateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
     addNewSkiHardTrack,
     addNewSkiUniTrack,
-    createSki,
-    selectNewSkiData, setNewSkiData,
+    selectNewSkiData,
+    selectSkis,
+    setNewSkiData,
     setNewSkiHardTrack,
-    setNewSkiId,
     setNewSkiImg,
     setNewSkiName,
     setNewSkiType,
-    setNewSkiUniTrack
+    setNewSkiUniTrack,
+    setSkiDataByIndex,
+    updateOneSkiData
 } from "../../../../redux/skisSlice";
 import {skiLengthType} from "../../../../utils/types";
 import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
-import CreateLengthComponent from "./createTrackComponent/CreateLengthComponent";
+import CreateLengthComponent from "../../createForm/createSkiComponent/createTrackComponent/CreateLengthComponent";
 
-
-const CreateSkiComponent = () => {
+type PropsType = {
+    index: number
+}
+//fixme rework duplicated code
+const UpdateSkiComponent: React.FC<PropsType> = ({index}) => {
+    const initialData = useAppSelector(selectSkis)[index]
     const ski = useAppSelector(selectNewSkiData)
-
     const [newTrackLength, setNewTrackLength] = useState('')
     const [isCreateHardTrackLengthUiOpen, setIsCreateHardTrackLengthUiOpen] = useState(false)
     const [isCreateUniversalTrackLengthUiOpen, setIsCreateUniversalTrackLengthUiOpen] = useState(false)
@@ -28,10 +33,16 @@ const CreateSkiComponent = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setNewSkiData({id: '', type: skiTypeEnum.CLASSIC, name: '', skiImg: '', hardTrack: [], universalTrack: []}))
-    }, [dispatch]);
-    function handleCreateClick() {
-        dispatch(createSki(ski))
+        dispatch(setNewSkiData(initialData))
+    }, [initialData, dispatch])
+
+    function handleUpdateClick() {
+        const actionPayloadDTO = {
+            index: index,
+            data: ski
+        }
+        dispatch(setSkiDataByIndex(actionPayloadDTO))
+        dispatch(updateOneSkiData({id: ski.id, data: actionPayloadDTO.data}))
     }
 
     function handleCreateHardTrack(length: string) {
@@ -50,52 +61,51 @@ const CreateSkiComponent = () => {
 
     function filterOutHardTrack(track: skiLengthType) {
         dispatch(setNewSkiHardTrack(
-            ski.hardTrack?.filter((x) => {
-                    return x.lengthString !== track.lengthString
-                }
+                ski.hardTrack?.filter((x) => {
+                        return x.lengthString !== track.lengthString
+                    }
+                )
             )
-        ))
+        )
     }
 
     function filterOutUniversalTrack(track: skiLengthType) {
         dispatch(setNewSkiUniTrack(
             ski.universalTrack?.filter((x) => {
-                    return x.lengthString !== track.lengthString
-                }
+                        return x.lengthString !== track.lengthString
+                    }
+                )
             )
-        ))
+        )
     }
-
-    useEffect(() => {
-    }, [])
 
     return (<div className={styles.createForm}>
         <div>
-            <label>ID</label>
-            <input type={"text"} onChange={(e) => dispatch(setNewSkiId(e.target.value))}/>
+            <p>ID</p>
+            <input value={ski.id} disabled={true} type={"text"}/>
         </div>
         <div>Тип:
-            <select onChange={(e) => dispatch(setNewSkiType(e.target.value as skiTypeEnum))}>
+            <select value={ski.type} onChange={(e) => dispatch(setNewSkiType(e.target.value as skiTypeEnum))}>
                 <option value={skiTypeEnum.CLASSIC}>Классика</option>
                 <option value={skiTypeEnum.SKATING}>Коньки</option>
             </select>
         </div>
         <div>
-            <label>Название модели</label>
-            <input type={"text"} onChange={(e) => dispatch(setNewSkiName(e.target.value))}/>
+            <p>Название модели</p>
+            <input value={ski.name} type={"text"} onChange={(e) => dispatch(setNewSkiName(e.target.value))}/>
         </div>
         <div>
-            <label>Картинка</label>
-            <input type={"text"} onChange={(e) => dispatch(setNewSkiImg(e.target.value))}/>
+            <p>Картинка</p>
+            <input type={"text"} value={ski.skiImg} onChange={(e) => dispatch(setNewSkiImg(e.target.value))}/>
         </div>
         <div>
-            <label>
+            <p>
                 Жесткая трасса
                 <button onClick={() => setIsCreateHardTrackLengthUiOpen(!isCreateHardTrackLengthUiOpen)}>+</button>
-            </label>
+            </p>
             {isCreateHardTrackLengthUiOpen && <div className={styles.createTrack}>
                 <div>
-                    <span>Добавить длину для жесткой трассы</span>
+                    <p>Добавить длину для жесткой трассы</p>
                     <button onClick={() => setIsCreateHardTrackLengthUiOpen(false)}>X</button>
                 </div>
                 <input type={"text"} onChange={(e) => setNewTrackLength(e.target.value)}/>
@@ -139,10 +149,10 @@ const CreateSkiComponent = () => {
                     />)}
             </div>
         </div>
-        <button onClick={handleCreateClick}>
-            Добавить
+        <button onClick={handleUpdateClick}>
+            Изменить
         </button>
     </div>)
 }
 
-export default CreateSkiComponent
+export default UpdateSkiComponent

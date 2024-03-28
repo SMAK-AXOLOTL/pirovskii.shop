@@ -3,17 +3,34 @@ import styles from './DashboardComponent.module.css'
 import {deleteSkiById, getAllSkisData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
 import {AppDispatch} from "../../redux/store";
 import {useLocation} from "react-router-dom";
-import {getAllSkiPolesData, selectSkiPoles, selectSkiPolesStatus, setSkiPolesStatus} from "../../redux/skiPolesSlice";
+import {
+    deleteSkiPoleById,
+    getAllSkiPolesData,
+    selectSkiPoles,
+    selectSkiPolesStatus,
+    setSkiPolesStatus
+} from "../../redux/skiPolesSlice";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import UpdateFormComponent from "./updateForm/UpdateFormComponent";
 import {useAuthRedirect} from "../../hooks/useAuthRedirect";
 import CreateFormComponent from "./createForm/CreateFormComponent";
+import UpdateFormComponent from "./updateForm/UpdateFormComponent";
+import {skiModelType, skiPoleType} from "../../utils/types";
+import {skiTypeEnum} from "../../utils/skiTypeEnum";
 
+enum filters {
+    ALL = 'all',
+    SKIS = 'skis',
+    CLASSIC = 'classic',
+    SKATING = 'skating',
+    SKIPOLES = 'skiPoles'
+}
 
-//todo: finish updating and creating remaining entities
+//todo add working with files, data validation
+//fixme updating ski pole rewrites table row by ski pole index
 const DashboardComponent = () => {
-    const [isUpdateUiOpen, setUpdateUiOpen] = useState(false)
     const [isCreateUiOpen, setCreateUiOpen] = useState(false)
+    const [filter, setFilter] = useState(filters.ALL)
+
     const allSkisData = useAppSelector(selectSkis)
     const allSkiPolesData = useAppSelector(selectSkiPoles)
     const dispatch = useAppDispatch() as AppDispatch
@@ -22,11 +39,6 @@ const DashboardComponent = () => {
     const location = useLocation().pathname
 
     useAuthRedirect()
-
-    useEffect(() => {
-        dispatch(setSkiStatus('idle'))
-        dispatch(setSkiPolesStatus('idle'))
-    }, [dispatch])
 
     useEffect(() => {
         dispatch(setSkiStatus('idle'))
@@ -40,28 +52,94 @@ const DashboardComponent = () => {
         }
     }, [location, skiStatus, skiPoleStatus, dispatch])
 
-    function handleClick(id:string) {
+    function filterSkis(skiType: skiTypeEnum) {
+        switch (filter) {
+            case filters.SKIPOLES:
+                return false
+            case filters.SKATING:
+                return skiType === skiTypeEnum.SKATING
+            case filters.CLASSIC:
+                return skiType === skiTypeEnum.CLASSIC
+            default:
+                return true
+        }
+    }
+
+    function filterSkiPoles() {
+        switch (filter){
+            case filters.SKIPOLES:
+            case filters.ALL: return true
+            default: return false
+        }
+    }
+
+    function handleDeleteSkiClick(id: string) {
         dispatch(deleteSkiById(id))
     }
-    /*function handleUpdate(id:string, data:skiModelType){
-        const requestData = {id: id, data: data}
-        dispatch(updateOneSkiData(requestData))
-    }*/
+
+    function handleDeleteSkiPoleClick(id: string) {
+        dispatch(deleteSkiPoleById(id))
+    }
+
+    const TableRowSki: React.FC<{ ski: skiModelType, index: number }> = ({ski, index}) => {
+        const [isUpdateUiOpen, setUpdateUiOpen] = useState(false)
+
+        return <tr
+            key={ski.id + '/' + ski.name}>
+            < th> {ski.id}
+            </th>
+            <td>{ski.name}</td>
+            <td>{ski.type}</td>
+            <td>{ski.skiImg}</td>
+            <td>
+                <button onClick={() => setUpdateUiOpen(!isUpdateUiOpen)}>Открыть</button>
+                {isUpdateUiOpen && <UpdateFormComponent index={index} updateType={"ski"}/>}
+            </td>
+            <td>
+                <button className={styles.deleteButton} onClick={() => handleDeleteSkiClick(ski.id)}>X</button>
+            </td>
+        </tr>
+    }
+
+    const TableRowSkiPole: React.FC<{ skiPole: skiPoleType, index: number }> = ({skiPole, index}) => {
+        const [isUpdateUiOpen, setUpdateUiOpen] = useState(false)
+
+        return <tr key={skiPole.id + '/' + skiPole.name}>
+            <th>{skiPole.id}</th>
+            <td>{skiPole.name}</td>
+            <td>Палка</td>
+            <td>{skiPole.poleImg}</td>
+            <td>
+                <button onClick={() => setUpdateUiOpen(!isUpdateUiOpen)}>Открыть</button>
+                {isUpdateUiOpen && <UpdateFormComponent index={index} updateType={'skiPole'}/>}
+            </td>
+            <td>
+                <button className={styles.deleteButton}
+                        onClick={() => handleDeleteSkiPoleClick(skiPole.id)}>X
+                </button>
+            </td>
+        </tr>
+    }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.dashboardContainer}>
                 <div>
-                    <button className={styles.createNewButton} onClick={() => setCreateUiOpen(!isCreateUiOpen)}>Добавить новое</button>
+                    <button className={styles.createNewButton} onClick={() => setCreateUiOpen(!isCreateUiOpen)}>Добавить
+                        новое
+                    </button>
                 </div>
                 <div className={styles.controlsAndTableContainer}>
                     <div className={styles.controlElements}>
-                        <button>Все товары</button>
-                        <button>Лыжи</button>
-                        <button className={styles.subCategory}>Классика</button>
-                        <button className={styles.subCategory}>Коньковые</button>
-                        <button>Прочее</button>
-                        <button className={styles.subCategory}>Палки</button>
+                        <button onClick={() => setFilter(filters.ALL)}>Все товары</button>
+                        <button onClick={() => setFilter(filters.SKIS)}>Лыжи</button>
+                        <button className={styles.subCategory} onClick={() => setFilter(filters.CLASSIC)}>Классика
+                        </button>
+                        <button className={styles.subCategory} onClick={() => setFilter(filters.SKATING)}>Коньковые
+                        </button>
+                        <button onClick={() => setFilter(filters.SKIPOLES)}>Прочее</button>
+                        <button className={styles.subCategory} onClick={() => setFilter(filters.SKIPOLES)}>Палки
+                        </button>
                     </div>
                     <div className={styles.dashboardTable}>
                         <table>
@@ -76,34 +154,18 @@ const DashboardComponent = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {allSkisData.map(s => (
-                                <tr key={s.id + '/' + s.name}>
-                                    <th>{s.id}</th>
-                                    <td>{s.name}</td>
-                                    <td>{s.type}</td>
-                                    <td>{s.skiImg}</td>
-                                    <td>
-                                        <button onClick={() => setUpdateUiOpen(!isUpdateUiOpen)}>Перейти</button>
-                                    </td>
-                                    <td>
-                                        <button className={styles.deleteButton} onClick={() => handleClick(s.id)}>X</button>
-                                    </td>
-                                </tr>
-                            ))}
-                            {allSkiPolesData.map(sp => (
-                                <tr key={sp.id + '/' + sp.name}>
-                                    <th>{sp.id}</th>
-                                    <td>{sp.name}</td>
-                                    <td>Палка</td>
-                                    <td>{sp.poleImg}</td>
-                                    <td>
-                                        <button>Открыть</button>
-                                    </td>
-                                </tr>
-                            ))}
+                            {allSkisData.map((s, index) => (
+                                    filterSkis(s.type) &&
+                                    <TableRowSki key={s.id} ski={s} index={index}/>
+                                )
+                            )}
+                            {allSkiPolesData.map((sp, index) => (
+                                    filterSkiPoles() &&
+                                    <TableRowSkiPole key={sp.id} skiPole={sp} index={index}/>
+                                )
+                            )}
                             </tbody>
                         </table>
-                        {isUpdateUiOpen && <UpdateFormComponent/>}
                         {isCreateUiOpen && <CreateFormComponent/>}
                     </div>
                 </div>

@@ -25,6 +25,12 @@ export const skisSlice = createSlice({
         setSkiStatus: (state, action) => {
             state.status = action.payload
         },
+        setSkiDataByIndex: (state, action) => {
+          state.skiData[action.payload.index] = action.payload.data
+        },
+        setNewSkiData: (state, action) => {
+            state.newSkiData = action.payload
+        },
         setNewSkiId: (state, action) => {
             state.newSkiData.id = action.payload
         },
@@ -40,11 +46,11 @@ export const skisSlice = createSlice({
         setNewSkiHardTrack: (state, action) => {
             state.newSkiData.hardTrack = action.payload
         },
-        setNewSkiUniTrack: (state, action) => {
-            state.newSkiData.universalTrack = action.payload
-        },
         addNewSkiHardTrack: (state, action) => {
             state.newSkiData.hardTrack.push(action.payload)
+        },
+        setNewSkiUniTrack: (state, action) => {
+            state.newSkiData.universalTrack = action.payload
         },
         addNewSkiUniTrack: (state, action) => {
             state.newSkiData.universalTrack.push(action.payload)
@@ -57,6 +63,12 @@ export const skisSlice = createSlice({
                 }
             )
         },
+        setNewSkiHardTrackWeight: (state, action) => {
+            state.newSkiData.hardTrack[action.payload.track].weights[action.payload.index] = {weightString: action.payload.weight, isReserved: action.payload.isReserved}
+        },
+        deleteNewSkiHardTrackWeight: (state, action) => {
+            state.newSkiData.hardTrack[action.payload.track].weights.splice(action.payload.index, 1)
+        },
         addNewSkiUniTrackWeight: (state, action) => {
             state.newSkiData.universalTrack.find((t) => t.lengthString === action.payload)
                 ?.weights.push({
@@ -65,18 +77,12 @@ export const skisSlice = createSlice({
                 }
             )
         },
-        setNewSkiHardTrackWeight: (state, action) => {
-            state.newSkiData.hardTrack[action.payload.track].weights[action.payload.index] = {weightString: action.payload.weight, isReserved: action.payload.isReserved}
-        },
         setNewSkiUniTrackWeight: (state, action) => {
             state.newSkiData.universalTrack[action.payload.track].weights[action.payload.index] = {weightString: action.payload.weight, isReserved: action.payload.isReserved}
         },
-        deleteNewSkiHardTrackWeight: (state, action) => {
-            state.newSkiData.hardTrack[action.payload.track].weights.splice(action.payload.index, 1)
-        },
         deleteNewSkiUniTrackWeight: (state, action) => {
             state.newSkiData.hardTrack[action.payload.track].weights.splice(action.payload.index, 1)
-        },
+        }
     },
     extraReducers(builder) {
         builder
@@ -153,6 +159,8 @@ export const selectSkiStatus = (state: RootState) => state.skis.status
 export const selectNewSkiData = (state: RootState) => state.skis.newSkiData
 export const {
     setSkiStatus,
+    setSkiDataByIndex,
+    setNewSkiData,
     setNewSkiId,
     setNewSkiType,
     setNewSkiName,
