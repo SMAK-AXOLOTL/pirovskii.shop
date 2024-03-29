@@ -26,7 +26,6 @@ enum filters {
 }
 
 //todo add working with files, data validation
-//fixme updating ski pole rewrites table row by ski pole index
 const DashboardComponent = () => {
     const [isCreateUiOpen, setCreateUiOpen] = useState(false)
     const [filter, setFilter] = useState(filters.ALL)

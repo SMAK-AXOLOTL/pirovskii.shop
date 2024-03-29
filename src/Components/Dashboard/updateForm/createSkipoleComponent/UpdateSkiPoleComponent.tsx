@@ -8,10 +8,10 @@ import {
     setNewSkiPoleData,
     setNewSkiPoleImg,
     setNewSkiPoleName,
+    setSkiPoleDataByIndex,
     updateOneSkiPoleData
 } from "../../../../redux/skiPolesSlice";
 import LengthComponent from "../../createForm/createSkipoleComponent/lengthComponent/LengthComponent";
-import {setSkiDataByIndex} from "../../../../redux/skisSlice";
 
 type PropsType = {
     index: number
@@ -28,7 +28,7 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
 
     function handleUpdateClick() {
         const actionPayloadDTO = {index: index, data: skiPole}
-        dispatch(setSkiDataByIndex(actionPayloadDTO))
+        dispatch(setSkiPoleDataByIndex(actionPayloadDTO))
         dispatch(updateOneSkiPoleData({
                 id: skiPole.id,
                 data: actionPayloadDTO.data
