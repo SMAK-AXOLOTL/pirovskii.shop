@@ -12,7 +12,7 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiPolesData: [],
-    newSkiPoleData: {id: '', name: '', poleImg: '', lengthArray: []},
+    newSkiPoleData: {id: "", name: "", poleImg: "", lengthArray: []},
     status: 'idle',
     err: undefined
 }
@@ -43,7 +43,10 @@ export const skiPolesSlice = createSlice({
             state.newSkiPoleData.lengthArray.push({lengthString: '160', isReserved: false})
         },
         setNewSkiPoleLength: (state, action) => {
-            state.newSkiPoleData.lengthArray[action.payload.index] = {lengthString: action.payload.length, isReserved: action.payload.isReserved}
+            state.newSkiPoleData.lengthArray[action.payload.index] = {
+                lengthString: action.payload.length,
+                isReserved: action.payload.isReserved
+            }
         },
         deleteNewSkiPoleLength: (state, action) => {
             state.newSkiPoleData.lengthArray.splice(action.payload, 1)
@@ -101,22 +104,27 @@ export const {
     deleteNewSkiPoleLength
 } = skiPolesSlice.actions
 
-export const getAllSkiPolesData = createAsyncThunk('skiPoles/getAllSkiPolesData', async () => {
-    return skiPolesApi.getAllSkiPoles()
-})
+export const getAllSkiPolesData = createAsyncThunk('skiPoles/getAllSkiPolesData',
+    async () => {
+        return skiPolesApi.getAllSkiPoles()
+    })
 
-export const createSkiPole = createAsyncThunk('skiPoles/createSkiPole', async (requestData: skiPoleType) => {
-    return skiPolesApi.create(requestData)
-})
+export const createSkiPole = createAsyncThunk('skiPoles/createSkiPole',
+    async (requestData: skiPoleType) => {
+        return skiPolesApi.create(requestData)
+    })
 
-export const updateOneSkiPoleData = createAsyncThunk('skiPoles/updateOneSkiPole', async (requestData: {
-    id: string,
-    data: skiPoleType
-}) => {
-    return skiPolesApi.updateOne(requestData.id, requestData.data)
-})
+export const updateOneSkiPoleData = createAsyncThunk('skiPoles/updateOneSkiPole',
+    async (requestData: {
+        id: string,
+        data: skiPoleType
+    }) => {
+        return skiPolesApi.updateOne(requestData.id, requestData.data)
+    })
 
-export const deleteSkiPoleById = createAsyncThunk('skiPoles/deleteSkiPoleById', async (id: string) => {
-    return skiPolesApi.deleteOne(id)
-})
+export const deleteSkiPoleById = createAsyncThunk('skiPoles/deleteSkiPoleById',
+    async (id: string) => {
+        return skiPolesApi.deleteOne(id)
+    })
+
 export default skiPolesSlice.reducer

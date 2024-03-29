@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styles from './LengthComponent.module.css'
+import styles from './SkiPoleLengthComponent.module.css'
 import {useAppDispatch} from "../../../../../hooks/reduxHooks";
 import {deleteNewSkiPoleLength, setNewSkiPoleLength} from "../../../../../redux/skiPolesSlice";
 
@@ -9,7 +9,7 @@ type PropsType = {
     index: number
 }
 
-const LengthComponent: React.FC<PropsType> = ({length, isReserved, index}) => {
+const SkiPoleLengthComponent: React.FC<PropsType> = ({length, isReserved, index}) => {
     const dispatch = useAppDispatch()
     const [localLength, setLocalLength] = useState(length)
     const [reservation, setReservation] = useState(isReserved)
@@ -62,4 +62,4 @@ const LengthComponent: React.FC<PropsType> = ({length, isReserved, index}) => {
     </div>
 }
 
-export default LengthComponent
+export default SkiPoleLengthComponent

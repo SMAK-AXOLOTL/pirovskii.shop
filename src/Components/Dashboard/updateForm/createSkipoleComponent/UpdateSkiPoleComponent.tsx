@@ -11,7 +11,7 @@ import {
     setSkiPoleDataByIndex,
     updateOneSkiPoleData
 } from "../../../../redux/skiPolesSlice";
-import LengthComponent from "../../createForm/createSkipoleComponent/lengthComponent/LengthComponent";
+import SkiPoleLengthComponent from "../../createForm/createSkipoleComponent/lengthComponent/SkiPoleLengthComponent";
 
 type PropsType = {
     index: number
@@ -59,8 +59,8 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
                 <button onClick={handleCreateLengthClick}>+</button>
             </label>
             {skiPole.lengthArray.map((l, index) =>
-                <LengthComponent key={l.lengthString + index} length={l.lengthString} isReserved={l.isReserved}
-                                 index={index}/>
+                <SkiPoleLengthComponent key={l.lengthString + index} length={l.lengthString} isReserved={l.isReserved}
+                                        index={index}/>
             )}
         </div>
         <button onClick={handleUpdateClick}>

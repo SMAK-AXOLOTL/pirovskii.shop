@@ -2,17 +2,16 @@ import React, {useEffect} from "react";
 import styles from './CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {createSki, selectNewSkiData, setNewSkiData} from "../../../../redux/skisSlice";
-import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
+import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
 
 
 const CreateSkiComponent = () => {
     const ski = useAppSelector(selectNewSkiData)
-
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setNewSkiData({id: '', type: skiTypeEnum.CLASSIC, name: '', skiImg: '', hardTrack: [], universalTrack: []}))
+        dispatch(setNewSkiData({id: '', name:"", type: skiTypeEnum.CLASSIC, skiImg:"", hardTrack: [], universalTrack: []}))
     }, [dispatch]);
 
     function handleCreateClick() {

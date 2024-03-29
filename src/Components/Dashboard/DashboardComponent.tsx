@@ -14,7 +14,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useAuthRedirect} from "../../hooks/useAuthRedirect";
 import CreateFormComponent from "./createForm/CreateFormComponent";
 import UpdateFormComponent from "./updateForm/UpdateFormComponent";
-import {skiModelType, skiPoleType} from "../../utils/types";
+import {skiModel, skiPoleType} from "../../utils/types";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
 
 enum filters {
@@ -80,7 +80,7 @@ const DashboardComponent = () => {
         dispatch(deleteSkiPoleById(id))
     }
 
-    const TableRowSki: React.FC<{ ski: skiModelType, index: number }> = ({ski, index}) => {
+    const TableRowSki: React.FC<{ ski: skiModel, index: number }> = ({ski, index}) => {
         const [isUpdateUiOpen, setUpdateUiOpen] = useState(false)
 
         return <tr

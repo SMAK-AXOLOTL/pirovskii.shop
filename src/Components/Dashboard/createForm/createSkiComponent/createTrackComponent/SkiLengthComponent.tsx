@@ -9,7 +9,7 @@ type PropsType = {
     filterOutLength: (track: skiLengthType) => void
 }
 
-const CreateLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, filterOutLength}) => {
+const SkiLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, filterOutLength}) => {
     const [isCreateWeightUiOpen, setIsCreateWeightUiOpen] = useState(false)
 
     return <div>
@@ -25,4 +25,4 @@ const CreateLengthComponent: React.FC<PropsType> = ({track, trackType, trackInde
     </div>
 }
 
-export default CreateLengthComponent
+export default SkiLengthComponent

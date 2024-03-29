@@ -1,19 +1,19 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {skisApi} from '../api/skisApi'
-import {skiModelType, skiType} from "../utils/types";
+import {skiModel, skiType} from "../utils/types";
 import {skiTypeEnum} from "../utils/skiTypeEnum";
 
 type initialStateType = {
     skiData: skiType,
-    newSkiData: skiModelType,
+    newSkiData: skiModel,
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
     err: string | undefined
 }
 
 const initialStateData: initialStateType = {
     skiData: [],
-    newSkiData: {id: '', type: skiTypeEnum.CLASSIC, name: '', skiImg: '', hardTrack: [], universalTrack: []},
+    newSkiData: {id: '', name: "", type: skiTypeEnum.CLASSIC, skiImg: "", hardTrack: [], universalTrack: []},
     status: 'idle',
     err: undefined
 }
@@ -26,7 +26,7 @@ export const skisSlice = createSlice({
             state.status = action.payload
         },
         setSkiDataByIndex: (state, action) => {
-          state.skiData[action.payload.index] = action.payload.data
+            state.skiData[action.payload.index] = action.payload.data
         },
         setNewSkiData: (state, action) => {
             state.newSkiData = action.payload
@@ -47,41 +47,39 @@ export const skisSlice = createSlice({
             state.newSkiData.hardTrack = action.payload
         },
         addNewSkiHardTrack: (state, action) => {
-            state.newSkiData.hardTrack.push(action.payload)
+            state.newSkiData.hardTrack.push({lengthString: action.payload, weights: []})
         },
         setNewSkiUniTrack: (state, action) => {
             state.newSkiData.universalTrack = action.payload
         },
         addNewSkiUniTrack: (state, action) => {
-            state.newSkiData.universalTrack.push(action.payload)
+            state.newSkiData.universalTrack.push({lengthString: action.payload, weights: []})
         },
         addNewSkiHardTrackWeight: (state, action) => {
             state.newSkiData.hardTrack.find((t) => t.lengthString === action.payload)
-                ?.weights.push({
-                weightString: '60-65',
-                isReserved: false
-                }
-            )
+                ?.weights.push({weightString: '75-80', isReserved: false})
         },
         setNewSkiHardTrackWeight: (state, action) => {
-            state.newSkiData.hardTrack[action.payload.track].weights[action.payload.index] = {weightString: action.payload.weight, isReserved: action.payload.isReserved}
+            state.newSkiData.hardTrack[action.payload.track].weights[action.payload.index] = {
+                weightString: action.payload.weight,
+                isReserved: action.payload.isReserved
+            }
         },
         deleteNewSkiHardTrackWeight: (state, action) => {
             state.newSkiData.hardTrack[action.payload.track].weights.splice(action.payload.index, 1)
         },
         addNewSkiUniTrackWeight: (state, action) => {
             state.newSkiData.universalTrack.find((t) => t.lengthString === action.payload)
-                ?.weights.push({
-                weightString: '60-65',
-                isReserved: false
-                }
-            )
+                ?.weights.push({weightString: '75-80', isReserved: false})
         },
         setNewSkiUniTrackWeight: (state, action) => {
-            state.newSkiData.universalTrack[action.payload.track].weights[action.payload.index] = {weightString: action.payload.weight, isReserved: action.payload.isReserved}
+            state.newSkiData.universalTrack[action.payload.track].weights[action.payload.index] = {
+                weightString: action.payload.weight,
+                isReserved: action.payload.isReserved
+            }
         },
         deleteNewSkiUniTrackWeight: (state, action) => {
-            state.newSkiData.hardTrack[action.payload.track].weights.splice(action.payload.index, 1)
+            state.newSkiData.universalTrack[action.payload.track].weights.splice(action.payload.index, 1)
         }
     },
     extraReducers(builder) {
@@ -177,28 +175,34 @@ export const {
     deleteNewSkiHardTrackWeight
 } = skisSlice.actions
 
-export const getClassicData = createAsyncThunk('skis/getClassicData', async () => {
-    return skisApi.getAllClassic()
-})
-export const getSkatingData = createAsyncThunk('skis/getSkatingData', async () => {
-    return skisApi.getAllSkating()
-})
+export const getClassicData = createAsyncThunk('skis/getClassicData',
+    async () => {
+        return skisApi.getAllClassic()
+    })
+export const getSkatingData = createAsyncThunk('skis/getSkatingData',
+    async () => {
+        return skisApi.getAllSkating()
+    })
 
-export const getAllSkisData = createAsyncThunk('skis/getAllSkisData', async () => {
-    return skisApi.getAllSkis()
-})
-export const createSki = createAsyncThunk('skis/createSki', async (requestData: skiModelType) => {
-    return skisApi.create(requestData)
-})
-export const updateOneSkiData = createAsyncThunk('skis/updateOneSkiData', async (requestData: {
-    id: string,
-    data: skiModelType
-}) => {
-    return skisApi.updateOne(requestData.id, requestData.data)
-})
+export const getAllSkisData = createAsyncThunk('skis/getAllSkisData',
+    async () => {
+        return skisApi.getAllSkis()
+    })
+export const createSki = createAsyncThunk('skis/createSki',
+    async (requestData: skiModel) => {
+        return skisApi.create(requestData)
+    })
+export const updateOneSkiData = createAsyncThunk('skis/updateOneSkiData',
+    async (requestData: {
+        id: string,
+        data: skiModel
+    }) => {
+        return skisApi.updateOne(requestData.id, requestData.data)
+    })
 
-export const deleteSkiById = createAsyncThunk('skis/deleteSkiById', async (id: string) => {
-    return skisApi.deleteOne(id)
-})
+export const deleteSkiById = createAsyncThunk('skis/deleteSkiById',
+    async (id: string) => {
+        return skisApi.deleteOne(id)
+    })
 
 export default skisSlice.reducer

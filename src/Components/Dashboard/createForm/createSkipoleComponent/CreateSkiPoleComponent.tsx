@@ -4,12 +4,13 @@ import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
     addNewSkiPoleLength,
     createSkiPole,
-    selectNewSkiPoleData, setNewSkiPoleData,
+    selectNewSkiPoleData,
+    setNewSkiPoleData,
     setNewSkiPoleId,
     setNewSkiPoleImg,
     setNewSkiPoleName
 } from "../../../../redux/skiPolesSlice";
-import LengthComponent from "./lengthComponent/LengthComponent";
+import SkiPoleLengthComponent from "./lengthComponent/SkiPoleLengthComponent";
 
 
 const CreateSkiPoleComponent = () => {
@@ -17,7 +18,7 @@ const CreateSkiPoleComponent = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setNewSkiPoleData({id: '', name: '', poleImg: '', lengthArray: []}))
+        dispatch(setNewSkiPoleData({id:"", name:"", poleImg:"", lengthArray: []}))
     }, [dispatch]);
 
     function handleCreateClick() {
@@ -47,7 +48,7 @@ const CreateSkiPoleComponent = () => {
                 <button onClick={handleCreateLengthClick}>+</button>
             </label>
             {skiPole.lengthArray.map((l, index) =>
-                <LengthComponent key={l.lengthString + index} length={l.lengthString}  isReserved={l.isReserved} index={index}/>
+                <SkiPoleLengthComponent key={l.lengthString + index} length={l.lengthString} isReserved={l.isReserved} index={index}/>
             )}
         </div>
         <button onClick={handleCreateClick}>

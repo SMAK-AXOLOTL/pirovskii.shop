@@ -1,4 +1,4 @@
-import {skiModelType} from "../utils/types";
+import {skiModel} from "../utils/types";
 import {instance} from "./api";
 
 export const skisApi = {
@@ -7,7 +7,7 @@ export const skisApi = {
             return x.data
         } ))
 
-        return await res.filter(function (entry: skiModelType) {
+        return await res.filter(function (entry: skiModel) {
             return entry.type === 'skating'
         })
     },
@@ -16,7 +16,7 @@ export const skisApi = {
             return x.data
         } ))
 
-        return await res.filter(function (entry: skiModelType) {
+        return await res.filter(function (entry: skiModel) {
             return entry.type === 'classic'
         })
     },
@@ -25,7 +25,7 @@ export const skisApi = {
             return x.data
         } ))
     },
-    async create(data: skiModelType){
+    async create(data: skiModel){
         return await instance.post('admin/dashboard/ski', {data: data}).then(response => response.data.map( (x: any) => {
             return x.data
         }))
@@ -35,7 +35,7 @@ export const skisApi = {
             return x.data
         }))
     },
-    async updateOne(idArg: string, data: skiModelType) {
+    async updateOne(idArg: string, data: skiModel) {
         return await instance.put(`/admin/dashboard/ski/${idArg}`, {data: data}).then(response => response.data.map( (x: any) => {
             return x.data
         }))

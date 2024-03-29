@@ -1,8 +1,8 @@
 import {skiTypeEnum} from "./skiTypeEnum";
 
-export type skiType = skiModelType[]
+export type skiType = skiModel[]
 
-export type skiModelType = {
+export interface skiModel {
     id: string,
     type: skiTypeEnum,
     name: string,
@@ -11,26 +11,27 @@ export type skiModelType = {
     universalTrack: skiLengthType[]
 }
 
-export type skiLengthType = {
+export interface skiLengthType{
     lengthString: string,
     weights: skiWeightType[]
 }
 
-export type skiWeightType = {
+export interface skiWeightType{
     weightString: string,
     isReserved: boolean
 }
 
+
 export type skiPolesType = skiPoleType[]
 
-export type skiPoleType = {
+export interface skiPoleType{
     id: string,
     name: string,
     poleImg: string,
     lengthArray: skiPoleLengthType[]
 }
 
-export type skiPoleLengthType = {
+export interface skiPoleLengthType{
     lengthString: string,
     isReserved: boolean
 }

@@ -1,19 +1,22 @@
 import styles from "../updateForm/createSkiComponent/UpdateSkiComponent.module.css";
-import CreateLengthComponent from "../createForm/createSkiComponent/createTrackComponent/CreateLengthComponent";
+import SkiLengthComponent from "../createForm/createSkiComponent/createTrackComponent/SkiLengthComponent";
 import React, {useState} from "react";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
-import {skiLengthType, skiModelType} from "../../../utils/types";
+import {skiLengthType, skiModel} from "../../../utils/types";
 import {
     addNewSkiHardTrack,
     addNewSkiUniTrack,
-    setNewSkiHardTrack, setNewSkiId, setNewSkiImg, setNewSkiName,
+    setNewSkiHardTrack,
+    setNewSkiId,
+    setNewSkiImg,
+    setNewSkiName,
     setNewSkiType,
     setNewSkiUniTrack
 } from "../../../redux/skisSlice";
 import {skiTypeEnum} from "../../../utils/skiTypeEnum";
 
 type PropsType = {
-    ski: skiModelType,
+    ski: skiModel,
     isInitialized: boolean
 }
 
@@ -24,15 +27,13 @@ const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
     const dispatch = useAppDispatch()
 
     function handleCreateHardTrack(length: string) {
-        const lengthDTO: skiLengthType = {lengthString: length, weights: [{weightString: '70-75', isReserved: false}]}
-        dispatch(addNewSkiHardTrack(lengthDTO))
+        dispatch(addNewSkiHardTrack(length))
         setNewTrackLength('')
         setIsCreateHardTrackLengthUiOpen(false)
     }
 
     function handleCreateUniversalTrack(length: string) {
-        const lengthDTO: skiLengthType = {lengthString: length, weights: []}
-        dispatch(addNewSkiUniTrack(lengthDTO))
+        dispatch(addNewSkiUniTrack(length))
         setNewTrackLength('')
         setIsCreateUniversalTrackLengthUiOpen(false)
     }
@@ -94,7 +95,7 @@ const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
             </div>}
             <div>
                 {ski.hardTrack?.map((h, index) =>
-                    <CreateLengthComponent
+                    <SkiLengthComponent
                         key={h.lengthString + index}
                         track={h}
                         trackIndex={index}
@@ -122,7 +123,7 @@ const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
             </div>}
             <div>
                 {ski.universalTrack?.map((u, index) =>
-                    <CreateLengthComponent
+                    <SkiLengthComponent
                         key={u.lengthString + index}
                         track={u}
                         trackIndex={index}
