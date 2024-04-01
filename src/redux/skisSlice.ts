@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {skisApi} from '../api/skisApi'
-import {skiModel, skiType} from "../utils/types";
+import {skiModel, skiType, SkiWeight} from "../utils/types";
 import {skiTypeEnum} from "../utils/skiTypeEnum";
 
 type initialStateType = {
@@ -13,7 +13,7 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiData: [],
-    newSkiData: {id: '', name: "", type: skiTypeEnum.CLASSIC, skiImg: "", hardTrack: [], universalTrack: []},
+    newSkiData: {id: 'new_ski_id', name: "New Ski Name", type: skiTypeEnum.CLASSIC, skiImg: "ski_image_path", hardTrack: [], universalTrack: []},
     status: 'idle',
     err: undefined
 }
@@ -47,13 +47,19 @@ export const skisSlice = createSlice({
             state.newSkiData.hardTrack = action.payload
         },
         addNewSkiHardTrack: (state, action) => {
-            state.newSkiData.hardTrack.push({lengthString: action.payload, weights: []})
+            state.newSkiData.hardTrack.push({
+                lengthString: action.payload === '' ? '180': action.payload,
+                weights: [{weightString: '75-80', isReserved: false}]
+            })
         },
         setNewSkiUniTrack: (state, action) => {
             state.newSkiData.universalTrack = action.payload
         },
         addNewSkiUniTrack: (state, action) => {
-            state.newSkiData.universalTrack.push({lengthString: action.payload, weights: []})
+            state.newSkiData.universalTrack.push({
+                lengthString: action.payload === '' ? '180': action.payload,
+                weights: [{weightString: '75-80', isReserved: false}]
+            })
         },
         addNewSkiHardTrackWeight: (state, action) => {
             state.newSkiData.hardTrack.find((t) => t.lengthString === action.payload)

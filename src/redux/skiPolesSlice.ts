@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
-import {skiPolesType, skiPoleType} from "../utils/types";
+import {SkiPoleLength, skiPolesType, skiPoleType} from "../utils/types";
 import {skiPolesApi} from "../api/skiPolesApi";
 
 type initialStateType = {
@@ -12,7 +12,7 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiPolesData: [],
-    newSkiPoleData: {id: "", name: "", poleImg: "", lengthArray: []},
+    newSkiPoleData: {id: 'new_ski_pole', name: 'New Ski Pole', poleImg: 'SkiPoleImagePath', lengthArray: []},
     status: 'idle',
     err: undefined
 }
@@ -40,13 +40,10 @@ export const skiPolesSlice = createSlice({
             state.newSkiPoleData.poleImg = action.payload
         },
         addNewSkiPoleLength: (state) => {
-            state.newSkiPoleData.lengthArray.push({lengthString: '160', isReserved: false})
+            state.newSkiPoleData.lengthArray.push({lengthString: '180', isReserved: false})
         },
         setNewSkiPoleLength: (state, action) => {
-            state.newSkiPoleData.lengthArray[action.payload.index] = {
-                lengthString: action.payload.length,
-                isReserved: action.payload.isReserved
-            }
+            state.newSkiPoleData.lengthArray[action.payload.index] = {lengthString: action.payload.length, isReserved: action.payload.isReserved}
         },
         deleteNewSkiPoleLength: (state, action) => {
             state.newSkiPoleData.lengthArray.splice(action.payload, 1)

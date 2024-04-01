@@ -18,7 +18,7 @@ const CreateSkiPoleComponent = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setNewSkiPoleData({id:"", name:"", poleImg:"", lengthArray: []}))
+        dispatch(setNewSkiPoleData({id: 'new_ski_pole', name: 'New Ski Pole', poleImg: 'SkiPoleImagePath', lengthArray: []}))
     }, [dispatch]);
 
     function handleCreateClick() {
@@ -30,17 +30,18 @@ const CreateSkiPoleComponent = () => {
     }
 
     return (<div className={styles.createForm}>
+
         <div>
             <label>ID</label>
-            <input type={"text"} onChange={(e) => dispatch(setNewSkiPoleId(e.target.value))}/>
+            <input type={"text"} value={skiPole.id} onChange={(e) => dispatch(setNewSkiPoleId(e.target.value))}/>
         </div>
         <div>
             <label>Название модели</label>
-            <input type={"text"} onChange={(e) => dispatch(setNewSkiPoleName(e.target.value))}/>
+            <input type={"text"} value={skiPole.name} onChange={(e) => dispatch(setNewSkiPoleName(e.target.value))}/>
         </div>
         <div>
             <label>Картинка</label>
-            <input type={"text"} onChange={(e) => dispatch(setNewSkiPoleImg(e.target.value))}/>
+            <input type={"text"}  value={skiPole.poleImg} onChange={(e) => dispatch(setNewSkiPoleImg(e.target.value))}/>
         </div>
         <div>
             <label>
@@ -48,7 +49,8 @@ const CreateSkiPoleComponent = () => {
                 <button onClick={handleCreateLengthClick}>+</button>
             </label>
             {skiPole.lengthArray.map((l, index) =>
-                <SkiPoleLengthComponent key={l.lengthString + index} length={l.lengthString} isReserved={l.isReserved} index={index}/>
+                <SkiPoleLengthComponent key={l.lengthString + index} length={l.lengthString} isReserved={l.isReserved}
+                                        index={index}/>
             )}
         </div>
         <button onClick={handleCreateClick}>

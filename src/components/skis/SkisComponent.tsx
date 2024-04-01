@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import styles from './SkisComponent.module.css'
-import SkiModelComponent from "./SkiModel/SkiModelComponent";
+import SkiModelComponent from "./skiModel/SkiModelComponent";
 import {NavLink, useLocation, useParams} from "react-router-dom";
 import {getClassicData, getSkatingData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";

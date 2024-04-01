@@ -24,7 +24,7 @@ const HeaderComponent = () => {
         <NavLink to={'/contacts'}>
             <button>Контакты</button>
         </NavLink>
-        <NavLink to={'/dashboard'}>
+        <NavLink to={'/login'}>
             <button>админ</button>
         </NavLink>
     </div>

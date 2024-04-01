@@ -16,6 +16,7 @@ import CreateFormComponent from "./createForm/CreateFormComponent";
 import UpdateFormComponent from "./updateForm/UpdateFormComponent";
 import {skiModel, skiPoleType} from "../../utils/types";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
+import {checkAuth} from "../../redux/appStateSlice";
 
 enum filters {
     ALL = 'all',
@@ -24,7 +25,7 @@ enum filters {
     SKATING = 'skating',
     SKIPOLES = 'skiPoles'
 }
-
+//fixme refreshing page breaks user auth
 //todo add working with files, data validation
 const DashboardComponent = () => {
     const [isCreateUiOpen, setCreateUiOpen] = useState(false)
@@ -37,8 +38,12 @@ const DashboardComponent = () => {
     const skiPoleStatus = useAppSelector(selectSkiPolesStatus)
     const location = useLocation().pathname
 
-    useAuthRedirect()
+    useEffect(() => {
+        dispatch(checkAuth())
+    }, [dispatch]);
 
+    useAuthRedirect()
+    
     useEffect(() => {
         dispatch(setSkiStatus('idle'))
         dispatch(setSkiPolesStatus('idle'))

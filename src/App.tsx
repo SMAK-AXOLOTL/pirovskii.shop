@@ -1,21 +1,22 @@
 import React, {lazy, Suspense} from 'react';
 import './App.css';
-import HeaderComponent from "./Components/Header/HeaderComponent";
-import LandingComponent from "./Components/Landing/LandingComponent";
+import HeaderComponent from "./components/header/HeaderComponent";
+import LandingComponent from "./components/landing/LandingComponent";
 import {Navigate, Route, Routes} from "react-router-dom";
-import ContactsComponent from "./Components/Contacts/ContactsComponent";
-import SkisComponent from "./Components/Skis/SkisComponent";
+import ContactsComponent from "./components/contacts/ContactsComponent";
+import SkisComponent from "./components/skis/SkisComponent";
 import {skiTypeEnum} from "./utils/skiTypeEnum";
-import SkiPolesComponent from "./Components/skipoles/SkiPolesComponent";
-import {LoginComponent} from "./Components/login/LoginComponent";
+import SkiPolesComponent from "./components/skipoles/SkiPolesComponent";
+import {LoginComponent} from "./components/login/LoginComponent";
 
-const DashboardComponent = lazy(() => import('./Components/Dashboard/DashboardComponent'))
+const DashboardComponent = lazy(() => import('./components/dashboard/DashboardComponent'))
 
 //todo: responsive design
 //todo: manage colors better
 //todo: rename files
 
 function App() {
+
     return <div className="App">
         <HeaderComponent/>
         <div className='Content'>
