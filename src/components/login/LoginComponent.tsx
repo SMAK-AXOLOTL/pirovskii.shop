@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {checkAuth, selectIsAuth, tryLogin} from "../../redux/appStateSlice";
+import {selectIsAuth, tryLogin} from "../../redux/appStateSlice";
 import {Navigate} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from './LoginFormComponent.module.css'
 
 
@@ -11,10 +11,6 @@ export function LoginComponent() {
     const dispatch = useAppDispatch()
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
-
-    useEffect(() => {
-        dispatch(checkAuth())
-    }, [dispatch]);
 
     if (isAuth) return <Navigate to={'/dashboard'}/>
 

@@ -6,7 +6,7 @@ type PropsType = {
     track: skiLengthType,
     trackIndex: number,
     trackType: 'hard' | 'universal',
-    filterOutLength: (track: skiLengthType) => void
+    filterOutLength: (index: number) => void
 }
 
 const SkiLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, filterOutLength}) => {
@@ -17,7 +17,7 @@ const SkiLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, 
             <button onClick={() => setIsCreateWeightUiOpen(!isCreateWeightUiOpen)}>
                 {track.lengthString}
             </button>
-            <button onClick={() => filterOutLength(track)}>
+            <button onClick={() => filterOutLength(trackIndex)}>
                 X
             </button>
         </div>

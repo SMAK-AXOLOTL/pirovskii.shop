@@ -14,36 +14,27 @@ export const authApi = {
     },
     async logOut() {
         return await axios.delete('http://localhost:8083/admin/dashboard/logout').then(response => {
-            if (response.data !== 'Success') {
+            if (response.status < 200 || response.status >= 300) {
+                inMemoryJWT.eraseToken()
                 throw new Error("Logout unsuccessful")
             }
             inMemoryJWT.eraseToken()
         })
     },
-    async checkAuth() {
-        if (!inMemoryJWT.getToken()){
-            return this.refresh().then(tokenHasBeenRefreshed => {
-                return tokenHasBeenRefreshed ? Promise.resolve() : Promise.reject()
-            })
-        } else {
-            return Promise.resolve()
-        }
-    },
-    async refresh() {
+    async refresh(token: string) {
         return await axios.post(
-            'http://localhost:8083/admin/dashboard/refresh'
+            'http://localhost:8083/admin/dashboard/refresh',
+            {token: token}
         ).then(response => {
             if (response.status < 200 || response.status >= 300) {
                 inMemoryJWT.eraseToken()
-                return {data: null}
+                throw new Error("Server side error")
             }
             return response.data
-        }).then(({data}) => {
+        }).then(data => {
             if (data) {
                 inMemoryJWT.setToken(data.accessToken, data.refreshToken, 3600)
-                return true
-            }
-            return false
+            } else throw new Error("Token did not refresh")
         })
     }
 }

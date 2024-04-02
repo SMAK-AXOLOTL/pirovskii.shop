@@ -5,24 +5,38 @@ import {
     addNewSkiPoleLength,
     createSkiPole,
     selectNewSkiPoleData,
+    selectSkiPoles,
     setNewSkiPoleData,
     setNewSkiPoleId,
     setNewSkiPoleImg,
     setNewSkiPoleName
 } from "../../../../redux/skiPolesSlice";
 import SkiPoleLengthComponent from "./lengthComponent/SkiPoleLengthComponent";
+import {validateSkiPole} from "../../../../validationFunctions/skiPoleValidationFunctions";
 
 
 const CreateSkiPoleComponent = () => {
     const skiPole = useAppSelector(selectNewSkiPoleData)
+    const allSkiPolesData = useAppSelector(selectSkiPoles)
     const dispatch = useAppDispatch()
 
+
     useEffect(() => {
-        dispatch(setNewSkiPoleData({id: 'new_ski_pole', name: 'New Ski Pole', poleImg: 'SkiPoleImagePath', lengthArray: []}))
+        dispatch(setNewSkiPoleData({
+            id: 'new_ski_pole',
+            name: 'New Ski Pole',
+            poleImg: 'SkiPoleImagePath',
+            lengthArray: []
+        }))
     }, [dispatch]);
 
     function handleCreateClick() {
-        dispatch(createSkiPole(skiPole))
+        const validationError = validateSkiPole(skiPole, allSkiPolesData)
+        if (validationError !== '') {
+            alert(validationError)
+        } else {
+            dispatch(createSkiPole(skiPole))
+        }
     }
 
     function handleCreateLengthClick() {
@@ -41,7 +55,7 @@ const CreateSkiPoleComponent = () => {
         </div>
         <div>
             <label>Картинка</label>
-            <input type={"text"}  value={skiPole.poleImg} onChange={(e) => dispatch(setNewSkiPoleImg(e.target.value))}/>
+            <input type={"text"} value={skiPole.poleImg} onChange={(e) => dispatch(setNewSkiPoleImg(e.target.value))}/>
         </div>
         <div>
             <label>

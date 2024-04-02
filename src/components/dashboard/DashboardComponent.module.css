@@ -12,6 +12,15 @@
     padding: 1% 0;
 }
 
+.controlElements{
+    display: flex;
+    padding: 0 1%;
+    justify-content: space-between;
+}
+
+.controlElements div {
+    min-width: 15%;
+}
 .createNewButton{
     height: 4vh;
     border: 1px solid var(--peltonen-red);
@@ -25,34 +34,32 @@
     color: var(--peltonen-red);
 }
 
-.controlsAndTableContainer {
-    padding: 0% 1%;
+.filtersAndTableContainer {
+    padding: 0 1%;
     display: flex;
     flex-direction: row;
 }
 
-.controlElements {
+.filtersElements {
     display: flex;
     flex: 1;
     flex-direction: column;
     width: 60%;
     height: 50vh;
     margin-top: 1%;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
-
+.filtersElements button{
+    height: 8vh;
+}
 .subCategory {
     width: 80%;
     align-self: flex-end;
 }
 
-.controlElements button {
-    height: 16.5%;
-}
-
 .dashboardTable{
     flex: 6;
-    margin: 1% 0% 0% 1%;
+    margin: 1% 0 0 1%;
     border-radius: 1vh;
     display: flex;
     flex-direction: column;
@@ -67,6 +74,17 @@
     border: 1px solid black;
 }
 
+.idInTableRow{
+    display: flex;
+    justify-content: flex-start;
+}
+td {
+    min-height: 7vh;
+}
+td button{
+    padding: 0.3vh;
+    height: 120%;
+}
 button:hover {
     cursor: pointer;
     border: 1px solid var(--peltonen-red);

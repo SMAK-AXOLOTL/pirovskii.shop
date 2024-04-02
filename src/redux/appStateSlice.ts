@@ -1,16 +1,21 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {authApi} from "../api/authApi";
-import {retry} from "@reduxjs/toolkit/query";
 
 type initialStateType = {
     isAuth: boolean,
+    isCreateUiOpen: boolean,
+    isUpdateSkiUiOpen: boolean,
+    isUpdateSkiPoleUiOpen: boolean,
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
     err: string | undefined
 }
 
 const initialStateData: initialStateType = {
     isAuth: false,
+    isCreateUiOpen: false,
+    isUpdateSkiUiOpen: false,
+    isUpdateSkiPoleUiOpen: false,
     status: 'idle',
     err: undefined
 }
@@ -19,6 +24,15 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState: initialStateData,
     reducers: {
+        setCreateUiOpen(state) {
+            state.isCreateUiOpen = !state.isCreateUiOpen
+        },
+        setIsUpdateSkiUiOpen(state) {
+            state.isUpdateSkiUiOpen = !state.isUpdateSkiUiOpen
+        },
+        setIsUpdateSkiPoleUiOpen(state) {
+            state.isUpdateSkiPoleUiOpen = !state.isUpdateSkiPoleUiOpen
+        }
 
     },
     extraReducers(builder) {
@@ -26,7 +40,7 @@ export const appStateSlice = createSlice({
             .addCase(tryLogin.pending, (state) => {
                 state.status = 'loading'
             })
-            .addCase(tryLogin.fulfilled, (state, action) => {
+            .addCase(tryLogin.fulfilled, (state) => {
                 state.status = 'succeeded'
                 state.isAuth = true
             })
@@ -37,7 +51,7 @@ export const appStateSlice = createSlice({
             .addCase(tryLogout.pending, (state) => {
                 state.status = 'loading'
             })
-            .addCase(tryLogout.fulfilled, (state, action) => {
+            .addCase(tryLogout.fulfilled, (state) => {
                 state.status = 'succeeded'
                 state.isAuth = false
             })
@@ -45,29 +59,26 @@ export const appStateSlice = createSlice({
                 state.status = 'failed'
                 state.err = action.error.message
             })
-            .addCase(checkAuth.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(checkAuth.fulfilled, (state, action) => {
-                state.status = 'succeeded'
-                state.isAuth = true
-            })
-            .addCase(checkAuth.rejected, (state, action) => {
-                state.status = 'failed'
-                state.isAuth = false
-                state.err = action.error.message
-            })
     }
 })
 export const selectIsAuth = (state: RootState) => state.appState.isAuth
 
-export const tryLogin = createAsyncThunk('appState/getAuthData', async (userData: {login: string, password: string}) => {
+export const selectIsCreateUiOpen = (state: RootState) => state.appState.isCreateUiOpen
+export const selectIsUpdateSkiUiOpen = (state: RootState) => state.appState.isUpdateSkiUiOpen
+export const selectIsUpdateSkiPoleUiOpen = (state: RootState) => state.appState.isUpdateSkiPoleUiOpen
+export const {
+    setCreateUiOpen,
+    setIsUpdateSkiUiOpen,
+    setIsUpdateSkiPoleUiOpen
+} = appStateSlice.actions
+
+export const tryLogin = createAsyncThunk('appState/getAuthData', async (userData: {
+    login: string,
+    password: string
+}) => {
     return authApi.login(userData.login, userData.password)
 })
-export const checkAuth = createAsyncThunk('appState/checkAuth', async () => {
-    return authApi.checkAuth()
-})
-export const tryLogout = createAsyncThunk('appState/logout', async () =>{
+export const tryLogout = createAsyncThunk('appState/logout', async () => {
     return authApi.logOut()
 })
 

@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {skisApi} from '../api/skisApi'
-import {skiModel, skiType, SkiWeight} from "../utils/types";
+import {skiModel, skiType} from "../utils/types";
 import {skiTypeEnum} from "../utils/skiTypeEnum";
 
 type initialStateType = {

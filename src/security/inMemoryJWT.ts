@@ -31,7 +31,7 @@ const inMemoryJWTManager = () => {
     // The method makes a call to the refresh-token endpoint
     // If there is a valid cookie, the endpoint will return a fresh jwt.
     const getRefreshedToken = async () => {
-        await authApi.refresh()
+        if (inMemoryRefreshToken) await authApi.refresh(inMemoryRefreshToken)
     };
 
 
@@ -54,7 +54,7 @@ const inMemoryJWTManager = () => {
     const getRefreshToken = () => inMemoryRefreshToken
 
     return {
-        eraseToken: eraseToken,
+        eraseToken,
         getToken,
         setToken,
         getRefreshToken

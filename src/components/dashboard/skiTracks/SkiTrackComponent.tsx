@@ -1,8 +1,8 @@
-import styles from "../updateForm/createSkiComponent/UpdateSkiComponent.module.css";
+import styles from "../updateForm/updateSkiComponent/UpdateSkiComponent.module.css";
 import SkiLengthComponent from "../createForm/createSkiComponent/createTrackComponent/SkiLengthComponent";
 import React, {useState} from "react";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
-import {skiLengthType, skiModel} from "../../../utils/types";
+import {skiModel} from "../../../utils/types";
 import {
     addNewSkiHardTrack,
     addNewSkiUniTrack,
@@ -20,7 +20,7 @@ type PropsType = {
     isInitialized: boolean
 }
 
-const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
+const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
     const [newTrackLength, setNewTrackLength] = useState('')
     const [isCreateHardTrackLengthUiOpen, setIsCreateHardTrackLengthUiOpen] = useState(false)
     const [isCreateUniversalTrackLengthUiOpen, setIsCreateUniversalTrackLengthUiOpen] = useState(false)
@@ -38,30 +38,23 @@ const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
         setIsCreateUniversalTrackLengthUiOpen(false)
     }
 
-    function filterOutHardTrack(track: skiLengthType) {
-        dispatch(setNewSkiHardTrack(
-                ski.hardTrack?.filter((x) => {
-                        return x.lengthString !== track.lengthString
-                    }
-                )
-            )
-        )
+    function filterOutHardTrack(index: number) {
+        dispatch(setNewSkiHardTrack(ski.hardTrack.filter( (value, indexInArray) =>  indexInArray !== index)))
     }
 
-    function filterOutUniversalTrack(track: skiLengthType) {
-        dispatch(setNewSkiUniTrack(
-                ski.universalTrack?.filter((x) => {
-                        return x.lengthString !== track.lengthString
-                    }
-                )
-            )
-        )
+    function filterOutUniversalTrack(index: number) {
+        dispatch(setNewSkiUniTrack(ski.universalTrack.filter( (value, indexInArray) =>  indexInArray !== index)))
     }
 
     return <div>
         <div>
             <p>ID</p>
-            <input value={ski.id} disabled={isInitialized} type={"text"} onChange={(e) => dispatch(setNewSkiId(e.target.value))}/>
+            <input value={ski.id}
+                   disabled={isInitialized}
+                   type={"text"}
+                   onChange={(e) => dispatch(setNewSkiId(e.target.value))}
+                   required={true}
+            />
         </div>
         <div>Тип:
             <select value={ski.type} onChange={(e) => dispatch(setNewSkiType(e.target.value as skiTypeEnum))}>
@@ -71,11 +64,18 @@ const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
         </div>
         <div>
             <p>Название модели</p>
-            <input value={ski.name} type={"text"} onChange={(e) => dispatch(setNewSkiName(e.target.value))}/>
+            <input value={ski.name}
+                   type={"text"}
+                   onChange={(e) => dispatch(setNewSkiName(e.target.value))}
+                   required={true}/>
         </div>
         <div>
             <p>Картинка</p>
-            <input type={"text"} value={ski.skiImg} onChange={(e) => dispatch(setNewSkiImg(e.target.value))}/>
+            <input type={"text"}
+                   value={ski.skiImg}
+                   onChange={(e) => dispatch(setNewSkiImg(e.target.value))}
+                   required={true}
+            />
         </div>
         <div>
             <p>
@@ -129,7 +129,8 @@ const SkiTrackComponent:React.FC<PropsType> = ({ski, isInitialized}) => {
                         trackIndex={index}
                         trackType={'universal'}
                         filterOutLength={filterOutUniversalTrack}
-                    />)}
+                    />
+                )}
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@ import {
     updateOneSkiData
 } from "../../../../redux/skisSlice";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
+import {validateSki} from "../../../../validationFunctions/skiValidationFunctions";
 
 type PropsType = {
     index: number
@@ -18,19 +19,26 @@ const UpdateSkiComponent: React.FC<PropsType> = ({index}) => {
     const initialData = useAppSelector(selectSkis)[index]
     const ski = useAppSelector(selectNewSkiData)
 
+
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(setNewSkiData(initialData))
     }, [initialData, dispatch])
 
+
     function handleUpdateClick() {
-        const actionPayloadDTO = {
-            index: index,
-            data: ski
+        const validationError = validateSki(ski)
+        if(validationError !== ''){
+            alert(validationError)
+        } else {
+            const actionPayloadDTO = {
+                index: index,
+                data: ski
+            }
+            dispatch(setSkiDataByIndex(actionPayloadDTO))
+            dispatch(updateOneSkiData({id: ski.id, data: actionPayloadDTO.data}))
         }
-        dispatch(setSkiDataByIndex(actionPayloadDTO))
-        dispatch(updateOneSkiData({id: ski.id, data: actionPayloadDTO.data}))
     }
 
 

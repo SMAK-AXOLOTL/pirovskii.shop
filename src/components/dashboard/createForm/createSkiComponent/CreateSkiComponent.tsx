@@ -1,21 +1,35 @@
 import React, {useEffect} from "react";
 import styles from './CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
-import {createSki, selectNewSkiData, setNewSkiData} from "../../../../redux/skisSlice";
+import {createSki, selectNewSkiData, selectSkis, setNewSkiData} from "../../../../redux/skisSlice";
 import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
+import {validateSki} from "../../../../validationFunctions/skiValidationFunctions";
 
 
 const CreateSkiComponent = () => {
     const ski = useAppSelector(selectNewSkiData)
+    const allSkiData = useAppSelector(selectSkis)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setNewSkiData({id: 'new_ski_id', name: "New Ski Name", type: skiTypeEnum.CLASSIC, skiImg: "ski_image_path", hardTrack: [], universalTrack: []}))
+        dispatch(setNewSkiData({
+            id: 'new_ski_id',
+            name: "New Ski Name",
+            type: skiTypeEnum.CLASSIC,
+            skiImg: "ski_image_path",
+            hardTrack: [],
+            universalTrack: []
+        }))
     }, [dispatch]);
 
     function handleCreateClick() {
-        dispatch(createSki(ski))
+        const validationError = validateSki(ski, allSkiData)
+        if (validationError !== '') {
+            alert(validationError)
+        } else {
+            dispatch(createSki(ski))
+        }
     }
 
     return (<div className={styles.createForm}>

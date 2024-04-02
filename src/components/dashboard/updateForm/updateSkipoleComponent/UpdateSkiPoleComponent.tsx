@@ -12,6 +12,7 @@ import {
     updateOneSkiPoleData
 } from "../../../../redux/skiPolesSlice";
 import SkiPoleLengthComponent from "../../createForm/createSkipoleComponent/lengthComponent/SkiPoleLengthComponent";
+import {validateSkiPole} from "../../../../validationFunctions/skiPoleValidationFunctions";
 
 type PropsType = {
     index: number
@@ -27,13 +28,18 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
     }, [dispatch, initialData])
 
     function handleUpdateClick() {
-        const actionPayloadDTO = {index: index, data: skiPole}
-        dispatch(setSkiPoleDataByIndex(actionPayloadDTO))
-        dispatch(updateOneSkiPoleData({
-                id: skiPole.id,
-                data: actionPayloadDTO.data
-            }
-        ))
+        const validationError = validateSkiPole(skiPole)
+        if (validationError !== '') {
+            alert(validationError)
+        } else {
+            const actionPayloadDTO = {index: index, data: skiPole}
+            dispatch(setSkiPoleDataByIndex(actionPayloadDTO))
+            dispatch(updateOneSkiPoleData({
+                    id: skiPole.id,
+                    data: actionPayloadDTO.data
+                }
+            ))
+        }
     }
 
     function handleCreateLengthClick() {

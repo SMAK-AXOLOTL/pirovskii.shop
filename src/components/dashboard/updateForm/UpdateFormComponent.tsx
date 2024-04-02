@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './UpdateFormComponent.module.css'
-import UpdateSkiComponent from "./createSkiComponent/UpdateSkiComponent";
-import UpdateSkiPoleComponent from "./createSkipoleComponent/UpdateSkiPoleComponent";
+import UpdateSkiComponent from "./updateSkiComponent/UpdateSkiComponent";
+import UpdateSkiPoleComponent from "./updateSkipoleComponent/UpdateSkiPoleComponent";
 
 type PropsType = {
     index: number,

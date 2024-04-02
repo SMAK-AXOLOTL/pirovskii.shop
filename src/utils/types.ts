@@ -1,5 +1,4 @@
 import {skiTypeEnum} from "./skiTypeEnum";
-
 export type skiType = skiModel[]
 
 export interface skiModel {
@@ -7,23 +6,13 @@ export interface skiModel {
     type: skiTypeEnum,
     name: string,
     skiImg: string,
-    hardTrack: SkiLength[],
-    universalTrack: SkiLength[]
+    hardTrack: skiLengthType[],
+    universalTrack: skiLengthType[]
 }
 
 export interface skiLengthType{
     lengthString: string,
     weights: skiWeightType[]
-}
-
-export class SkiLength implements skiLengthType{
-    lengthString: string;
-    weights: skiWeightType[];
-
-    constructor(lengthString?: string, weights?: skiWeightType[]) {
-        this.lengthString = lengthString ?? '180';
-        this.weights = weights ?? [new SkiWeight()];
-    }
 }
 
 export interface skiWeightType{
