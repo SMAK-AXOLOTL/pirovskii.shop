@@ -17,7 +17,6 @@
 }
 
 .classicModelContainer .modelName {
-    color: var(--button-border);
     background-color: white;
 }
 
@@ -30,7 +29,7 @@
 .sizesTable {
     display: flex;
     flex-direction: column;
-    color: var(--button-border);
+    color: var(--white-button-text);
     background-color: white;
     border: 1px solid black;
     border-radius: 2vh;

@@ -13,7 +13,7 @@
     margin-bottom: 1vh;
     border: 1px solid #d9d9d9;
     box-sizing: border-box;
-    color: var(--button-border);
+    color: var(--white-button-text);
 }
 
 .weightsContainer{
@@ -41,7 +41,7 @@
 
 .weightItemContainer:hover{
     background-color: var(--peltonen-red);
-    color: var(--button-text);
+    color: var(--red-button-text);
     cursor: pointer;
 }
 

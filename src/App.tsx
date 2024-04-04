@@ -12,8 +12,6 @@ import {LoginComponent} from "./components/login/LoginComponent";
 const DashboardComponent = lazy(() => import('./components/dashboard/DashboardComponent'))
 
 //todo: responsive design
-//todo: manage colors better
-//todo: rename files
 
 function App() {
 

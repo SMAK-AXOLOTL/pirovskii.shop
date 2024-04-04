@@ -37,13 +37,13 @@
 
 .buttonsContainer  button:hover {
     background-color: var(--peltonen-red);
-    color: var(--button-text);
+    color: var(--red-button-text);
     cursor: pointer;
 }
 
 .active {
     background-color: var(--peltonen-red);
-    color: var(--button-text);
+    color: var(--red-button-text);
 
 }
 

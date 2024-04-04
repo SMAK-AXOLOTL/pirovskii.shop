@@ -1,7 +1,7 @@
 .App {
   --peltonen-red: #ff3403;
-  --button-border: #000000;
-  --button-text: #fff;
+  --red-button-text: #fff;
+  --white-button-text: #000;
   --background-color: #eeeeee;
 
   display: flex;

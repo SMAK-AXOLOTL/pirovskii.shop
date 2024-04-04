@@ -96,3 +96,10 @@ button:hover {
     background-color: black;
     color: white;
 }
+
+.controlButton:disabled{
+    color: black;
+    background-color: grey;
+    cursor: wait;
+    border: 1px solid grey;
+}

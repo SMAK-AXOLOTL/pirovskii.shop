@@ -32,8 +32,10 @@ export const appStateSlice = createSlice({
         },
         setIsUpdateSkiPoleUiOpen(state) {
             state.isUpdateSkiPoleUiOpen = !state.isUpdateSkiPoleUiOpen
+        },
+        clearAppError(state) {
+            state.err = undefined
         }
-
     },
     extraReducers(builder) {
         builder
@@ -46,7 +48,13 @@ export const appStateSlice = createSlice({
             })
             .addCase(tryLogin.rejected, (state, action) => {
                 state.status = 'failed'
-                state.err = action.error.message
+                switch (action.error.code) {
+                    case "ERR_BAD_REQUEST":
+                        state.err = "Неправильные данные";
+                        break;
+                    default:
+                        state.err = action.error.message
+                }
             })
             .addCase(tryLogout.pending, (state) => {
                 state.status = 'loading'
@@ -62,14 +70,16 @@ export const appStateSlice = createSlice({
     }
 })
 export const selectIsAuth = (state: RootState) => state.appState.isAuth
-
+export const selectAppErrorMessage = (state: RootState) => state.appState.err
 export const selectIsCreateUiOpen = (state: RootState) => state.appState.isCreateUiOpen
 export const selectIsUpdateSkiUiOpen = (state: RootState) => state.appState.isUpdateSkiUiOpen
 export const selectIsUpdateSkiPoleUiOpen = (state: RootState) => state.appState.isUpdateSkiPoleUiOpen
+export const selectAppStatus = (state: RootState) => state.appState.status
 export const {
     setCreateUiOpen,
     setIsUpdateSkiUiOpen,
-    setIsUpdateSkiPoleUiOpen
+    setIsUpdateSkiPoleUiOpen,
+    clearAppError
 } = appStateSlice.actions
 
 export const tryLogin = createAsyncThunk('appState/getAuthData', async (userData: {

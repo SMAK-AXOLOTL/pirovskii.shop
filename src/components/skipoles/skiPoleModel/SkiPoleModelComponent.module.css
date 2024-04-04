@@ -17,7 +17,6 @@
 }
 
 .skiPolesContainer .modelName {
-    color: var(--button-border);
     background-color: white;
 }
 
@@ -44,7 +43,7 @@
 .tableRow:hover{
     background-color: var(--peltonen-red);
     border: var(--peltonen-red);
-    color: var(--button-text);
+    color: var(--red-button-text);
     cursor: pointer;
 }
 

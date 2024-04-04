@@ -17,6 +17,7 @@ import UpdateFormComponent from "./updateForm/UpdateFormComponent";
 import {skiModel, skiPoleType} from "../../utils/types";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
 import {
+    selectAppStatus,
     selectIsCreateUiOpen,
     selectIsUpdateSkiPoleUiOpen,
     selectIsUpdateSkiUiOpen, setCreateUiOpen, setIsUpdateSkiPoleUiOpen, setIsUpdateSkiUiOpen,
@@ -43,6 +44,7 @@ const DashboardComponent = () => {
     const allSkiPolesData = useAppSelector(selectSkiPoles)
     const skiStatus = useAppSelector(selectSkiStatus)
     const skiPoleStatus = useAppSelector(selectSkiPolesStatus)
+    const appStatus = useAppSelector(selectAppStatus)
 
     const dispatch = useAppDispatch() as AppDispatch
 
@@ -159,7 +161,8 @@ const DashboardComponent = () => {
             <td>{skiPole.name}</td>
             <td>Палки</td>
             <td>{skiPole.poleImg}</td>
-            <td>{skiPole.lengthArray.map(l => <button key={l.lengthString}>{l.lengthString}</button>)}</td>
+            <td>{skiPole.lengthArray.map((l, index) => <button
+                key={l.lengthString + index}>{l.lengthString}</button>)}</td>
             <td>
                 <button className={styles.deleteButton}
                         onClick={() => handleDeleteSkiPoleClick(skiPole.id)}>X
@@ -179,8 +182,18 @@ const DashboardComponent = () => {
                         Добавить новое
                     </button>
                     <div>
-                        <button onClick={handleRefreshClick}>Перезагрузить</button>
-                        <button onClick={handleLogoutClick}>Выйти</button>
+                        <button className={styles.controlButton}
+                                disabled={skiPoleStatus === 'loading' || skiStatus === 'loading'}
+                                onClick={handleRefreshClick}
+                        >
+                            Перезагрузить
+                        </button>
+                        <button className={styles.controlButton}
+                                disabled={appStatus === 'loading'}
+                                onClick={handleLogoutClick}
+                        >
+                            Выйти
+                        </button>
                     </div>
                 </div>
                 <div className={styles.filtersAndTableContainer}>

@@ -7,7 +7,7 @@ export const authApi = {
             {data: {login: login, password: password}})
             .then(response => {
                 if (response.status < 200 || response.status >= 300) {
-                    throw new Error(response.statusText)
+                    if (response.status === 403) return "Неправильные данные"
                 }
                 inMemoryJWT.setToken(response.data.accessToken, response.data.refreshToken, 3600)
             })
