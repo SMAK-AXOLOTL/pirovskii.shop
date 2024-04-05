@@ -2,8 +2,7 @@
     width: 100%;
     background-image: url("../../media/forest-background.jpg");
     position: absolute;
-    bottom: 0;
-    top: 5vh;
+
 }
 
 .dashboardContainer {

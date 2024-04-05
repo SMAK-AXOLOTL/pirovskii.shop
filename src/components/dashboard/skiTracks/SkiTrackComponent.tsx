@@ -39,11 +39,28 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
     }
 
     function filterOutHardTrack(index: number) {
-        dispatch(setNewSkiHardTrack(ski.hardTrack.filter( (value, indexInArray) =>  indexInArray !== index)))
+        dispatch(setNewSkiHardTrack(ski.hardTrack.filter((value, indexInArray) => indexInArray !== index)))
     }
 
     function filterOutUniversalTrack(index: number) {
-        dispatch(setNewSkiUniTrack(ski.universalTrack.filter( (value, indexInArray) =>  indexInArray !== index)))
+        dispatch(setNewSkiUniTrack(ski.universalTrack.filter((value, indexInArray) => indexInArray !== index)))
+    }
+
+    function convertToBase64(event: React.ChangeEvent<HTMLInputElement>) {
+        if (event.target.files) {
+            const file = event.target.files[0];
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = () => {
+                dispatch(setNewSkiImg(reader.result))
+            };
+
+            reader.onerror = (error) => {
+                console.log('Error: ', error);
+            };
+        }
     }
 
     return <div>
@@ -71,10 +88,11 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         </div>
         <div>
             <p>Картинка</p>
-            <input type={"text"}
-                   value={ski.skiImg}
-                   onChange={(e) => dispatch(setNewSkiImg(e.target.value))}
+            <img src={ski.skiImg} alt={ski.id}/>
+            <input type={"file"}
+                   onChange={convertToBase64}
                    required={true}
+                   accept={'image/*'}
             />
         </div>
         <div>

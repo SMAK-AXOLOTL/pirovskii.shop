@@ -32,7 +32,7 @@ enum filters {
     SKIPOLES = 'skiPoles'
 }
 
-//todo add working with files
+
 const DashboardComponent = () => {
     const [filter, setFilter] = useState(filters.ALL)
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -124,7 +124,9 @@ const DashboardComponent = () => {
             </td>
             <td>{ski.name}</td>
             <td>{skiTypeSwitcher(ski.type)}</td>
-            <td>{ski.skiImg}</td>
+            <td>
+                <img src={ski.skiImg} alt={ski.id} className={styles.skiImage}/>
+            </td>
             <td>
                 {(ski.hardTrack.length > 0) && <div>
                     Жесткая трасса:
@@ -160,7 +162,9 @@ const DashboardComponent = () => {
             </td>
             <td>{skiPole.name}</td>
             <td>Палки</td>
-            <td>{skiPole.poleImg}</td>
+            <td>
+                <img src={skiPole.poleImg} alt={skiPole.id} className={styles.skiImage}/>
+            </td>
             <td>{skiPole.lengthArray.map((l, index) => <button
                 key={l.lengthString + index}>{l.lengthString}</button>)}</td>
             <td>

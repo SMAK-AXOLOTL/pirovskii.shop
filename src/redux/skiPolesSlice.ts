@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
-import {SkiPoleLength, skiPolesType, skiPoleType} from "../utils/types";
+import {skiPolesType, skiPoleType} from "../utils/types";
 import {skiPolesApi} from "../api/skiPolesApi";
 
 type initialStateType = {
@@ -12,7 +12,7 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiPolesData: [],
-    newSkiPoleData: {id: 'new_ski_pole', name: 'New Ski Pole', poleImg: 'SkiPoleImagePath', lengthArray: []},
+    newSkiPoleData: {id: 'new_ski_pole', name: 'New Ski Pole', poleImg: '', lengthArray: []},
     status: 'idle',
     err: undefined
 }

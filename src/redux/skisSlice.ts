@@ -13,7 +13,7 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiData: [],
-    newSkiData: {id: 'new_ski_id', name: "New Ski Name", type: skiTypeEnum.CLASSIC, skiImg: "ski_image_path", hardTrack: [], universalTrack: []},
+    newSkiData: {id: 'new_ski_id', name: "New Ski Name", type: skiTypeEnum.CLASSIC, skiImg: '', hardTrack: [], universalTrack: []},
     status: 'idle',
     err: undefined
 }

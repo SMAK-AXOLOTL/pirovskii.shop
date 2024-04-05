@@ -29,7 +29,11 @@ export function validateSki(ski: skiModel, allSkiData?: skiModel[]) {
     } else if (!ski.name || ski.name === '') {
         error = "Ski name is required"
         return error
-    } else if (ski.hardTrack.length <= 0 && ski.universalTrack.length <= 0) {
+    } else if(!ski.skiImg || ski.skiImg === ''){
+        error = "Ski must have an image"
+        return error
+    }
+    else if (ski.hardTrack.length <= 0 && ski.universalTrack.length <= 0) {
         error = "You can't create new ski without tracks"
         return error
     }else if(validateTrack(ski.hardTrack)){

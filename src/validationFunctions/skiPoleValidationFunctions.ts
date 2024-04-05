@@ -17,7 +17,10 @@ export function validateSkiPole(skiPole: skiPoleType, allSkiPolesData?: skiPoleT
     } else if (!skiPole.name || skiPole.name === '') {
         error = "Ski pole name is required"
         return error
-    } else if (skiPole.lengthArray.length <= 0) {
+    }  else if(!skiPole.poleImg || skiPole.poleImg === ''){
+        error = "Ski must have an image"
+        return error
+    }else if (skiPole.lengthArray.length <= 0) {
         error = "You can't create new ski without tracks"
         return error
     }

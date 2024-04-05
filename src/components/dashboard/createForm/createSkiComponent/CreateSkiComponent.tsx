@@ -17,7 +17,7 @@ const CreateSkiComponent = () => {
             id: 'new_ski_id',
             name: "New Ski Name",
             type: skiTypeEnum.CLASSIC,
-            skiImg: "ski_image_path",
+            skiImg: '',
             hardTrack: [],
             universalTrack: []
         }))
