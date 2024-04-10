@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {skisApi} from '../api/skisApi'
 import {skiModel, skiType} from "../utils/types";
@@ -13,7 +13,14 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiData: [],
-    newSkiData: {id: 'new_ski_id', name: "New Ski Name", type: skiTypeEnum.CLASSIC, skiImg: '', hardTrack: [], universalTrack: []},
+    newSkiData: {
+        id: 'new_ski_id',
+        name: "New Ski Name",
+        type: skiTypeEnum.CLASSIC,
+        skiImg: '',
+        hardTrack: [],
+        universalTrack: []
+    },
     status: 'idle',
     err: undefined
 }
@@ -48,7 +55,7 @@ export const skisSlice = createSlice({
         },
         addNewSkiHardTrack: (state, action) => {
             state.newSkiData.hardTrack.push({
-                lengthString: action.payload === '' ? '180': action.payload,
+                lengthString: action.payload === '' ? '180' : action.payload,
                 weights: [{weightString: '75-80', isReserved: false}]
             })
         },
@@ -57,7 +64,7 @@ export const skisSlice = createSlice({
         },
         addNewSkiUniTrack: (state, action) => {
             state.newSkiData.universalTrack.push({
-                lengthString: action.payload === '' ? '180': action.payload,
+                lengthString: action.payload === '' ? '180' : action.payload,
                 weights: [{weightString: '75-80', isReserved: false}]
             })
         },
@@ -90,28 +97,6 @@ export const skisSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            .addCase(getClassicData.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(getClassicData.fulfilled, (state, action) => {
-                state.status = 'succeeded'
-                state.skiData = action.payload
-            })
-            .addCase(getClassicData.rejected, (state, action) => {
-                state.status = 'failed'
-                state.err = action.error.message
-            })
-            .addCase(getSkatingData.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(getSkatingData.fulfilled, (state, action) => {
-                state.status = 'succeeded'
-                state.skiData = action.payload
-            })
-            .addCase(getSkatingData.rejected, (state, action) => {
-                state.status = 'failed'
-                state.err = action.error.message
-            })
             .addCase(getAllSkisData.pending, (state) => {
                 state.status = 'loading'
             })
@@ -159,6 +144,12 @@ export const skisSlice = createSlice({
     }
 })
 export const selectSkis = (state: RootState) => state.skis.skiData
+export const selectClassicSkis = createSelector(selectSkis, (skis) => {
+    return skis.filter(ski => ski.type === skiTypeEnum.CLASSIC)
+})
+export const selectSkatingSkis = createSelector(selectSkis, (skis) => {
+    return skis.filter(ski => ski.type === skiTypeEnum.SKATING)
+})
 export const selectSkiStatus = (state: RootState) => state.skis.status
 export const selectNewSkiData = (state: RootState) => state.skis.newSkiData
 export const {
@@ -180,15 +171,6 @@ export const {
     deleteNewSkiUniTrackWeight,
     deleteNewSkiHardTrackWeight
 } = skisSlice.actions
-
-export const getClassicData = createAsyncThunk('skis/getClassicData',
-    async () => {
-        return skisApi.getAllClassic()
-    })
-export const getSkatingData = createAsyncThunk('skis/getSkatingData',
-    async () => {
-        return skisApi.getAllSkating()
-    })
 
 export const getAllSkisData = createAsyncThunk('skis/getAllSkisData',
     async () => {

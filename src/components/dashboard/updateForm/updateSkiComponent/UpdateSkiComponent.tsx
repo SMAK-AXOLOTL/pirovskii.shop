@@ -9,7 +9,7 @@ import {
     updateOneSkiData
 } from "../../../../redux/skisSlice";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
-import {validateSki} from "../../../../validationFunctions/skiValidationFunctions";
+import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
 
 type PropsType = {
     index: number

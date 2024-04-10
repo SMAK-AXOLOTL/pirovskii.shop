@@ -8,11 +8,11 @@ import {
     selectSkiPoles,
     setNewSkiPoleData,
     setNewSkiPoleId,
-    setNewSkiPoleImg,
     setNewSkiPoleName
 } from "../../../../redux/skiPolesSlice";
 import SkiPoleLengthComponent from "./lengthComponent/SkiPoleLengthComponent";
-import {validateSkiPole} from "../../../../validationFunctions/skiPoleValidationFunctions";
+import {validateSkiPole} from "../../../../commonFunctions/validationFunctions/skiPoleValidationFunctions";
+import {convertToBase64} from "../../../../commonFunctions/convertToBase64";
 
 
 const CreateSkiPoleComponent = () => {
@@ -55,7 +55,12 @@ const CreateSkiPoleComponent = () => {
         </div>
         <div>
             <label>Картинка</label>
-            <input type={"text"} value={skiPole.poleImg} onChange={(e) => dispatch(setNewSkiPoleImg(e.target.value))}/>
+            <img src={skiPole.poleImg} alt={skiPole.name}/>
+            <input type={"file"}
+                   onChange={e => convertToBase64(e,"skiPole", dispatch)}
+                   required={true}
+                   accept={'image/*'}
+            />
         </div>
         <div>
             <label>

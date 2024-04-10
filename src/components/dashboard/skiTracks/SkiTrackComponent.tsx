@@ -8,12 +8,12 @@ import {
     addNewSkiUniTrack,
     setNewSkiHardTrack,
     setNewSkiId,
-    setNewSkiImg,
     setNewSkiName,
     setNewSkiType,
     setNewSkiUniTrack
 } from "../../../redux/skisSlice";
 import {skiTypeEnum} from "../../../utils/skiTypeEnum";
+import {convertToBase64} from "../../../commonFunctions/convertToBase64";
 
 type PropsType = {
     ski: skiModel,
@@ -46,22 +46,6 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         dispatch(setNewSkiUniTrack(ski.universalTrack.filter((value, indexInArray) => indexInArray !== index)))
     }
 
-    function convertToBase64(event: React.ChangeEvent<HTMLInputElement>) {
-        if (event.target.files) {
-            const file = event.target.files[0];
-
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => {
-                dispatch(setNewSkiImg(reader.result))
-            };
-
-            reader.onerror = (error) => {
-                console.log('Error: ', error);
-            };
-        }
-    }
 
     return <div>
         <div>
@@ -90,7 +74,7 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
             <p>Картинка</p>
             <img src={ski.skiImg} alt={ski.id}/>
             <input type={"file"}
-                   onChange={convertToBase64}
+                   onChange={e => convertToBase64(e,"ski", dispatch)}
                    required={true}
                    accept={'image/*'}
             />

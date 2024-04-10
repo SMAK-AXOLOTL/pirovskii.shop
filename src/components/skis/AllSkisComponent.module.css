@@ -1,0 +1,87 @@
+.wrapper {
+    position: absolute;
+    top: 5vh;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+    background: url("/src/media/forest-background.jpg");
+}
+
+.allSkisContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.skiModel{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    text-decoration: none;
+    padding-bottom: 3vh;
+    box-sizing: border-box;
+    animation-duration: 0.3s;
+    animation-name: returnToNormalSize;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.skiModel img {
+    position: absolute;
+    top: 10%;
+    justify-self: center;
+    min-width: 100%;
+    z-index: -1;
+}
+.skiModel h2 {
+    color: var(--white-button-text);
+    background-color: var(--background-color);
+    max-width: fit-content;
+    align-self: center;
+    border-radius: 5vh;
+    padding: 0 3vh;
+}
+.tooltip {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 35%;
+    content: "";
+    height: 20vh;
+    width: 20vh;
+    background-color: black;
+    color: white;
+    visibility: hidden;
+}
+
+.skiModel:hover{
+    animation-duration: 0.3s;
+    animation-name: onHover;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.skiModel:hover .tooltip {
+    visibility: visible;
+}
+
+@keyframes onHover {
+    from{width: 28%}
+    to {
+        width: 43%;
+    }
+}
+
+@keyframes returnToNormalSize {
+    from {width: 43%}
+    to {width: 28%}
+}
+
+

@@ -1,4 +1,4 @@
-import {skiLengthType, skiModel} from "../utils/types";
+import {skiLengthType, skiModel} from "../../utils/types";
 
 /**
  * @param track an array of ski lengths to validate

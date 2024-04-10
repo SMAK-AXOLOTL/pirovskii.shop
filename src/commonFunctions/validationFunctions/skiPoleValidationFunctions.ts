@@ -1,4 +1,4 @@
-import {skiPoleType} from "../utils/types";
+import {skiPoleType} from "../../utils/types";
 
 
 /**

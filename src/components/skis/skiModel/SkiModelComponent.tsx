@@ -10,6 +10,7 @@ const SkiModelComponent = () => {
     const skating = useAppSelector(selectSkis)
     const actualSkating = skating.find((x) => x.id === modelId)
 
+
     return <div className={styles.wrapper}>
         {actualSkating && <div className={styles.classicModelContainer}>
             <img src={actualSkating.skiImg} alt={modelId}/>

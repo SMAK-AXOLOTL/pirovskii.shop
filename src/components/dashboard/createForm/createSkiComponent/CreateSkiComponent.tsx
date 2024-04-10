@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {createSki, selectNewSkiData, selectSkis, setNewSkiData} from "../../../../redux/skisSlice";
 import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
-import {validateSki} from "../../../../validationFunctions/skiValidationFunctions";
+import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
 
 
 const CreateSkiComponent = () => {

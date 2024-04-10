@@ -12,10 +12,10 @@ const HeaderComponent = () => {
         <NavLink to={'/'}>
             <button>Главная</button>
         </NavLink>
-        <NavLink to={'/classic/supra_x'}>
+        <NavLink to={'/allClassic'}>
             <button>Классика</button>
         </NavLink>
-        <NavLink to={'/skating/supra_x'}>
+        <NavLink to={'/allSkating'}>
             <button>Коньковый Ход</button>
         </NavLink>
         <NavLink to={'/ski-poles/palka1'}>
