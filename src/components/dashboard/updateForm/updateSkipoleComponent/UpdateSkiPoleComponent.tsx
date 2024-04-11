@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import styles from './UpdateSkiPoleComponent.module.css'
+import styles from '../../createForm/createSkiComponent/CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
     addNewSkiPoleLength,
@@ -13,6 +13,7 @@ import {
 import SkiPoleLengthComponent from "../../createForm/createSkipoleComponent/lengthComponent/SkiPoleLengthComponent";
 import {validateSkiPole} from "../../../../commonFunctions/validationFunctions/skiPoleValidationFunctions";
 import {convertToBase64} from "../../../../commonFunctions/convertToBase64";
+import {setIsUpdateSkiPoleUiOpen} from "../../../../redux/appStateSlice";
 
 type PropsType = {
     index: number
@@ -39,6 +40,7 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
                     data: actionPayloadDTO.data
                 }
             ))
+            dispatch(setIsUpdateSkiPoleUiOpen())
         }
     }
 
@@ -74,7 +76,7 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
                                         index={index}/>
             )}
         </div>
-        <button onClick={handleUpdateClick}>
+        <button onClick={handleUpdateClick} className={styles.redButton}>
             Изменить
         </button>
     </div>)

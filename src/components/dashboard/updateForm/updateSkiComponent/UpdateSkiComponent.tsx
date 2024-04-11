@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import styles from './UpdateSkiComponent.module.css'
+import styles from '../../createForm/createSkiComponent/CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
     selectNewSkiData,
@@ -10,6 +10,7 @@ import {
 } from "../../../../redux/skisSlice";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
 import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
+import {setIsUpdateSkiUiOpen} from "../../../../redux/appStateSlice";
 
 type PropsType = {
     index: number
@@ -38,13 +39,15 @@ const UpdateSkiComponent: React.FC<PropsType> = ({index}) => {
             }
             dispatch(setSkiDataByIndex(actionPayloadDTO))
             dispatch(updateOneSkiData({id: ski.id, data: actionPayloadDTO.data}))
+            dispatch(setIsUpdateSkiUiOpen())
         }
+
     }
 
 
     return (<div className={styles.createForm}>
         <SkiTrackComponent ski={ski} isInitialized={true}/>
-        <button onClick={handleUpdateClick}>
+        <button onClick={handleUpdateClick} className={styles.redButton}>
             Изменить
         </button>
     </div>)

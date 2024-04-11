@@ -5,6 +5,7 @@ import {createSki, selectNewSkiData, selectSkis, setNewSkiData} from "../../../.
 import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
 import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
 import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
+import {setCreateUiOpen} from "../../../../redux/appStateSlice";
 
 
 const CreateSkiComponent = () => {
@@ -29,12 +30,13 @@ const CreateSkiComponent = () => {
             alert(validationError)
         } else {
             dispatch(createSki(ski))
+            dispatch(setCreateUiOpen())
         }
     }
 
     return (<div className={styles.createForm}>
         <SkiTrackComponent ski={ski} isInitialized={false}/>
-        <button onClick={handleCreateClick}>
+        <button onClick={handleCreateClick} className={styles.redButton}>
             Добавить
         </button>
     </div>)

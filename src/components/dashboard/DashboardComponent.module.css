@@ -84,6 +84,10 @@ td button{
     padding: 0.3vh;
     height: 120%;
 }
+td img {
+    width: 25%;
+    max-width: 100%;
+}
 button:hover {
     cursor: pointer;
     border: 1px solid var(--peltonen-red);

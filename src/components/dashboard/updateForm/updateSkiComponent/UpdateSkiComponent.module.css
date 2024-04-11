@@ -21,3 +21,17 @@
     background-color: white;
     border: 1px solid black;
 }
+
+.redButton {
+    margin-top: 2vh;
+    padding: 0.5vh 2vw;
+    border-radius: 10vh;
+    border: 1px solid var(--peltonen-red);
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+}
+
+.redButton:hover {
+    background-color: var(--red-button-text);
+    color: var(--peltonen-red)
+}

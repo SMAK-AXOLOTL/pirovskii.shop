@@ -9,12 +9,15 @@ import SkiPolesComponent from "./components/skipoles/SkiPolesComponent";
 import {LoginComponent} from "./components/login/LoginComponent";
 import AllSkisComponent from "./components/skis/AllSkisComponent";
 import SkiModelComponent from "./components/skis/skiModel/SkiModelComponent";
+import {InitializeApp} from "./hooks/initializeApp";
 
 const DashboardComponent = lazy(() => import('./components/dashboard/DashboardComponent'))
 
 //todo: responsive design
 
 function App() {
+
+    InitializeApp()
 
     return <div className="App">
         <HeaderComponent/>

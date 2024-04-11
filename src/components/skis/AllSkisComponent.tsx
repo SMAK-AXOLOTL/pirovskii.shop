@@ -1,28 +1,16 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from './AllSkisComponent.module.css'
-import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {getAllSkisData, selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux/skisSlice";
+import {useAppSelector} from "../../hooks/reduxHooks";
+import {selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux/skisSlice";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
 import {skiModel} from "../../utils/types";
 import {NavLink} from "react-router-dom";
+import {rotateImg90deg} from "../../commonFunctions/rotateImg90deg";
 
 const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
-    const dispatch = useAppDispatch()
-
     const status = useAppSelector(selectSkiStatus)
-    const classicSkiModels = useAppSelector(selectClassicSkis)
-    const skatingSkiModels = useAppSelector(selectSkatingSkis)
-
-    useEffect(() => {
-        if (status === 'idle') {
-            dispatch(getAllSkisData())
-        }
-    }, [dispatch, status])
-
-
-    function rotateImg90deg(base64string: string) {
-        return <img src={base64string} style={{transform: "rotate(90deg)"}} alt={'rotated ski'}/>
-    }
+    const classicSkis = useAppSelector(selectClassicSkis)
+    const skatingSkis = useAppSelector(selectSkatingSkis)
 
     function hrefSwitcher(model: skiModel) {
         return <NavLink key={model.id} to={`/${model.type.toLowerCase()}/${model.id}`} className={styles.skiModel}>
@@ -35,13 +23,15 @@ const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
         </NavLink>
     }
 
-    return <div className={styles.wrapper}>
-        <div className={styles.allSkisContainer}>
-            {skiType === skiTypeEnum.CLASSIC ?
-                classicSkiModels.map(c => hrefSwitcher(c))
-                : skatingSkiModels.map(s => hrefSwitcher(s))}
+    return status === "loading" ?
+        <div>Loading</div>
+        : <div className={styles.wrapper}>
+            <div className={styles.allSkisContainer}>
+                {skiType === skiTypeEnum.CLASSIC ?
+                    classicSkis.map(c => hrefSwitcher(c))
+                    : skatingSkis.map(s => hrefSwitcher(s))}
+            </div>
         </div>
-    </div>
 }
 
 export default AllSkisComponent

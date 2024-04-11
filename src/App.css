@@ -1,26 +1,26 @@
 .App {
-  --peltonen-red: #ff3403;
-  --red-button-text: #fff;
-  --white-button-text: #000;
-  --background-color: #eeeeee;
+    --peltonen-red: #ff3403;
+    --red-button-text: #fff;
+    --white-button-text: #000;
+    --background-color: #eeeeee;
 
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: white;
 }
 
 button {
-  background-color: white;
-  border: 1px solid #d9d9d9;
-  border-radius: 1vh;
-  font-size: 2vh;
-  padding: 0.1vh 3vh;
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 1vh;
+    font-size: 2vh;
+    padding: 0.1vh 3vh;
 }
 
 .Content {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

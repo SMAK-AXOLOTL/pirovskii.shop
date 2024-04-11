@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import styles from './CreateSkiPoleComponent.module.css'
+import styles from '../createSkiComponent/CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
     addNewSkiPoleLength,
@@ -13,6 +13,7 @@ import {
 import SkiPoleLengthComponent from "./lengthComponent/SkiPoleLengthComponent";
 import {validateSkiPole} from "../../../../commonFunctions/validationFunctions/skiPoleValidationFunctions";
 import {convertToBase64} from "../../../../commonFunctions/convertToBase64";
+import {setCreateUiOpen} from "../../../../redux/appStateSlice";
 
 
 const CreateSkiPoleComponent = () => {
@@ -25,7 +26,7 @@ const CreateSkiPoleComponent = () => {
         dispatch(setNewSkiPoleData({
             id: 'new_ski_pole',
             name: 'New Ski Pole',
-            poleImg: 'SkiPoleImagePath',
+            poleImg: '',
             lengthArray: []
         }))
     }, [dispatch]);
@@ -36,6 +37,7 @@ const CreateSkiPoleComponent = () => {
             alert(validationError)
         } else {
             dispatch(createSkiPole(skiPole))
+            dispatch(setCreateUiOpen())
         }
     }
 
@@ -72,7 +74,7 @@ const CreateSkiPoleComponent = () => {
                                         index={index}/>
             )}
         </div>
-        <button onClick={handleCreateClick}>
+        <button onClick={handleCreateClick} className={styles.redButton}>
             Добавить
         </button>
     </div>)

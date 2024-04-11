@@ -1,5 +1,5 @@
 .wrapper {
-    position: absolute;
+    position: fixed;
     top: 8%;
     left: 40%;
     width: 30%;
@@ -22,4 +22,17 @@
     align-items: center;
     width: 50%;
     height: 70%;
+}
+
+.closeButton {
+    align-self: flex-end;
+    padding: 0.5vh 0.5vw;
+    border-radius: 10vh;
+    border: 1px solid var(--peltonen-red);
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+}
+.closeButton:hover {
+    background-color: var(--red-button-text);
+    color: var(--peltonen-red)
 }

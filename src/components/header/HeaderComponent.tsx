@@ -18,7 +18,7 @@ const HeaderComponent = () => {
         <NavLink to={'/allSkating'}>
             <button>Коньковый Ход</button>
         </NavLink>
-        <NavLink to={'/ski-poles/palka1'}>
+        <NavLink to={'/ski-poles/'}>
             <button>Лыжные палки</button>
         </NavLink>
         <NavLink to={'/contacts'}>

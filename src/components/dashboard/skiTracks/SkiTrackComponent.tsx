@@ -39,11 +39,11 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
     }
 
     function filterOutHardTrack(index: number) {
-        dispatch(setNewSkiHardTrack(ski.hardTrack.filter((value, indexInArray) => indexInArray !== index)))
+        dispatch(setNewSkiHardTrack(ski.hardTrack.filter((_, indexInArray) => indexInArray !== index)))
     }
 
     function filterOutUniversalTrack(index: number) {
-        dispatch(setNewSkiUniTrack(ski.universalTrack.filter((value, indexInArray) => indexInArray !== index)))
+        dispatch(setNewSkiUniTrack(ski.universalTrack.filter((_, indexInArray) => indexInArray !== index)))
     }
 
 

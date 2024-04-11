@@ -35,6 +35,10 @@ export const appStateSlice = createSlice({
         },
         clearAppError(state) {
             state.err = undefined
+        },
+        closeUpdateUi(state){
+            state.isUpdateSkiUiOpen = false
+            state.isUpdateSkiPoleUiOpen = false
         }
     },
     extraReducers(builder) {
@@ -79,7 +83,8 @@ export const {
     setCreateUiOpen,
     setIsUpdateSkiUiOpen,
     setIsUpdateSkiPoleUiOpen,
-    clearAppError
+    clearAppError,
+    closeUpdateUi
 } = appStateSlice.actions
 
 export const tryLogin = createAsyncThunk('appState/getAuthData', async (userData: {

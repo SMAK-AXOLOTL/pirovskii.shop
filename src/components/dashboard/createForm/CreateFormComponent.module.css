@@ -1,6 +1,7 @@
 .wrapper {
     margin: 5% 20%;
-    position: absolute;
+    position: fixed;
+    top: 5%;
     width: 30%;
 }
 
@@ -23,4 +24,16 @@
     align-items: center;
     width: 50%;
     height: 70%;
+}
+.redButton {
+    align-self: flex-end;
+    padding: 0.5vh 0.5vw;
+    border-radius: 10vh;
+    border: 1px solid var(--peltonen-red);
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+}
+.redButton:hover {
+    background-color: var(--red-button-text);
+    color: var(--peltonen-red)
 }

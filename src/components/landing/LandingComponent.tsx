@@ -4,7 +4,6 @@ import infra from '../../media/landing/26226_1663764843.jpeg'
 import tech1 from '../../media/landing/techs1.png'
 import tech2 from '../../media/landing/techs2.png'
 import onBench from '../../media/landing/skies_on_bench.jpg'
-import {NavLink} from "react-router-dom";
 
 const LandingComponent = () => {
     return <div className={styles.wrapper}>
@@ -13,7 +12,7 @@ const LandingComponent = () => {
                 <div className={styles.imageContainer}>
                     <img src={infra} alt={'infra skis'}/>
                 </div>
-                <div  className={styles.textContainer}>
+                <div className={styles.textContainer}>
                     <h1>Supra X</h1>
                     <div style={{width: '70%'}}>
                         Все мы знаем и любим надёжные лыжи Peltonen!
@@ -50,17 +49,6 @@ const LandingComponent = () => {
                         задача не из простых.
                     </div>
                 </div>
-            </div>
-            <div className={styles.buttonsContainer}>
-                <NavLink to={'/skating/supra_x'}>
-                    <button>Коньковый Ход</button>
-                </NavLink>
-                <NavLink to={'/contacts'}>
-                    <button>Связаться с нами</button>
-                </NavLink>
-                <NavLink to={'/classic/supra_x'}>
-                    <button>Классика</button>
-                </NavLink>
             </div>
         </div>
     </div>
