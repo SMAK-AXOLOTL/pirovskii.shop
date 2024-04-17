@@ -9,6 +9,7 @@
     text-align: center;
     align-items: center;
     color: white;
+    background-image: url("./media/forest-background.jpg");
 }
 
 button {
@@ -20,7 +21,10 @@ button {
 }
 
 .Content {
+    margin-top: 5vh;
     width: 100%;
+    min-height: 95vh;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }

@@ -3,8 +3,8 @@
     top: 5vh;
     bottom: 0;
     width: 100%;
-    z-index: -1;
-    background: url("/src/media/forest-background.jpg");
+    z-index: 1;
+    background: transparent;
 }
 
 .allSkisContainer {
@@ -54,10 +54,13 @@
     top: 50%;
     left: 35%;
     content: "";
-    height: 20vh;
+    padding: 1vh;
+    height: fit-content;
     width: 20vh;
-    background-color: black;
+    font-family: Georgia, sans-serif;
+    background-color: rgba(155,155,155,0.9);
     color: white;
+    border-radius: 2vh;
     visibility: hidden;
 }
 
@@ -82,6 +85,23 @@
 @keyframes returnToNormalSize {
     from {width: 43%}
     to {width: 28%}
+}
+
+@media screen and (max-width: 1230px){
+    .allSkisContainer {
+        align-items: center;
+        flex-flow: column nowrap;
+    }
+    .skiModel{
+        min-width: 100%;
+    }
+    .tooltip {
+        top: 10vh;
+        left: 15vw;
+        height: fit-content;
+        width: 75%;
+        visibility: visible;
+    }
 }
 
 

@@ -1,8 +1,6 @@
 .wrapper {
     width: 100%;
-    background-image: url("../../media/forest-background.jpg");
     position: absolute;
-
 }
 
 .dashboardContainer {
@@ -57,6 +55,8 @@
 }
 
 .dashboardTable{
+    height: 85vh;
+    overflow: auto;
     flex: 6;
     margin: 1% 0 0 1%;
     border-radius: 1vh;

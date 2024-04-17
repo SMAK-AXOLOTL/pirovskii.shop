@@ -2,18 +2,20 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-image: url("../../media/forest-background.jpg");
+    height: 95vh;
 }
+
 .landingContainer {
-    width: 60%;
+    overflow: auto;
+    margin: 2vh 10vw;
     display: flex;
     flex-direction: column;
-    margin: 2vh 0;
     align-items: center;
     border: 1px solid black;
     border-radius: 5vh;
     background-color: white;
 }
+
 .paragraph {
     display: flex;
     width: 100%;
@@ -21,7 +23,7 @@
     align-items: center;
 }
 
-.textContainer{
+.textContainer {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -29,7 +31,7 @@
     color: black;
 }
 
-.imageContainer{
+.imageContainer {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -37,31 +39,16 @@
 }
 
 .divider {
-    height: 1px;
     width: 60%;
-    background-color: black;
+    border-bottom: 1px solid black;
 }
 
 img {
     max-width: 80%;
 }
 
-.buttonsContainer {
-    margin: 5vh 0;
-    display: flex;
-    width: 60%;
-    justify-content: space-between;
-}
-
-.buttonsContainer  button {
-    background-color: var(--peltonen-red);
-    color: var(--button-text);
-    border: 1px solid var(--peltonen-red);
-    height: 5vh;
-    border-radius: 3vh;
-}
-
-.buttonsContainer button:hover {
-    background-color: var(--button-text);
-    color: var(--peltonen-red);
+@media screen and (max-width: 1230px){
+    .paragraph {
+        flex-flow: column nowrap;
+    }
 }

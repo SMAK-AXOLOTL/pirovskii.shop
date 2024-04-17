@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-image: url("../../media/forest-background.jpg");
     position: absolute;
     bottom: 0;
     top: 5vh;
@@ -10,9 +9,9 @@
 
 .contactsContainer {
     background-color: white;
-    width: 60%;
+    align-self: center;
+    width: 75%;
     height: 50vh;
-    margin-top: 10%;
     border-radius: 5vh;
     display: flex;
     flex-direction: column;

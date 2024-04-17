@@ -21,7 +21,7 @@ const LandingComponent = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.divider}></div>
+            <div className={styles.divider}/>
             <div className={styles.paragraph}>
                 <div className={styles.textContainer}>
                     <h1>Новейшие технологии</h1>
@@ -36,7 +36,7 @@ const LandingComponent = () => {
                     <img src={tech2} alt={'technologies list 2'}/>
                 </div>
             </div>
-            <div className={styles.divider}></div>
+            <div className={styles.divider}/>
             <div className={styles.paragraph}>
                 <div className={styles.imageContainer}>
                     <img src={onBench} alt={'skis on bench'}/>
