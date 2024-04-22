@@ -13,8 +13,6 @@ import {InitializeApp} from "./hooks/initializeApp";
 
 const DashboardComponent = lazy(() => import('./components/dashboard/DashboardComponent'))
 
-//todo: responsive design
-
 function App() {
 
     InitializeApp()

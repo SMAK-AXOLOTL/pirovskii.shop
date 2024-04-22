@@ -4,7 +4,9 @@ import {selectSkis} from "../../../redux/skisSlice";
 import {useParams} from "react-router-dom";
 import LengthItemComponent from "./lengthItemComponent/lengthItemComponent";
 import {useAppSelector} from "../../../hooks/reduxHooks";
+import GoBackButtonComponent from "../../goBackButton/GoBackButtonComponent";
 
+//fixMe: mobileUi
 const SkiModelComponent = () => {
     const {modelId} = useParams()
     const skating = useAppSelector(selectSkis)
@@ -13,19 +15,13 @@ const SkiModelComponent = () => {
 
     return <div className={styles.wrapper}>
         {actualSkating && <div className={styles.classicModelContainer}>
-            <img src={actualSkating.skiImg} alt={modelId}/>
+            <GoBackButtonComponent/>
+            <div className={styles.skiInfo}>
+                <img src={actualSkating.skiImg} alt={modelId}/>
+                <p>Тут будет какое-то длинное описание свойств каждой модели. Оно может занимать от одной строки до нескольких. Его ширина автоматически подгоняется под размер и выглядит аккуратно</p>
+                <h2>Цена: 25000 руб / 300$</h2>
+            </div>
             <div className={styles.sizesTableContainer}>
-                {actualSkating.hardTrack?.length !== 0 &&
-                    <div className={styles.sizesTable}>
-                        <h2>
-                            Жесткая трасса
-                        </h2>
-                        {actualSkating.hardTrack && actualSkating.hardTrack.map((h) =>
-                            <LengthItemComponent key={h.lengthString} length={h}/>
-                        )
-                        }
-                    </div>
-                }
                 {actualSkating.universalTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>
@@ -33,6 +29,17 @@ const SkiModelComponent = () => {
                         </h2>
                         {actualSkating.universalTrack && actualSkating.universalTrack.map((u) =>
                             <LengthItemComponent key={u.lengthString} length={u}/>
+                        )
+                        }
+                    </div>
+                }
+                {actualSkating.hardTrack?.length !== 0 &&
+                    <div className={styles.sizesTable}>
+                        <h2>
+                            Жесткая трасса
+                        </h2>
+                        {actualSkating.hardTrack && actualSkating.hardTrack.map((h) =>
+                            <LengthItemComponent key={h.lengthString} length={h}/>
                         )
                         }
                     </div>

@@ -6,29 +6,42 @@
 }
 
 .classicModelContainer {
+    color: black;
+    background-color: white;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 2vh 0;
+    flex-direction: row;
+    width: 80%;
+    padding: 2% 5% 10%;
+    margin: 2% 10%;
     align-items: center;
     box-sizing: border-box;
-    overflow: auto;
-    height: 93vh;
+    justify-content: space-evenly;
+    border-radius: 3vh;
 }
 
-.classicModelContainer  img {
-    max-width: 40%;
+.classicModelContainer img {
+    max-width: 100%;
+    border-radius: 5vh;
     margin-bottom: 3%;
 }
 
-.classicModelContainer .modelName {
-    background-color: white;
+.classicModelContainer p {
+    max-width: 85%;
+}
+
+.skiInfo {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .sizesTableContainer {
     display: flex;
+    flex-flow: column;
     justify-content: space-between;
-    width: 60%;
+    width: 33%;
+    min-width: fit-content;
+    height: 65vh;
 }
 
 .sizesTable {
@@ -43,17 +56,19 @@
     min-width: 33%;
 }
 
-@media screen and (max-width: 1230px){
-    .classicModelContainer  img {
+@media screen and (max-width: 1230px) {
+    .classicModelContainer img {
         max-width: 95%;
     }
-    .sizesTableContainer{
+
+    .sizesTableContainer {
         width: 100%;
         align-self: center;
         justify-self: center;
         flex-flow: column nowrap;
     }
-    .sizesTable{
+
+    .sizesTable {
         align-self: center;
         width: 90%;
     }

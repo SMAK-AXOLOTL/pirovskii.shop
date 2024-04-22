@@ -32,7 +32,8 @@ enum filters {
     SKIPOLES = 'skiPoles'
 }
 
-
+//fixMe: bug when switching between pages without saving
+//todo: rework forms, add "close" buttons
 const DashboardComponent = () => {
     const [filter, setFilter] = useState(filters.ALL)
     const [currentIndex, setCurrentIndex] = useState(0)

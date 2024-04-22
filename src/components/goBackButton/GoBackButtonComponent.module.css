@@ -1,0 +1,14 @@
+.goBackButton{
+    position: absolute;
+    top: 10vh;
+    left: 12vw;
+    height: 5vh;
+    width: fit-content;
+    border: 1px solid black;
+    border-radius: 25vh;
+}
+.goBackButton:hover{
+    border: 1px solid var(--peltonen-red);
+    color: var(--peltonen-red);
+    cursor: pointer;
+}

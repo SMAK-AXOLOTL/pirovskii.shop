@@ -37,7 +37,6 @@ export function LoginComponent() {
     }
 
     return <div className={styles.wrapper}>
-        Login Form
         <div className={styles.loginForm}>
             <div>
                 <label>

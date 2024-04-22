@@ -12,11 +12,11 @@
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-content: center;
 }
 
-.skiModel{
+.skiModel {
     position: relative;
     overflow: hidden;
     height: 100%;
@@ -33,13 +33,6 @@
     animation-fill-mode: forwards;
 }
 
-.skiModel img {
-    position: absolute;
-    top: 10%;
-    justify-self: center;
-    min-width: 100%;
-    z-index: -1;
-}
 .skiModel h2 {
     color: var(--white-button-text);
     background-color: var(--background-color);
@@ -48,6 +41,7 @@
     border-radius: 5vh;
     padding: 0 3vh;
 }
+
 .tooltip {
     position: absolute;
     z-index: 1;
@@ -58,13 +52,13 @@
     height: fit-content;
     width: 20vh;
     font-family: Georgia, sans-serif;
-    background-color: rgba(155,155,155,0.9);
+    background-color: rgba(155, 155, 155, 0.9);
     color: white;
     border-radius: 2vh;
     visibility: hidden;
 }
 
-.skiModel:hover{
+.skiModel:hover {
     animation-duration: 0.3s;
     animation-name: onHover;
     animation-timing-function: linear;
@@ -76,25 +70,33 @@
 }
 
 @keyframes onHover {
-    from{width: 28%}
+    from {
+        width: 28%
+    }
     to {
         width: 43%;
     }
 }
 
 @keyframes returnToNormalSize {
-    from {width: 43%}
-    to {width: 28%}
+    from {
+        width: 43%
+    }
+    to {
+        width: 28%
+    }
 }
 
-@media screen and (max-width: 1230px){
+@media screen and (max-width: 1230px) {
     .allSkisContainer {
         align-items: center;
         flex-flow: column nowrap;
     }
-    .skiModel{
+
+    .skiModel {
         min-width: 100%;
     }
+
     .tooltip {
         top: 10vh;
         left: 15vw;

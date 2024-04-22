@@ -1,0 +1,13 @@
+.rotatedImage {
+    position: absolute;
+    top: 33%;
+    justify-self: center;
+    min-width: 100%;
+    z-index: -1;
+}
+
+@media screen and (min-width: 1230px){
+    .rotatedImage{
+        transform: rotate(90deg);
+    }
+}
