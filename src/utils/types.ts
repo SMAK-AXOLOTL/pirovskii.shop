@@ -11,6 +11,10 @@ export interface skiModel {
     universalTrack: skiLengthType[]
 }
 
+export function typeofSkiModel(object: any): object is skiModel{
+    return true
+}
+
 export interface skiLengthType{
     lengthString: string,
     weights: skiWeightType[]

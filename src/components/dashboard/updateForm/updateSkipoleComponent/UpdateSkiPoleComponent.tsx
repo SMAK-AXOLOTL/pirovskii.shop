@@ -14,6 +14,8 @@ import SkiPoleLengthComponent from "../../createForm/createSkipoleComponent/leng
 import {validateSkiPole} from "../../../../commonFunctions/validationFunctions/skiPoleValidationFunctions";
 import {convertToBase64} from "../../../../commonFunctions/convertToBase64";
 import {setIsUpdateSkiPoleUiOpen} from "../../../../redux/appStateSlice";
+import ImagePreviewWithFullscreen
+    from "../../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
 
 type PropsType = {
     index: number
@@ -59,7 +61,7 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
         </div>
         <div>
             <label>Картинка</label>
-            <img src={skiPole.poleImg} alt={skiPole.name}/>
+            <ImagePreviewWithFullscreen src={skiPole.poleImg} id={skiPole.id}/>
             <input type={"file"}
                    onChange={(e) => convertToBase64(e, "skiPole", dispatch)}
                    required={true}

@@ -14,10 +14,11 @@ import ChangeWeightComponent from "./changeWeightComponent/ChangeWeightComponent
 type PropsType = {
     track: skiLengthType,
     trackIndex: number,
-    trackType: 'hard' | 'universal'
+    trackType: 'hard' | 'universal',
+    uiControlCallBack:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackType}) => {
+const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackType, uiControlCallBack}) => {
     const skiName = useAppSelector(selectNewSkiData).name
     const dispatch = useAppDispatch()
 
@@ -60,20 +61,20 @@ const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackTy
         return 'R'
     }
 
-    const WeightComponent:React.FC<{w: skiWeightType, index: number}> = ({w, index}) => {
+    const WeightComponent:React.FC<{weight: skiWeightType, index: number}> = ({weight, index}) => {
         const [isChangeWeightStringUiOpen, setIsChangeWeightStringUiOpen] = useState(false)
 
         return <div>
             <button onClick={() => setIsChangeWeightStringUiOpen(!isChangeWeightStringUiOpen)}>
-                {w.weightString + reservationChecker(w.isReserved)}
+                {weight.weightString + reservationChecker(weight.isReserved)}
             </button>
             {isChangeWeightStringUiOpen &&
                 <ChangeWeightComponent
                     trackIndex={trackIndex}
                     trackType={trackType}
                     weightIndex={index}
-                    weight={w.weightString}
-                    reservation={w.isReserved}
+                    weight={weight.weightString}
+                    reservation={weight.isReserved}
                     uiControlCallback={setIsChangeWeightStringUiOpen}
                 />
             }
@@ -82,6 +83,7 @@ const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackTy
     }
 
     return <div className={styles.manageWeightsUi}>
+        <button className={styles.closeButton} onClick={() => uiControlCallBack(false)}>X</button>
         {createWeight(trackType)}
         <h2>
             {track.lengthString}
@@ -89,7 +91,7 @@ const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackTy
         </h2>
         <div>
             {track.weights.map((w, index) =>
-                <WeightComponent key={index} w={w} index={index}/>
+                <WeightComponent key={index} weight={w} index={index}/>
             )}
         </div>
     </div>

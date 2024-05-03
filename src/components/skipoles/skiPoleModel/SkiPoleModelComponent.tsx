@@ -3,26 +3,34 @@ import styles from './SkiPoleModelComponent.module.css'
 import {useParams} from "react-router-dom";
 import {selectSkiPoles} from "../../../redux/skiPolesSlice";
 import {useAppSelector} from "../../../hooks/reduxHooks";
+import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
 
 const SkiPoleModelComponent = () => {
     const {modelId} = useParams()
-    const skiPoles = useAppSelector(selectSkiPoles)
-    const actualSkiPole = skiPoles.find((x) => x.id === modelId)
+    const skiPole = useAppSelector(selectSkiPoles).find((x) => x.id === modelId)
 
     return <div className={styles.wrapper}>
-        {actualSkiPole && <div className={styles.skiPolesContainer}>
-            <img src={actualSkiPole.poleImg} alt={modelId}/>
+        {skiPole && <div className={styles.container}>
+            <GoBackButtonComponent/>
+            <div className={styles.skiPoleImgAndDescContainer}>
+                <img src={skiPole.poleImg} alt={skiPole.name}/>
+                <p>Описание Лыжины.Описание Лыжины.Описание Лыжины.Описание Лыжины.Описание Лыжины.Описание
+                    Лыжины.Описание Лыжины.</p>
+                <h2>25000 руб / 300$</h2>
+            </div>
             <div className={styles.lengthTableContainer}>
-                {actualSkiPole.lengthArray?.map((x, index) => (
-                    x.isReserved ?
-                        <button key={x.lengthString + index} disabled={true} className={styles.tableRow}>
-                            Бронь
-                        </button>
-
-                        : <button key={x.lengthString + index} className={styles.tableRow}>
-                            {x.lengthString}
-                        </button>
-                ))}
+                <h4>Длины под обрезку</h4>
+                <div className={styles.lengthTable}>
+                    {skiPole.lengthArray?.map((x, index) => (
+                        x.isReserved ?
+                            <button key={x.lengthString + index} disabled={true} className={styles.lengthItm}>
+                                Бронь
+                            </button>
+                            : <button key={x.lengthString + index} className={styles.lengthItm}>
+                                {x.lengthString}
+                            </button>
+                    ))}
+                </div>
             </div>
         </div>}
     </div>

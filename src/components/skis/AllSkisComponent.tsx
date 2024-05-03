@@ -5,9 +5,8 @@ import {selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
 import {skiModel} from "../../utils/types";
 import {NavLink} from "react-router-dom";
-import {rotateImg90deg} from "../../commonFunctions/rotateImg90deg";
+import {rotateImg90deg} from "../commonComponents/rotateImg90deg/rotateImg90deg";
 
-//fixMe: layout for different number of objects
 const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
     const status = useAppSelector(selectSkiStatus)
     const classicSkis = useAppSelector(selectClassicSkis)

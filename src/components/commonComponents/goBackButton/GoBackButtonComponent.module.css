@@ -1,7 +1,6 @@
 .goBackButton{
-    position: absolute;
-    top: 10vh;
-    left: 12vw;
+    position: relative;
+    align-self: flex-start;
     height: 5vh;
     width: fit-content;
     border: 1px solid black;

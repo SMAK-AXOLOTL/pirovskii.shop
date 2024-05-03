@@ -46,9 +46,32 @@
 img {
     max-width: 80%;
 }
+.navButtonsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.navButton{
+    height: 4vh;
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+    border: 1px solid var(--peltonen-red);
+    border-radius: 5vh;
+    margin: 0 0 5vh;
+}
+
+.navButton:hover{
+    cursor: pointer;
+    color: var(--peltonen-red);
+    background-color: white;
+}
 
 @media screen and (max-width: 1230px){
     .paragraph {
         flex-flow: column nowrap;
+    }
+    .navButtonsContainer{
+        flex-flow: column;
     }
 }

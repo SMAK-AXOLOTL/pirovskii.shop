@@ -17,6 +17,16 @@
     cursor: pointer;
 }
 
+.menuControls {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+.menuControls img {
+    max-width: 50%;
+}
+
 .navLinks {
     width: 75%;
     display: flex;
@@ -28,13 +38,19 @@
     .wrapper {
         flex-flow: column nowrap;
     }
-    .navLinks{
+
+    .navLinks {
         padding: 2vh 0;
         flex-flow: column nowrap;
         height: 50vh;
     }
-    .wrapper button{
+
+    .wrapper button {
         height: 8vh;
         width: 50vw;
+    }
+
+    .menuControls img {
+        margin: 0 3vw;
     }
 }

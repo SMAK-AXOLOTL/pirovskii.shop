@@ -4,21 +4,20 @@ import {selectSkis} from "../../../redux/skisSlice";
 import {useParams} from "react-router-dom";
 import LengthItemComponent from "./lengthItemComponent/lengthItemComponent";
 import {useAppSelector} from "../../../hooks/reduxHooks";
-import GoBackButtonComponent from "../../goBackButton/GoBackButtonComponent";
+import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
 
-//fixMe: mobileUi
 const SkiModelComponent = () => {
     const {modelId} = useParams()
     const skating = useAppSelector(selectSkis)
     const actualSkating = skating.find((x) => x.id === modelId)
-
 
     return <div className={styles.wrapper}>
         {actualSkating && <div className={styles.classicModelContainer}>
             <GoBackButtonComponent/>
             <div className={styles.skiInfo}>
                 <img src={actualSkating.skiImg} alt={modelId}/>
-                <p>Тут будет какое-то длинное описание свойств каждой модели. Оно может занимать от одной строки до нескольких. Его ширина автоматически подгоняется под размер и выглядит аккуратно</p>
+                <p>Тут будет какое-то длинное описание свойств каждой модели. Оно может занимать от одной строки до
+                    нескольких. Его ширина автоматически подгоняется под размер и выглядит аккуратно</p>
                 <h2>Цена: 25000 руб / 300$</h2>
             </div>
             <div className={styles.sizesTableContainer}>
@@ -45,8 +44,8 @@ const SkiModelComponent = () => {
                     </div>
                 }
             </div>
-        </div>}
+        </div>
+        }
     </div>
 }
-
 export default SkiModelComponent

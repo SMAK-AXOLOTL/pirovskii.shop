@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from "react";
 import styles from './DashboardComponent.module.css'
-import {deleteSkiById, getAllSkisData, selectSkis, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
+import {
+    deleteSkiById,
+    getAllSkisData,
+    selectCurrentOpenedSkiIndex,
+    selectSkis,
+    selectSkiStatus, setCurrentOpenedSkiIndex,
+    setSkiStatus
+} from "../../redux/skisSlice";
 import {AppDispatch} from "../../redux/store";
 import {useLocation} from "react-router-dom";
 import {
@@ -32,11 +39,9 @@ enum filters {
     SKIPOLES = 'skiPoles'
 }
 
-//fixMe: bug when switching between pages without saving
-//todo: rework forms, add "close" buttons
 const DashboardComponent = () => {
     const [filter, setFilter] = useState(filters.ALL)
-    const [currentIndex, setCurrentIndex] = useState(0)
+    const currentIndex = useAppSelector(selectCurrentOpenedSkiIndex)
 
     const isCreateUiOpen = useAppSelector(selectIsCreateUiOpen)
     const isUpdateSkiUiOpen = useAppSelector(selectIsUpdateSkiUiOpen)
@@ -116,7 +121,7 @@ const DashboardComponent = () => {
             <td style={{fontWeight: "bold"}}>
                 <button onClick={() => {
                     dispatch(setIsUpdateSkiUiOpen())
-                    setCurrentIndex(index)
+                    dispatch(setCurrentOpenedSkiIndex(index))
                 }}>🖊
                 </button>
                 {isUpdateSkiUiOpen && (currentIndex === index) &&
@@ -154,7 +159,7 @@ const DashboardComponent = () => {
             <td style={{fontWeight: "bold"}}>
                 <button onClick={() => {
                     dispatch(setIsUpdateSkiPoleUiOpen())
-                    setCurrentIndex(index)
+                    dispatch(setCurrentOpenedSkiIndex(index))
                 }}>🖊
                 </button>
                 {isUpdateSkiPoleUiOpen && (currentIndex === index) &&

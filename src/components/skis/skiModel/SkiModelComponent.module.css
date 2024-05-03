@@ -20,7 +20,7 @@
 }
 
 .classicModelContainer img {
-    max-width: 100%;
+    max-width: 50vw;
     border-radius: 5vh;
     margin-bottom: 3%;
 }
@@ -57,10 +57,12 @@
 }
 
 @media screen and (max-width: 1230px) {
+    .classicModelContainer{
+        flex-flow: column wrap;
+    }
     .classicModelContainer img {
         max-width: 95%;
     }
-
     .sizesTableContainer {
         width: 100%;
         align-self: center;

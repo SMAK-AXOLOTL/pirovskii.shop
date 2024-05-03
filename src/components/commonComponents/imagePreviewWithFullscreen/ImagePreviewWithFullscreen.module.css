@@ -1,0 +1,52 @@
+.skiImg {
+    height: 12vh;
+    width: 12vh;
+    object-fit: contain;
+    border: 1px solid var(--background-color);
+    z-index: -1;
+    cursor: pointer;
+}
+
+.skiImgFullscreen {
+    display: flex;
+    flex-flow: column;
+    height: 90vh;
+    width: 95vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: -65vh;
+    position: absolute;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.skiImgFullscreen button {
+    position: absolute;
+    height: fit-content;
+    width: 1.5vw;
+    border-radius: 5vh;
+    color: var(--red-button-text);
+    background-color: var(--peltonen-red);
+    border: 1px solid var(--peltonen-red);
+    right: 0;
+    margin: 3vh;
+}
+
+.skiImgFullscreen img {
+    align-self: center;
+    justify-self: center;
+    width: fit-content;
+    height: fit-content;
+    max-width: 75%;
+    max-height: 75%;
+    padding-top: 5%;
+}
+
+.openImgFullscreenOnHover {
+    position: absolute;
+    margin-top: -15%;
+    margin-left: 18%;
+    cursor: pointer;
+}

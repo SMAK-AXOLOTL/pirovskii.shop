@@ -19,7 +19,7 @@
 .skiModel {
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: 200%;
     width: 33%;
     display: flex;
     flex-flow: column nowrap;
@@ -31,6 +31,13 @@
     animation-name: returnToNormalSize;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+}
+
+.skiModel img {
+    object-fit: contain;
+    top: 10%;
+    height: 25%;
+    width: 28%;
 }
 
 .skiModel h2 {
@@ -92,17 +99,19 @@
         align-items: center;
         flex-flow: column nowrap;
     }
-
     .skiModel {
         min-width: 100%;
     }
-
     .tooltip {
-        top: 10vh;
+        top: 20vh;
         left: 15vw;
         height: fit-content;
         width: 75%;
         visibility: visible;
+    }
+    .skiModel img{
+        top: -25%;
+        height: 100vw;
     }
 }
 

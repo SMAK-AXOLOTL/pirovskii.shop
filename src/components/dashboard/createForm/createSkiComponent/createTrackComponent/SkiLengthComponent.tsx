@@ -21,7 +21,7 @@ const SkiLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, 
                 X
             </button>
         </div>
-        {isCreateWeightUiOpen && <ManageWeightsComponent track={track} trackIndex={trackIndex} trackType={trackType}/>}
+        {isCreateWeightUiOpen && <ManageWeightsComponent track={track} trackIndex={trackIndex} trackType={trackType} uiControlCallBack={setIsCreateWeightUiOpen}/>}
     </div>
 }
 

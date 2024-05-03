@@ -3,36 +3,46 @@ import styles from './HeaderComponent.module.css'
 import logo from '../../media/logo.png'
 import {NavLink} from "react-router-dom";
 
+
+//todo: animate menu open-close sequence
 const HeaderComponent = () => {
     const [screenWidth] = useState(window.innerWidth)
-    const [isOpen, setIsOpen] = useState((screenWidth >= 930))
+    const [isOpen, setIsOpen] = useState((screenWidth > 930))
+
+    function ifMobileClickHandler(){
+        if(screenWidth <= 930){
+            setIsOpen(!isOpen)
+        }
+    }
 
     return <div className={styles.wrapper}>
-        <div onClick={() => {
-            if (screenWidth < 930) setIsOpen(!isOpen)
+        <div className={styles.menuControls} onClick={() => {
+            if (screenWidth <= 930) setIsOpen(!isOpen)
         }}>
-            <img src={logo} alt={'peltonen'}/>
-            В СПб и ЛО
+            <span hidden={(screenWidth > 930)}>
+                ☰
+            </span>
+            <img src={logo} alt={'peltonen'}/> В СПб и ЛО
         </div>
         {isOpen &&
             <div className={styles.navLinks}>
                 <NavLink to={'/'}>
-                    <button>Главная</button>
+                    <button onClick={ifMobileClickHandler}>Главная</button>
                 </NavLink>
                 <NavLink to={'/allClassic'}>
-                    <button>Классика</button>
+                    <button onClick={ifMobileClickHandler}>Классика</button>
                 </NavLink>
                 <NavLink to={'/allSkating'}>
-                    <button>Коньковый Ход</button>
+                    <button onClick={ifMobileClickHandler}>Коньковый Ход</button>
                 </NavLink>
                 <NavLink to={'/ski-poles/'}>
-                    <button>Лыжные палки</button>
+                    <button onClick={ifMobileClickHandler}>Лыжные палки</button>
                 </NavLink>
                 <NavLink to={'/contacts'}>
-                    <button>Контакты</button>
+                    <button onClick={ifMobileClickHandler}>Контакты</button>
                 </NavLink>
                 <NavLink to={'/login'}>
-                    <button>админ</button>
+                    <button onClick={ifMobileClickHandler}>админ</button>
                 </NavLink>
             </div>}
     </div>

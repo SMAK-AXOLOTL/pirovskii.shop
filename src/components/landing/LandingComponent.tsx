@@ -4,6 +4,7 @@ import infra from '../../media/landing/26226_1663764843.jpeg'
 import tech1 from '../../media/landing/techs1.png'
 import tech2 from '../../media/landing/techs2.png'
 import onBench from '../../media/landing/skies_on_bench.jpg'
+import {NavLink} from "react-router-dom";
 
 const LandingComponent = () => {
     return <div className={styles.wrapper}>
@@ -49,6 +50,14 @@ const LandingComponent = () => {
                         задача не из простых.
                     </div>
                 </div>
+            </div>
+            <div className={styles.navButtonsContainer}>
+                <NavLink to={'/allClassic'}>
+                    <button className={styles.navButton}>Классика</button>
+                </NavLink>
+                <NavLink to={'/allSkating'}>
+                    <button className={styles.navButton}>Коньковый Ход</button>
+                </NavLink>
             </div>
         </div>
     </div>

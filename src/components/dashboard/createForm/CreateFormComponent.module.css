@@ -1,22 +1,27 @@
 .wrapper {
-    margin: 5% 20%;
     position: fixed;
-    top: 5%;
+    top: 9%;
+    left: 37%;
     width: 30%;
+    height: 80vh;
 }
 
 .createFormContainer {
+    overflow: scroll;
     padding: 5%;
     background-color: white;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 50%;
+    max-height: 100%;
+    z-index: -1;
 }
+
 .createFormContainer > select {
     font-size: 3vh;
 }
+
 .createForm {
     display: flex;
     flex-direction: column;
@@ -25,6 +30,7 @@
     width: 50%;
     height: 70%;
 }
+
 .redButton {
     align-self: flex-end;
     padding: 0.5vh 0.5vw;
@@ -33,6 +39,7 @@
     background-color: var(--peltonen-red);
     color: var(--red-button-text);
 }
+
 .redButton:hover {
     background-color: var(--red-button-text);
     color: var(--peltonen-red)

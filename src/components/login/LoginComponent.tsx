@@ -29,15 +29,17 @@ export function LoginComponent() {
         setPassword(e.target.value)
     }
 
-    function loginButtonTextSetter(){
-        switch (authStatus){
-            case "loading": return "Загрузка";
-            default: return "Войти";
+    function loginButtonTextSetter() {
+        switch (authStatus) {
+            case "loading":
+                return "Загрузка";
+            default:
+                return "Войти";
         }
     }
 
     return <div className={styles.wrapper}>
-        <div className={styles.loginForm}>
+        <form className={styles.loginForm}>
             <div>
                 <label>
                     Login
@@ -50,16 +52,19 @@ export function LoginComponent() {
                 <label>
                     Password
                     <div>
-                        <input disabled={authStatus === 'loading'} type={"password"} onChange={handlePasswordChange} value={password}></input>
+                        <input disabled={authStatus === 'loading'} type={"password"} onChange={handlePasswordChange}
+                               value={password}></input>
                     </div>
                 </label>
             </div>
             {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
-            <button disabled={authStatus === 'loading'}
-                    onClick={() => handleSubmit(login, password)}
-                    className={styles.loginButton}>
+            <button
+                type={"submit"}
+                disabled={authStatus === 'loading'}
+                onClick={() => handleSubmit(login, password)}
+                className={styles.loginButton}>
                 {loginButtonTextSetter()}
             </button>
-        </div>
+        </form>
     </div>
 }

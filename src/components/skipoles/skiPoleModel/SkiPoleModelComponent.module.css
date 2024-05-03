@@ -1,55 +1,76 @@
 .wrapper {
     width: 100%;
+    min-height: 100%;
+    height: 90vh;
+    top: 5vh;
 }
 
-.skiPolesContainer {
+.container {
+    color: black;
+    background-color: white;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 2vh 0;
-    align-items: center;
+    flex-direction: row;
+    width: 80%;
+    padding: 2% 2% 3%;
+    margin: 0 10%;
     box-sizing: border-box;
+    justify-content: space-evenly;
+    border-radius: 3vh;
+    gap: 5vh;
 }
 
-.skiPolesContainer  img {
-    max-width: 40%;
+.skiPoleImgAndDescContainer img {
+    max-width: 50vw;
+    border-radius: 5vh;
     margin-bottom: 3%;
 }
 
-.skiPolesContainer .modelName {
-    background-color: white;
+.skiPoleImgAndDescContainer p {
+    max-width: 85%;
 }
 
-.lengthTableContainer {
+.skiPoleImgAndDescContainer {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    width: 60%;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
-
-
-.tableRow {
-    background-color: var(--background-color);
-    color: black;
-    border: 1px solid var(--background-color);
-    border-radius: 1vh;
-    padding: 0.1vh 0.5vh;
-    width: 28%;
-    font-size: 3vh;
-    margin: 0.5vh;
+.lengthTable {
+    align-self: flex-start;
+    height: fit-content;
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    gap: 1vh;
+    width: 33%;
+    grid-template-areas: ". .";
 }
 
-.tableRow:hover{
+.lengthItm:hover {
+    color: var(--red-button-text);
     background-color: var(--peltonen-red);
     border: var(--peltonen-red);
-    color: var(--red-button-text);
     cursor: pointer;
 }
 
-.tableRow:disabled{
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    cursor: auto;
+@media screen and (max-width: 1230px) {
+    .container {
+        flex-flow: column wrap;
+    }
+
+    .skiPoleImgAndDescContainer img {
+        max-width: 95%;
+    }
+
+    .skiPoleImgAndDescContainer {
+        width: 100%;
+        align-self: center;
+        justify-self: center;
+        flex-flow: column nowrap;
+    }
+
+    .lengthTable {
+        align-self: center;
+        width: 90%;
+        margin-left: 5vw;
+    }
 }

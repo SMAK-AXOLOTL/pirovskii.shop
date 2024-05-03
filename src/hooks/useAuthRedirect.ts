@@ -11,5 +11,5 @@ export const useAuthRedirect = () => {
         if (!isAuth) {
             navigate('/login')
         }
-    }, [isAuth] )
+    }, [isAuth, navigate] )
 }

@@ -1,11 +1,12 @@
 .wrapper {
     position: fixed;
-    top: 8%;
-    left: 40%;
+    top: 9%;
+    left: 37%;
     width: 30%;
 }
 
 .createFormContainer {
+    overflow: scroll;
     padding: 5%;
     background-color: white;
     border: 1px solid black;

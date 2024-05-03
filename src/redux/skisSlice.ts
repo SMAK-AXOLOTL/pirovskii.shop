@@ -7,6 +7,7 @@ import {skiTypeEnum} from "../utils/skiTypeEnum";
 type initialStateType = {
     skiData: skiType,
     newSkiData: skiModel,
+    currentOpenedSkiIndex: number,
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
     err: string | undefined
 }
@@ -21,6 +22,7 @@ const initialStateData: initialStateType = {
         hardTrack: [],
         universalTrack: []
     },
+    currentOpenedSkiIndex: 0,
     status: 'idle',
     err: undefined
 }
@@ -29,6 +31,9 @@ export const skisSlice = createSlice({
     name: 'skis',
     initialState: initialStateData,
     reducers: {
+        setCurrentOpenedSkiIndex: (state, action) => {
+          state.currentOpenedSkiIndex = action.payload
+        },
         setSkiStatus: (state, action) => {
             state.status = action.payload
         },
@@ -152,7 +157,9 @@ export const selectSkatingSkis = createSelector(selectSkis, (skis) => {
 })
 export const selectSkiStatus = (state: RootState) => state.skis.status
 export const selectNewSkiData = (state: RootState) => state.skis.newSkiData
+export const selectCurrentOpenedSkiIndex = (state: RootState) => state.skis.currentOpenedSkiIndex
 export const {
+    setCurrentOpenedSkiIndex,
     setSkiStatus,
     setSkiDataByIndex,
     setNewSkiData,

@@ -1,4 +1,4 @@
-import styles from "../updateForm/updateSkiComponent/UpdateSkiComponent.module.css";
+import styles from "./SkiTrackComponent.module.css";
 import SkiLengthComponent from "../createForm/createSkiComponent/createTrackComponent/SkiLengthComponent";
 import React, {useState} from "react";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
@@ -14,6 +14,7 @@ import {
 } from "../../../redux/skisSlice";
 import {skiTypeEnum} from "../../../utils/skiTypeEnum";
 import {convertToBase64} from "../../../commonFunctions/convertToBase64";
+import ImagePreviewWithFullscreen from "../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
 
 type PropsType = {
     ski: skiModel,
@@ -72,9 +73,9 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         </div>
         <div>
             <p>Картинка</p>
-            <img src={ski.skiImg} alt={ski.id}/>
+            <ImagePreviewWithFullscreen src={ski.skiImg} id={ski.id}/>
             <input type={"file"}
-                   onChange={e => convertToBase64(e,"ski", dispatch)}
+                   onChange={e => convertToBase64(e, "ski", dispatch)}
                    required={true}
                    accept={'image/*'}
             />
@@ -85,13 +86,15 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
                 <button onClick={() => setIsCreateHardTrackLengthUiOpen(!isCreateHardTrackLengthUiOpen)}>+</button>
             </p>
             {isCreateHardTrackLengthUiOpen && <div className={styles.createTrack}>
+                <button className={styles.closeButton} onClick={() => setIsCreateHardTrackLengthUiOpen(false)}>X
+                </button>
                 <div>
                     <p>Добавить длину для жесткой трассы</p>
-                    <button onClick={() => setIsCreateHardTrackLengthUiOpen(false)}>X</button>
                 </div>
-                <input type={"text"} onChange={(e) => setNewTrackLength(e.target.value)}/>
-                <button
-                    onClick={() => handleCreateHardTrack(newTrackLength)}>
+                <div>
+                    <input type={"text"} onChange={(e) => setNewTrackLength(e.target.value)}/>
+                </div>
+                <button onClick={() => handleCreateHardTrack(newTrackLength)}>
                     Добавить длину
                 </button>
             </div>}
@@ -114,11 +117,14 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
                 </button>
             </label>
             {isCreateUniversalTrackLengthUiOpen && <div className={styles.createTrack}>
+                <button className={styles.closeButton} onClick={() => setIsCreateUniversalTrackLengthUiOpen(false)}>X
+                </button>
                 <div>
-                    <span>Добавить длину для универсальных лыж</span>
-                    <button onClick={() => setIsCreateUniversalTrackLengthUiOpen(false)}>X</button>
+                    <p>Добавить длину для универсальных лыж</p>
                 </div>
-                <input type={"text"} onChange={(e) => setNewTrackLength(e.target.value)}/>
+                <div>
+                    <input type={"text"} onChange={(e) => setNewTrackLength(e.target.value)}/>
+                </div>
                 <button onClick={() => handleCreateUniversalTrack(newTrackLength)}>
                     Добавить длину
                 </button>

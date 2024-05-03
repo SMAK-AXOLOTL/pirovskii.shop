@@ -7,21 +7,6 @@
     height: 70%;
 }
 
-.createTrack {
-    position: absolute;
-    margin: -10% -25%;
-    background-color: white;
-    border: 1px solid black;
-}
-
-.manageWeightsUi {
-    position: absolute;
-    margin: -25% 65%;
-    width: 50%;
-    background-color: white;
-    border: 1px solid black;
-}
-
 .redButton {
     margin-top: 2vh;
     padding: 0.5vh 2vw;

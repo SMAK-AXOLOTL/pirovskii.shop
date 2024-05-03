@@ -35,9 +35,9 @@ const ChangeWeightComponent: React.FC<PropsType> = ({trackIndex, trackType, weig
 
 
     return <div className={styles.changeWeightUi}>
+        <button className={styles.closeButton} onClick={() => handleChangeWeightClick(weightIndex, weightString, isReserved)}>X</button>
         <span>
             <h3>Изменить вес</h3>
-            <button onClick={() => handleChangeWeightClick(weightIndex, weightString, isReserved)}>x</button>
         </span>
         <div>
             <p>
@@ -48,7 +48,7 @@ const ChangeWeightComponent: React.FC<PropsType> = ({trackIndex, trackType, weig
         <div>
             <p>
                 Бронь
-                <input type={"checkbox"} onChange={() => setIsReserved(true)} defaultChecked={isReserved}/>
+                <input type={"checkbox"} onChange={() => setIsReserved(!isReserved)} defaultChecked={isReserved}/>
             </p>
         </div>
     </div>
