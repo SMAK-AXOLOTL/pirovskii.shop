@@ -1,21 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './lengthItemComponent.module.css'
 import {skiLengthType} from "../../../../utils/types";
+import ContactForm from "../../../commonComponents/contactForm/ContactForm";
 
 type PropsType = {
-    length: skiLengthType
+    length: skiLengthType,
+    skiName: string
 }
 
-const LengthItemComponent: React.FC<PropsType> = ({length}) => {
+const LengthItemComponent: React.FC<PropsType> = ({length, skiName}) => {
+
+    const ContactButton: React.FC<{ weightString: string, index: number }> = ({weightString, index}) => {
+        const [isOpen, setOpen] = useState(false)
+
+        return <div>
+            <button key={weightString + index}
+                    id={weightString}
+                    className={styles.weightItemContainer}
+                    onClick={() => setOpen(!isOpen)}
+            >
+                {weightString}
+            </button>
+            {isOpen && <ContactForm productName={skiName} productLength={length.lengthString}
+                                    productSize={weightString} callBackFunc={setOpen}/>}
+        </div>
+    }
+
 
     return <div className={styles.wrapper}>
         <div className={styles.lengthContainer}>
             <h2 style={{marginRight: '1vh'}}>{length.lengthString}</h2>
             <div className={styles.weightsContainer}>
-                {length.weights.map( (w, index) =>
+                {length.weights.map((w, index) =>
                     w.isReserved ?
-                        <button key={w.weightString + index} id={w.weightString} disabled={true} className={styles.weightItemContainer}>Бронь</button>
-                        : <button key={w.weightString + index} id={w.weightString} className={styles.weightItemContainer}>{w.weightString}</button>
+                        <button key={w.weightString + index} id={w.weightString} disabled={true}
+                                className={styles.weightItemContainer}>Бронь</button>
+                        : <ContactButton key={w.weightString + index} weightString={w.weightString} index={index}/>
                 )}
             </div>
         </div>

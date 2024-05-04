@@ -27,7 +27,7 @@ const SkiModelComponent = () => {
                             Универсальные
                         </h2>
                         {actualSkating.universalTrack && actualSkating.universalTrack.map((u) =>
-                            <LengthItemComponent key={u.lengthString} length={u}/>
+                            <LengthItemComponent key={u.lengthString} length={u} skiName={actualSkating.name}/>
                         )
                         }
                     </div>
@@ -38,7 +38,7 @@ const SkiModelComponent = () => {
                             Жесткая трасса
                         </h2>
                         {actualSkating.hardTrack && actualSkating.hardTrack.map((h) =>
-                            <LengthItemComponent key={h.lengthString} length={h}/>
+                            <LengthItemComponent key={h.lengthString} length={h} skiName={actualSkating.name}/>
                         )
                         }
                     </div>
