@@ -27,7 +27,7 @@ const ContactForm: React.FC<{
                 <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={`https://wa.me/79006564646?text=${encodeURI(messageText)}`}>
+                    href={`https://wa.me/79046095822?text=${encodeURI(messageText)}`}>
                     <img alt={'whatsApp'} src={whatAppImg}/>
                 </a>
             </p>

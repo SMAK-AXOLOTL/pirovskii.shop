@@ -19,7 +19,7 @@
 .skiModel {
     position: relative;
     overflow: hidden;
-    height: 200%;
+    height: 100%;
     width: 33%;
     display: flex;
     flex-flow: column nowrap;
@@ -35,7 +35,7 @@
 
 .skiModel img {
     object-fit: contain;
-    top: 10%;
+    top: 30%;
     height: 25%;
     width: 28%;
 }
@@ -52,7 +52,7 @@
 .tooltip {
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: 35%;
     left: 35%;
     content: "";
     padding: 1vh;
