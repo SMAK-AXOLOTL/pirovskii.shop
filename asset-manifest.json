@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/pirovskii.shop/static/css/main.a12af554.css",
-    "main.js": "/pirovskii.shop/static/js/main.f74abe51.js",
+    "main.js": "/pirovskii.shop/static/js/main.7d76a84b.js",
     "static/css/863.f87bc500.chunk.css": "/pirovskii.shop/static/css/863.f87bc500.chunk.css",
-    "static/js/863.927e701d.chunk.js": "/pirovskii.shop/static/js/863.927e701d.chunk.js",
+    "static/js/863.d4f96ed4.chunk.js": "/pirovskii.shop/static/js/863.d4f96ed4.chunk.js",
     "static/media/forest-background.jpg": "/pirovskii.shop/static/media/forest-background.d5d466beb8016c77a173.jpg",
     "static/media/skies_on_bench.jpg": "/pirovskii.shop/static/media/skies_on_bench.c7ebf224deb229fed7a8.jpg",
     "static/media/26226_1663764843.jpeg": "/pirovskii.shop/static/media/26226_1663764843.7bda639e8e1f3c69e41b.jpeg",
     "index.html": "/pirovskii.shop/index.html",
     "main.a12af554.css.map": "/pirovskii.shop/static/css/main.a12af554.css.map",
-    "main.f74abe51.js.map": "/pirovskii.shop/static/js/main.f74abe51.js.map",
+    "main.7d76a84b.js.map": "/pirovskii.shop/static/js/main.7d76a84b.js.map",
     "863.f87bc500.chunk.css.map": "/pirovskii.shop/static/css/863.f87bc500.chunk.css.map",
-    "863.927e701d.chunk.js.map": "/pirovskii.shop/static/js/863.927e701d.chunk.js.map"
+    "863.d4f96ed4.chunk.js.map": "/pirovskii.shop/static/js/863.d4f96ed4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a12af554.css",
-    "static/js/main.f74abe51.js"
+    "static/js/main.7d76a84b.js"
   ]
 }
