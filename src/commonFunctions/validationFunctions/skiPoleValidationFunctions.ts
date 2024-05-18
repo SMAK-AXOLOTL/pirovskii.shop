@@ -17,7 +17,13 @@ export function validateSkiPole(skiPole: skiPoleType, allSkiPolesData?: skiPoleT
     } else if (!skiPole.name || skiPole.name === '') {
         error = "Ski pole name is required"
         return error
-    }  else if(!skiPole.poleImg || skiPole.poleImg === ''){
+    } else if (!skiPole.desc || skiPole.desc === '') {
+        error = "Ski pole description is required"
+        return error
+    } else if (!skiPole.priceInRubles || skiPole.priceInRubles <= 0) {
+        error = "Ski pole price is required and cannot be less or equal to 0"
+        return error
+    }else if(!skiPole.poleImg || skiPole.poleImg === ''){
         error = "Ski must have an image"
         return error
     }else if (skiPole.lengthArray.length <= 0) {

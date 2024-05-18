@@ -1,4 +1,4 @@
-import styles from "./SkiTrackComponent.module.css";
+import styles from "./SkiFormComponent.module.css";
 import SkiLengthComponent from "../createForm/createSkiComponent/createTrackComponent/SkiLengthComponent";
 import React, {useState} from "react";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
@@ -6,22 +6,25 @@ import {skiModel} from "../../../utils/types";
 import {
     addNewSkiHardTrack,
     addNewSkiUniTrack,
+    setNewSkiDesc,
     setNewSkiHardTrack,
     setNewSkiId,
     setNewSkiName,
+    setNewSkiPriceInRubles,
     setNewSkiType,
     setNewSkiUniTrack
 } from "../../../redux/skisSlice";
 import {skiTypeEnum} from "../../../utils/skiTypeEnum";
 import {convertToBase64} from "../../../commonFunctions/convertToBase64";
 import ImagePreviewWithFullscreen from "../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
+import ResizableTextArea from "../../commonComponents/resizableTextArea/ResizableTextArea";
 
 type PropsType = {
     ski: skiModel,
     isInitialized: boolean
 }
 
-const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
+const SkiFormComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
     const [newTrackLength, setNewTrackLength] = useState('')
     const [isCreateHardTrackLengthUiOpen, setIsCreateHardTrackLengthUiOpen] = useState(false)
     const [isCreateUniversalTrackLengthUiOpen, setIsCreateUniversalTrackLengthUiOpen] = useState(false)
@@ -47,7 +50,6 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         dispatch(setNewSkiUniTrack(ski.universalTrack.filter((_, indexInArray) => indexInArray !== index)))
     }
 
-
     return <div>
         <div>
             <p>ID</p>
@@ -72,6 +74,18 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
                    required={true}/>
         </div>
         <div>
+            <p>Описание модели</p>
+            <ResizableTextArea value={ski.desc} dispatchCallback={setNewSkiDesc}/>
+        </div>
+        <div>
+            <p>Цена модели в рублях</p>
+            <input value={ski.priceInRubles}
+                   type={"number"}
+                   min={0}
+                   onChange={(e) => dispatch(setNewSkiPriceInRubles(e.target.value))}
+                   required={true}/>
+        </div>
+        <div>
             <p>Картинка</p>
             <ImagePreviewWithFullscreen src={ski.skiImg} id={ski.id}/>
             <input type={"file"}
@@ -83,7 +97,12 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         <div>
             <p>
                 Жесткая трасса
-                <button onClick={() => setIsCreateHardTrackLengthUiOpen(!isCreateHardTrackLengthUiOpen)}>+</button>
+                <button
+                    className={styles.addNewLengthButton}
+                    onClick={() => setIsCreateHardTrackLengthUiOpen(!isCreateHardTrackLengthUiOpen)}
+                >
+                    +
+                </button>
             </p>
             {isCreateHardTrackLengthUiOpen && <div className={styles.createTrack}>
                 <button className={styles.closeButton} onClick={() => setIsCreateHardTrackLengthUiOpen(false)}>X
@@ -112,7 +131,9 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         <div>
             <label>
                 Универсальные
-                <button onClick={() => setIsCreateUniversalTrackLengthUiOpen(!isCreateUniversalTrackLengthUiOpen)}>
+                <button
+                    className={styles.addNewLengthButton}
+                    onClick={() => setIsCreateUniversalTrackLengthUiOpen(!isCreateUniversalTrackLengthUiOpen)}>
                     +
                 </button>
             </label>
@@ -144,4 +165,4 @@ const SkiTrackComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
     </div>
 }
 
-export default SkiTrackComponent
+export default SkiFormComponent

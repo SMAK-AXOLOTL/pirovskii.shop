@@ -12,7 +12,14 @@ type initialStateType = {
 
 const initialStateData: initialStateType = {
     skiPolesData: [],
-    newSkiPoleData: {id: 'new_ski_pole', name: 'New Ski Pole', poleImg: '', lengthArray: []},
+    newSkiPoleData: {
+        id: 'new_ski_pole',
+        name: 'New Ski Pole',
+        desc: "",
+        priceInRubles: 0,
+        poleImg: '',
+        lengthArray: []
+    },
     status: 'idle',
     err: undefined
 }
@@ -30,11 +37,27 @@ export const skiPolesSlice = createSlice({
         setNewSkiPoleData: (state, action) => {
             state.newSkiPoleData = action.payload
         },
+        clearNewSkiPoleData: (state) => {
+            state.newSkiPoleData = {
+                id: 'new_ski_pole',
+                name: 'New Ski Pole',
+                desc: "",
+                priceInRubles: 0,
+                poleImg: '',
+                lengthArray: []
+            }
+        },
         setNewSkiPoleId: (state, action) => {
             state.newSkiPoleData.id = action.payload
         },
         setNewSkiPoleName: (state, action) => {
             state.newSkiPoleData.name = action.payload
+        },
+        setNewSkiPoleDesc: (state, action) => {
+            state.newSkiPoleData.desc = action.payload
+        },
+        setNewSkiPolePriceInRubles: (state, action) => {
+            state.newSkiPoleData.priceInRubles = action.payload
         },
         setNewSkiPoleImg: (state, action) => {
             state.newSkiPoleData.poleImg = action.payload
@@ -43,7 +66,10 @@ export const skiPolesSlice = createSlice({
             state.newSkiPoleData.lengthArray.push({lengthString: '180', isReserved: false})
         },
         setNewSkiPoleLength: (state, action) => {
-            state.newSkiPoleData.lengthArray[action.payload.index] = {lengthString: action.payload.length, isReserved: action.payload.isReserved}
+            state.newSkiPoleData.lengthArray[action.payload.index] = {
+                lengthString: action.payload.length,
+                isReserved: action.payload.isReserved
+            }
         },
         deleteNewSkiPoleLength: (state, action) => {
             state.newSkiPoleData.lengthArray.splice(action.payload, 1)
@@ -93,8 +119,11 @@ export const {
     setSkiPolesStatus,
     setSkiPoleDataByIndex,
     setNewSkiPoleData,
+    clearNewSkiPoleData,
     setNewSkiPoleId,
     setNewSkiPoleName,
+    setNewSkiPoleDesc,
+    setNewSkiPolePriceInRubles,
     setNewSkiPoleImg,
     addNewSkiPoleLength,
     setNewSkiPoleLength,

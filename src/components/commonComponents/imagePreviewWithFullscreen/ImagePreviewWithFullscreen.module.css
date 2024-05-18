@@ -13,8 +13,8 @@
     height: 90vh;
     width: 95vw;
     background-color: rgba(0, 0, 0, 0.8);
-    top: 0;
-    left: -65vh;
+    top: 5vh;
+    left: 3rem;
     position: absolute;
 }
 
@@ -24,8 +24,8 @@
 
 .skiImgFullscreen button {
     position: absolute;
-    height: fit-content;
-    width: 1.5vw;
+    width: 4rem;
+    height: 4rem;
     border-radius: 5vh;
     color: var(--red-button-text);
     background-color: var(--peltonen-red);
@@ -46,7 +46,7 @@
 
 .openImgFullscreenOnHover {
     position: absolute;
-    margin-top: -15%;
-    margin-left: 18%;
+    top: 62%;
+    left: 52%;
     cursor: pointer;
 }

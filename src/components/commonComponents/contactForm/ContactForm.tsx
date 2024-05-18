@@ -3,8 +3,7 @@ import styles from './ContactForm.module.css'
 import whatAppImg from "../../../media/whatsAppImg.png"
 
 //todo: style contactForm
-//todo: stop textarea reformatting
-//todo: add telegram functionality (if needed)
+//todo: make textarea auto resize
 const ContactForm: React.FC<{
     productName: string,
     productLength: string,

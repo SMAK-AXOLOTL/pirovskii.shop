@@ -1,23 +1,28 @@
-.createForm {
+.wrapper{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50%;
-    height: 70%;
+    flex-flow: row;
+    justify-content: center;
 }
 
-.createHardTrack {
-    position: absolute;
-    margin: -10% -25%;
-    background-color: white;
-    border: 1px solid black;
+.buttonsContainer{
+    align-self: center;
+    width: 10vw;
 }
 
-.manageWeightsUi {
-    position: absolute;
-    margin: -25% 65%;
-    width: 50%;
-    background-color: white;
-    border: 1px solid black;
+.lengthButton{
+    min-width: 80%;
+    border-radius: 5vh;
+}
+
+.deleteButton{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 5rem;
+    border: 1px solid var(--peltonen-red);
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+}
+
+.deleteButton:hover{
+    color: black;
 }

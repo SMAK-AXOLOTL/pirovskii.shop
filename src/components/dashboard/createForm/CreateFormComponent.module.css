@@ -2,7 +2,7 @@
     position: fixed;
     top: 9%;
     left: 37%;
-    width: 30%;
+    width: 35rem;
     height: 80vh;
 }
 
@@ -33,7 +33,8 @@
 
 .redButton {
     align-self: flex-end;
-    padding: 0.5vh 0.5vw;
+    height: 2rem;
+    width: 2rem;
     border-radius: 10vh;
     border: 1px solid var(--peltonen-red);
     background-color: var(--peltonen-red);

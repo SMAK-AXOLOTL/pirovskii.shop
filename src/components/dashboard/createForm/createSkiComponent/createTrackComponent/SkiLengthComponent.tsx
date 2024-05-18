@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import styles from './SkiLengthComponent.module.css'
 import {skiLengthType} from "../../../../../utils/types";
 import ManageWeightsComponent from "./manageWeightsComponent/ManageWeightsComponent";
 
@@ -12,12 +13,16 @@ type PropsType = {
 const SkiLengthComponent: React.FC<PropsType> = ({track, trackType, trackIndex, filterOutLength}) => {
     const [isCreateWeightUiOpen, setIsCreateWeightUiOpen] = useState(false)
 
-    return <div>
-        <div>
-            <button onClick={() => setIsCreateWeightUiOpen(!isCreateWeightUiOpen)}>
+    return <div className={styles.wrapper}>
+        <div className={styles.buttonsContainer}>
+            <button
+                className={styles.lengthButton}
+                onClick={() => setIsCreateWeightUiOpen(!isCreateWeightUiOpen)}>
                 {track.lengthString}
             </button>
-            <button onClick={() => filterOutLength(trackIndex)}>
+            <button
+                className={styles.deleteButton}
+                onClick={() => filterOutLength(trackIndex)}>
                 X
             </button>
         </div>

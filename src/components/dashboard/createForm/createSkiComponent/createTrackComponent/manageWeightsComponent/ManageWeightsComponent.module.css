@@ -1,8 +1,8 @@
 .manageWeightsUi {
-    position: absolute;
-    margin: -25% 65%;
-    padding-top: 2vh;
-    width: 50%;
+    position: fixed;
+    margin: -25% -55% 0 0;
+    padding: 5vh 0;
+    width: 25%;
     background-color: white;
     border: 1px solid black;
 }
@@ -16,6 +16,13 @@
     top: 1vh;
     right: 1vh;
     height: fit-content;
-    width: 1.5vw;
-    border-radius: 2vh;
+    width: 2rem;
+    border-radius: 2rem;
+    border: 1px solid var(--peltonen-red);
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+}
+
+.closeButton:hover{
+    color: var(--white-button-text);
 }

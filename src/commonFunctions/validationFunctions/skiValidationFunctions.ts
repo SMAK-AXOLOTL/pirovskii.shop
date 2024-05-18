@@ -3,10 +3,10 @@ import {skiLengthType, skiModel} from "../../utils/types";
 /**
  * @param track an array of ski lengths to validate
  */
-export function validateTrack(track: skiLengthType[]){
-    for(let i = 0; i < track.length; i++){
-        for(let j = i+1; j < track.length; j++){
-            if(track[i].lengthString === track[j].lengthString){
+export function validateTrack(track: skiLengthType[]) {
+    for (let i = 0; i < track.length; i++) {
+        for (let j = i + 1; j < track.length; j++) {
+            if (track[i].lengthString === track[j].lengthString) {
                 return true
             }
         }
@@ -29,20 +29,25 @@ export function validateSki(ski: skiModel, allSkiData?: skiModel[]) {
     } else if (!ski.name || ski.name === '') {
         error = "Ski name is required"
         return error
-    } else if(!ski.skiImg || ski.skiImg === ''){
+    } else if (!ski.desc || ski.desc === '') {
+        error = "Ski description is required"
+        return error
+    } else if (!ski.priceInRubles || ski.priceInRubles <= 0) {
+        error = "Ski price is required and cannot be less or equal to 0"
+        return error
+    } else if (!ski.skiImg || ski.skiImg === '') {
         error = "Ski must have an image"
         return error
-    }
-    else if (ski.hardTrack.length <= 0 && ski.universalTrack.length <= 0) {
+    } else if (ski.hardTrack.length <= 0 && ski.universalTrack.length <= 0) {
         error = "You can't create new ski without tracks"
         return error
-    }else if(validateTrack(ski.hardTrack)){
+    } else if (validateTrack(ski.hardTrack)) {
         error = 'All hard tracks must have unique names'
         return error
-    }else if(validateTrack(ski.universalTrack)) {
+    } else if (validateTrack(ski.universalTrack)) {
         error = 'All universal tracks must have unique names'
         return error
-    }else if (ski.hardTrack.map((track, index) => {
+    } else if (ski.hardTrack.map((track, index) => {
         if (track.weights.length <= 0) {
             error = `Hard track number ${index + 1} doesn't have weights`
         }

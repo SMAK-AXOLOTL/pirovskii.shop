@@ -118,12 +118,12 @@ const DashboardComponent = () => {
 
         return <tr
             key={ski.id + '/' + ski.name}>
-            <td style={{fontWeight: "bold"}}>
-                <button onClick={() => {
+            <td className={styles.modelNameCell}
+                onClick={() => {
                     dispatch(setIsUpdateSkiUiOpen())
                     dispatch(setCurrentOpenedSkiIndex(index))
-                }}>🖊
-                </button>
+                }}
+            >
                 {isUpdateSkiUiOpen && (currentIndex === index) &&
                     <UpdateFormComponent index={index} updateType={"ski"}/>}
                 {ski.id}
@@ -156,12 +156,13 @@ const DashboardComponent = () => {
     const TableRowSkiPole: React.FC<{ skiPole: skiPoleType, index: number }> = ({skiPole, index}) => {
 
         return <tr key={skiPole.id + '/' + skiPole.name}>
-            <td style={{fontWeight: "bold"}}>
-                <button onClick={() => {
+            <td
+                className={styles.modelNameCell}
+                onClick={() => {
                     dispatch(setIsUpdateSkiPoleUiOpen())
                     dispatch(setCurrentOpenedSkiIndex(index))
-                }}>🖊
-                </button>
+                }}
+            >
                 {isUpdateSkiPoleUiOpen && (currentIndex === index) &&
                     <UpdateFormComponent index={index} updateType={"skiPole"}/>}
                 {skiPole.id}

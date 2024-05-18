@@ -1,4 +1,5 @@
 .goBackButton{
+    padding: 0 1rem;
     position: relative;
     align-self: flex-start;
     height: 5vh;

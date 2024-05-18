@@ -6,6 +6,8 @@ type PropsType = {
     id: string
 }
 
+//fixMe: onHover image not moving with container
+
 const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id}) => {
     const [isOpenFullscreenUiHidden, setOpenFullscreenUiHidden] = useState(true)
     const [isSkiImgFullscreenHidden, setIsSkiImgFullscreenHidden] = useState(true)
@@ -26,7 +28,7 @@ const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id}) => {
             <h1 hidden={isOpenFullscreenUiHidden} className={styles.openImgFullscreenOnHover}>🔎</h1>
         </div>
         <div className={styles.skiImgFullscreen} hidden={isSkiImgFullscreenHidden}>
-            <button onClick={() => setIsSkiImgFullscreenHidden(true)}>x</button>
+            <button onClick={() => setIsSkiImgFullscreenHidden(true)}>X</button>
             <img src={src} alt={id}/>
         </div>
     </div>

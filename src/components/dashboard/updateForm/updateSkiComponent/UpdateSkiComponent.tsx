@@ -8,7 +8,7 @@ import {
     setSkiDataByIndex,
     updateOneSkiData
 } from "../../../../redux/skisSlice";
-import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
+import SkiFormComponent from "../../skiForm/SkiFormComponent";
 import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
 import {setIsUpdateSkiUiOpen} from "../../../../redux/appStateSlice";
 
@@ -30,7 +30,7 @@ const UpdateSkiComponent: React.FC<PropsType> = ({index}) => {
 
     function handleUpdateClick() {
         const validationError = validateSki(ski)
-        if(validationError !== ''){
+        if (validationError !== '') {
             alert(validationError)
         } else {
             const actionPayloadDTO = {
@@ -41,12 +41,11 @@ const UpdateSkiComponent: React.FC<PropsType> = ({index}) => {
             dispatch(updateOneSkiData({id: ski.id, data: actionPayloadDTO.data}))
             dispatch(setIsUpdateSkiUiOpen())
         }
-
     }
 
 
     return (<div className={styles.createForm}>
-        <SkiTrackComponent ski={ski} isInitialized={true}/>
+        <SkiFormComponent ski={ski} isInitialized={true}/>
         <button onClick={handleUpdateClick} className={styles.redButton}>
             Изменить
         </button>

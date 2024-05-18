@@ -17,6 +17,8 @@ const initialStateData: initialStateType = {
     newSkiData: {
         id: 'new_ski_id',
         name: "New Ski Name",
+        desc: "Описание модели лыж",
+        priceInRubles: 0,
         type: skiTypeEnum.CLASSIC,
         skiImg: '',
         hardTrack: [],
@@ -43,6 +45,18 @@ export const skisSlice = createSlice({
         setNewSkiData: (state, action) => {
             state.newSkiData = action.payload
         },
+        clearNewSkiData: (state) => {
+          state.newSkiData = {
+              id: 'new_ski_id',
+              name: "New Ski Name",
+              desc: "",
+              priceInRubles: 0,
+              type: skiTypeEnum.CLASSIC,
+              skiImg: '',
+              hardTrack: [],
+              universalTrack: []
+          }
+        },
         setNewSkiId: (state, action) => {
             state.newSkiData.id = action.payload
         },
@@ -51,6 +65,12 @@ export const skisSlice = createSlice({
         },
         setNewSkiName: (state, action) => {
             state.newSkiData.name = action.payload
+        },
+        setNewSkiDesc: (state, action) => {
+            state.newSkiData.desc = action.payload
+        },
+        setNewSkiPriceInRubles: (state, action) => {
+            state.newSkiData.priceInRubles = action.payload
         },
         setNewSkiImg: (state, action) => {
             state.newSkiData.skiImg = action.payload
@@ -163,9 +183,12 @@ export const {
     setSkiStatus,
     setSkiDataByIndex,
     setNewSkiData,
+    clearNewSkiData,
     setNewSkiId,
     setNewSkiType,
     setNewSkiName,
+    setNewSkiDesc,
+    setNewSkiPriceInRubles,
     setNewSkiImg,
     setNewSkiUniTrack,
     setNewSkiHardTrack,

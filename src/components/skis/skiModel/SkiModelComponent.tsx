@@ -16,9 +16,9 @@ const SkiModelComponent = () => {
             <GoBackButtonComponent/>
             <div className={styles.skiInfo}>
                 <img src={actualSkating.skiImg} alt={modelId}/>
-                <p>Тут будет какое-то длинное описание свойств каждой модели. Оно может занимать от одной строки до
-                    нескольких. Его ширина автоматически подгоняется под размер и выглядит аккуратно</p>
-                <h2>Цена: 25000 руб / 300$</h2>
+                <h1>{actualSkating.name}</h1>
+                <p>{actualSkating.desc}</p>
+                <h2>Цена: {actualSkating.priceInRubles} руб / 300$</h2>
             </div>
             <div className={styles.sizesTableContainer}>
                 {actualSkating.universalTrack?.length !== 0 &&

@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import styles from './CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
-import {createSki, selectNewSkiData, selectSkis, setNewSkiData} from "../../../../redux/skisSlice";
-import {skiTypeEnum} from "../../../../utils/skiTypeEnum";
-import SkiTrackComponent from "../../skiTracks/SkiTrackComponent";
+import {createSki, selectNewSkiData, selectSkis} from "../../../../redux/skisSlice";
+import SkiFormComponent from "../../skiForm/SkiFormComponent";
 import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
 import {setCreateUiOpen} from "../../../../redux/appStateSlice";
+import {clearNewSkiPoleData} from "../../../../redux/skiPolesSlice";
 
 
 const CreateSkiComponent = () => {
@@ -14,14 +14,7 @@ const CreateSkiComponent = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setNewSkiData({
-            id: 'new_ski_id',
-            name: "New Ski Name",
-            type: skiTypeEnum.CLASSIC,
-            skiImg: '',
-            hardTrack: [],
-            universalTrack: []
-        }))
+        dispatch(clearNewSkiPoleData())
     }, [dispatch]);
 
     function handleCreateClick() {
@@ -35,7 +28,7 @@ const CreateSkiComponent = () => {
     }
 
     return (<div className={styles.createForm}>
-        <SkiTrackComponent ski={ski} isInitialized={false}/>
+        <SkiFormComponent ski={ski} isInitialized={false}/>
         <button onClick={handleCreateClick} className={styles.redButton}>
             Добавить
         </button>

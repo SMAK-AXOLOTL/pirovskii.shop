@@ -1,9 +1,10 @@
 import {skiModel} from "../utils/types";
 import {createInstance} from "./api";
+import {skiData} from "../dataMocks/skiDataMocks";
 
 export const skisApi = {
     async getAllSkis() {
-        return await createInstance().get("/rest/skis").then(response => response.data.map((x: any) => {
+        return process.env.NODE_ENV === "production" ? skiData : await createInstance().get("/rest/skis").then(response => response.data.map((x: any) => {
             return x.data
         }))
     },

@@ -7,29 +7,16 @@
     height: 70%;
 }
 
-.createTrack {
-    position: absolute;
-    margin: -10% -25%;
-    background-color: white;
-    border: 1px solid black;
-}
-
-.manageWeightsUi {
-    position: absolute;
-    margin: -25% 65%;
-    width: 50%;
-    background-color: white;
-    border: 1px solid black;
-}
-
 .redButton {
     margin-top: 2vh;
-    padding: 0.5vh 2vw;
+    width: fit-content;
+    height: 3rem;
     border-radius: 10vh;
     border: 1px solid var(--peltonen-red);
     background-color: var(--peltonen-red);
     color: var(--red-button-text);
 }
+
 .redButton:hover {
     background-color: var(--red-button-text);
     color: var(--peltonen-red)

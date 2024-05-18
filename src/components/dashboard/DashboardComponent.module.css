@@ -9,7 +9,7 @@
     padding: 1% 0;
 }
 
-.controlElements{
+.controlElements {
     display: flex;
     padding: 0 1%;
     justify-content: space-between;
@@ -18,7 +18,8 @@
 .controlElements div {
     min-width: 15%;
 }
-.createNewButton{
+
+.createNewButton {
     height: 4vh;
     border: 1px solid var(--peltonen-red);
     border-radius: 5vh;
@@ -26,7 +27,7 @@
     color: white;
 }
 
-.createNewButton:hover{
+.createNewButton:hover {
     background-color: white;
     color: var(--peltonen-red);
 }
@@ -46,15 +47,17 @@
     margin-top: 1%;
     justify-content: space-between;
 }
-.filtersElements button{
+
+.filtersElements button {
     height: 8vh;
 }
+
 .subCategory {
     width: 80%;
     align-self: flex-end;
 }
 
-.dashboardTable{
+.dashboardTable {
     height: 85vh;
     overflow: auto;
     flex: 6;
@@ -73,21 +76,33 @@
     border: 1px solid black;
 }
 
-.idInTableRow{
+.idInTableRow {
     display: flex;
     justify-content: flex-start;
 }
+
 td {
     min-height: 7vh;
 }
-td button{
-    padding: 0.3vh;
+
+.modelNameCell {
+    font-weight: bold;
+}
+.modelNameCell:hover {
+    background-color: var(--peltonen-red);
+    color: var(--white-button-text);
+    cursor: pointer;
+}
+
+td button {
     height: 120%;
 }
+
 td img {
     width: 25%;
     max-width: 100%;
 }
+
 button:hover {
     cursor: pointer;
     border: 1px solid var(--peltonen-red);
@@ -100,7 +115,7 @@ button:hover {
     color: white;
 }
 
-.controlButton:disabled{
+.controlButton:disabled {
     color: black;
     background-color: grey;
     cursor: wait;

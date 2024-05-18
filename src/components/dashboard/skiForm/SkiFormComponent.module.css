@@ -1,0 +1,22 @@
+.createTrack {
+    position: absolute;
+    top: 45%;
+    padding: 2vh 1vh;
+    background-color: white;
+    border: 1px solid black;
+    z-index: 1;
+}
+
+.addNewLengthButton {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 5rem;
+}
+
+.manageWeightsUi {
+    position: absolute;
+    margin: -25% 65%;
+    width: 50%;
+    background-color: white;
+    border: 1px solid black;
+}

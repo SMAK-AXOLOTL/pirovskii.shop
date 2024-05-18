@@ -1,9 +1,10 @@
 import {createInstance} from "./api";
 import {skiPoleType} from "../utils/types";
+import {skiPolesData} from "../dataMocks/skiPolesDataMocks";
 
 export const skiPolesApi = {
     async getAllSkiPoles() {
-        return await createInstance().get("/rest/skiPoles").then(response => response.data.map( (x:any) => {
+        return process.env.NODE_ENV === "production" ? skiPolesData : await createInstance().get("/rest/skiPoles").then(response => response.data.map( (x:any) => {
             return x.data
         } ))
     },
