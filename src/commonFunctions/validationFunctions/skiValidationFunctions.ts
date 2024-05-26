@@ -1,4 +1,4 @@
-import {skiLengthType, skiModel} from "../../utils/types";
+import {skiLengthType, skiModel, skiViewAllModel} from "../../utils/types";
 
 /**
  * @param track an array of ski lengths to validate
@@ -18,7 +18,7 @@ export function validateTrack(track: skiLengthType[]) {
  * @param ski a ski to validate
  * @param allSkiData optional array of all skis param to validate NEW ski against (skip if validating existing ski)
  */
-export function validateSki(ski: skiModel, allSkiData?: skiModel[]) {
+export function validateSki(ski: skiModel, allSkiData?: skiViewAllModel[]) {
     let error = ''
     if (!ski.id || ski.id === '') {
         error = "ID is required"
@@ -35,7 +35,7 @@ export function validateSki(ski: skiModel, allSkiData?: skiModel[]) {
     } else if (!ski.priceInRubles || ski.priceInRubles <= 0) {
         error = "Ski price is required and cannot be less or equal to 0"
         return error
-    } else if (!ski.skiImg || ski.skiImg === '') {
+    } else if (!ski.skiImgArr || ski.skiImgArr.includes('')) {
         error = "Ski must have an image"
         return error
     } else if (ski.hardTrack.length <= 0 && ski.universalTrack.length <= 0) {

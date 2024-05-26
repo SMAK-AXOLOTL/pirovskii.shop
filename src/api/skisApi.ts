@@ -3,10 +3,20 @@ import {createInstance} from "./api";
 import {skiData} from "../dataMocks/skiDataMocks";
 
 export const skisApi = {
-    async getAllSkis() {
-        return process.env.NODE_ENV === "production" ? skiData : await createInstance().get("/rest/skis").then(response => response.data.map((x: any) => {
-            return x.data
-        }))
+    async getViewAllSkis() {
+        return process.env.NODE_ENV === "production" ? skiData : await createInstance().get("/rest/skis").then(response =>
+            response.data.map((x: any) => {
+                return x.data
+            }))
+    },
+    async getAllSkisData() {
+        return process.env.NODE_ENV === "production" ? skiData : await createInstance().get("rest/skis/allSkisData").then(response =>
+            response.data.map((x: any) => {
+                return x.data
+            }))
+    },
+    async getSkiById(id: string) {
+        return await createInstance().get(`/rest/skis/${id}`).then(response => response.data.data)
     },
     async create(data: skiModel) {
         return await createInstance().post('/admin/dashboard/ski', {data: data}).then(response => response.data.map((x: any) => {

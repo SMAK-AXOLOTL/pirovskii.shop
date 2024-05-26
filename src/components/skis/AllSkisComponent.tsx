@@ -3,7 +3,7 @@ import styles from './AllSkisComponent.module.css'
 import {useAppSelector} from "../../hooks/reduxHooks";
 import {selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux/skisSlice";
 import {skiTypeEnum} from "../../utils/skiTypeEnum";
-import {skiModel} from "../../utils/types";
+import {skiViewAllModel} from "../../utils/types";
 import {NavLink} from "react-router-dom";
 import {rotateImg90deg} from "../commonComponents/rotateImg90deg/rotateImg90deg";
 
@@ -12,11 +12,11 @@ const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
     const classicSkis = useAppSelector(selectClassicSkis)
     const skatingSkis = useAppSelector(selectSkatingSkis)
 
-    function hrefSwitcher(model: skiModel) {
+    function hrefSwitcher(model: skiViewAllModel) {
         return <NavLink key={model.id} to={`/${model.type.toLowerCase()}/${model.id}`} className={styles.skiModel}>
             <h2>{model.name}</h2>
             <span
-                className={styles.tooltip}>{`Это текст описания каждой модели. Конкретно здесь описывается ${model.name}. Возможно, сюда получится уместить даже 3 предложения описания. А вот 4 - вряд ли`}</span>
+                className={styles.tooltip}>{model.desc}</span>
             {
                 rotateImg90deg(model.skiImg)
             }

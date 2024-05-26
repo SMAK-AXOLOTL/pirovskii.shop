@@ -1,44 +1,50 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './SkiModelComponent.module.css'
-import {selectSkis} from "../../../redux/skisSlice";
+import {getSkiById, selectSkiModel} from "../../../redux/skisSlice";
 import {useParams} from "react-router-dom";
 import LengthItemComponent from "./lengthItemComponent/lengthItemComponent";
-import {useAppSelector} from "../../../hooks/reduxHooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
 import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
 
+
+//fixMe: ui not showing skiModel info
 const SkiModelComponent = () => {
     const {modelId} = useParams()
-    const skating = useAppSelector(selectSkis)
-    const actualSkating = skating.find((x) => x.id === modelId)
+    const skiModel = useAppSelector(selectSkiModel)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (modelId) dispatch(getSkiById(modelId))
+    }, [dispatch, modelId]);
 
     return <div className={styles.wrapper}>
-        {actualSkating && <div className={styles.classicModelContainer}>
+        {skiModel && <div className={styles.classicModelContainer}>
             <GoBackButtonComponent/>
             <div className={styles.skiInfo}>
-                <img src={actualSkating.skiImg} alt={modelId}/>
-                <h1>{actualSkating.name}</h1>
-                <p>{actualSkating.desc}</p>
-                <h2>Цена: {actualSkating.priceInRubles} руб / 300$</h2>
+                <img src={skiModel.skiImgArr[0]} alt={modelId}/>
+                <h1>{skiModel.name}</h1>
+                <p>{skiModel.desc}</p>
+                <h2>Цена: {skiModel.priceInRubles} руб / 300$</h2>
             </div>
             <div className={styles.sizesTableContainer}>
-                {actualSkating.universalTrack?.length !== 0 &&
+                {skiModel.universalTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>
                             Универсальные
                         </h2>
-                        {actualSkating.universalTrack && actualSkating.universalTrack.map((u) =>
-                            <LengthItemComponent key={u.lengthString} length={u} skiName={actualSkating.name}/>
+                        {skiModel.universalTrack && skiModel.universalTrack.map((u) =>
+                            <LengthItemComponent key={u.lengthString} length={u} skiName={skiModel.name}/>
                         )
                         }
                     </div>
                 }
-                {actualSkating.hardTrack?.length !== 0 &&
+                {skiModel.hardTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>
                             Жесткая трасса
                         </h2>
-                        {actualSkating.hardTrack && actualSkating.hardTrack.map((h) =>
-                            <LengthItemComponent key={h.lengthString} length={h} skiName={actualSkating.name}/>
+                        {skiModel.hardTrack && skiModel.hardTrack.map((h) =>
+                            <LengthItemComponent key={h.lengthString} length={h} skiName={skiModel.name}/>
                         )
                         }
                     </div>

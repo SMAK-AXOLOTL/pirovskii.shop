@@ -87,7 +87,7 @@ const SkiFormComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         </div>
         <div>
             <p>Картинка</p>
-            <ImagePreviewWithFullscreen src={ski.skiImg} id={ski.id}/>
+            <ImagePreviewWithFullscreen src={ski.skiImgArr[0]} id={ski.id}/>
             <input type={"file"}
                    onChange={e => convertToBase64(e, "ski", dispatch)}
                    required={true}

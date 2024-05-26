@@ -8,7 +8,7 @@ export interface skiModel {
     name: string,
     desc: string,
     priceInRubles: number,
-    skiImg: string,
+    skiImgArr: string[],
     hardTrack: skiLengthType[],
     universalTrack: skiLengthType[]
 }
@@ -23,6 +23,16 @@ export interface skiWeightType{
     isReserved: boolean
 }
 
+
+export type skiViewAllType = skiViewAllModel[]
+
+export type skiViewAllModel = {
+    id: string,
+    name: string,
+    type: skiTypeEnum,
+    desc: string,
+    skiImg: string
+}
 
 export type skiPolesType = skiPoleType[]
 

@@ -1,11 +1,13 @@
 import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {skisApi} from '../api/skisApi'
-import {skiModel, skiType} from "../utils/types";
+import {skiModel, skiType, skiViewAllType} from "../utils/types";
 import {skiTypeEnum} from "../utils/skiTypeEnum";
 
 type initialStateType = {
-    skiData: skiType,
+    skiViewAllData: skiViewAllType,
+    allSkiData: skiType,
+    skiModel: skiModel,
     newSkiData: skiModel,
     currentOpenedSkiIndex: number,
     status: 'idle' | 'loading' | 'succeeded' | 'failed',
@@ -13,14 +15,25 @@ type initialStateType = {
 }
 
 const initialStateData: initialStateType = {
-    skiData: [],
+    skiViewAllData: [],
+    allSkiData: [],
+    skiModel: {
+        id: '',
+        name: "",
+        desc: "",
+        priceInRubles: 0,
+        type: skiTypeEnum.CLASSIC,
+        skiImgArr: [''],
+        hardTrack: [],
+        universalTrack: []
+    },
     newSkiData: {
         id: 'new_ski_id',
         name: "New Ski Name",
         desc: "Описание модели лыж",
         priceInRubles: 0,
         type: skiTypeEnum.CLASSIC,
-        skiImg: '',
+        skiImgArr: [''],
         hardTrack: [],
         universalTrack: []
     },
@@ -34,28 +47,31 @@ export const skisSlice = createSlice({
     initialState: initialStateData,
     reducers: {
         setCurrentOpenedSkiIndex: (state, action) => {
-          state.currentOpenedSkiIndex = action.payload
+            state.currentOpenedSkiIndex = action.payload
         },
         setSkiStatus: (state, action) => {
             state.status = action.payload
         },
+        setAllSkisData: (state,action) => {
+            state.allSkiData = action.payload
+        },
         setSkiDataByIndex: (state, action) => {
-            state.skiData[action.payload.index] = action.payload.data
+            state.skiViewAllData[action.payload.index] = action.payload.data
         },
         setNewSkiData: (state, action) => {
             state.newSkiData = action.payload
         },
         clearNewSkiData: (state) => {
-          state.newSkiData = {
-              id: 'new_ski_id',
-              name: "New Ski Name",
-              desc: "",
-              priceInRubles: 0,
-              type: skiTypeEnum.CLASSIC,
-              skiImg: '',
-              hardTrack: [],
-              universalTrack: []
-          }
+            state.newSkiData = {
+                id: 'new_ski_id',
+                name: "New Ski Name",
+                desc: "",
+                priceInRubles: 0,
+                type: skiTypeEnum.CLASSIC,
+                skiImgArr: [''],
+                hardTrack: [],
+                universalTrack: []
+            }
         },
         setNewSkiId: (state, action) => {
             state.newSkiData.id = action.payload
@@ -73,7 +89,7 @@ export const skisSlice = createSlice({
             state.newSkiData.priceInRubles = action.payload
         },
         setNewSkiImg: (state, action) => {
-            state.newSkiData.skiImg = action.payload
+            state.newSkiData.skiImgArr[0] = action.payload
         },
         setNewSkiHardTrack: (state, action) => {
             state.newSkiData.hardTrack = action.payload
@@ -122,14 +138,36 @@ export const skisSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            .addCase(getAllSkisData.pending, (state) => {
+            .addCase(getViewAllSkisData.pending, (state) => {
                 state.status = 'loading'
             })
-            .addCase(getAllSkisData.fulfilled, (state, action) => {
+            .addCase(getViewAllSkisData.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.skiData = action.payload
+                state.skiViewAllData = action.payload
             })
-            .addCase(getAllSkisData.rejected, (state, action) => {
+            .addCase(getViewAllSkisData.rejected, (state, action) => {
+                state.status = 'failed'
+                state.err = action.error.message
+            })
+            .addCase(getAllSkiData.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(getAllSkiData.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.allSkiData = action.payload
+            })
+            .addCase(getAllSkiData.rejected, (state, action) => {
+                state.status = 'failed'
+                state.err = action.error.message
+            })
+            .addCase(getSkiById.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(getSkiById.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.skiModel = action.payload
+            })
+            .addCase(getSkiById.rejected, (state, action) => {
                 state.status = 'failed'
                 state.err = action.error.message
             })
@@ -138,7 +176,7 @@ export const skisSlice = createSlice({
             })
             .addCase(deleteSkiById.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.skiData = action.payload
+                state.skiViewAllData = action.payload
             })
             .addCase(deleteSkiById.rejected, (state, action) => {
                 state.status = 'failed'
@@ -149,7 +187,7 @@ export const skisSlice = createSlice({
             })
             .addCase(updateOneSkiData.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.skiData = action.payload
+                state.skiViewAllData = action.payload
             })
             .addCase(updateOneSkiData.rejected, (state, action) => {
                 state.status = 'failed'
@@ -160,7 +198,7 @@ export const skisSlice = createSlice({
             })
             .addCase(createSki.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.skiData = action.payload
+                state.skiViewAllData = action.payload
             })
             .addCase(createSki.rejected, (state, action) => {
                 state.status = 'failed'
@@ -168,7 +206,9 @@ export const skisSlice = createSlice({
             })
     }
 })
-export const selectSkis = (state: RootState) => state.skis.skiData
+export const selectSkis = (state: RootState) => state.skis.skiViewAllData
+export const selectAllSkisData = (state: RootState) => state.skis.allSkiData
+export const selectSkiModel = (state: RootState) => state.skis.skiModel
 export const selectClassicSkis = createSelector(selectSkis, (skis) => {
     return skis.filter(ski => ski.type === skiTypeEnum.CLASSIC)
 })
@@ -181,6 +221,7 @@ export const selectCurrentOpenedSkiIndex = (state: RootState) => state.skis.curr
 export const {
     setCurrentOpenedSkiIndex,
     setSkiStatus,
+    setAllSkisData,
     setSkiDataByIndex,
     setNewSkiData,
     clearNewSkiData,
@@ -202,10 +243,22 @@ export const {
     deleteNewSkiHardTrackWeight
 } = skisSlice.actions
 
-export const getAllSkisData = createAsyncThunk('skis/getAllSkisData',
+export const getViewAllSkisData = createAsyncThunk('skis/getViewAllSkisData',
     async () => {
-        return skisApi.getAllSkis()
+        return skisApi.getViewAllSkis()
     })
+
+export const getAllSkiData = createAsyncThunk('skis/getAllSkisData',
+    async () => {
+        return skisApi.getAllSkisData()
+    }
+)
+
+export const getSkiById = createAsyncThunk('skis/getSkiById',
+    async (id: string) => {
+        return skisApi.getSkiById(id)
+    }
+)
 export const createSki = createAsyncThunk('skis/createSki',
     async (requestData: skiModel) => {
         return skisApi.create(requestData)

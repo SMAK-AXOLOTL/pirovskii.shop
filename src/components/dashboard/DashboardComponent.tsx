@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import styles from './DashboardComponent.module.css'
 import {
     deleteSkiById,
-    getAllSkisData,
+    getAllSkiData,
+    selectAllSkisData,
     selectCurrentOpenedSkiIndex,
-    selectSkis,
-    selectSkiStatus, setCurrentOpenedSkiIndex,
+    selectSkiStatus,
+    setCurrentOpenedSkiIndex,
     setSkiStatus
 } from "../../redux/skisSlice";
 import {AppDispatch} from "../../redux/store";
@@ -27,7 +28,10 @@ import {
     selectAppStatus,
     selectIsCreateUiOpen,
     selectIsUpdateSkiPoleUiOpen,
-    selectIsUpdateSkiUiOpen, setCreateUiOpen, setIsUpdateSkiPoleUiOpen, setIsUpdateSkiUiOpen,
+    selectIsUpdateSkiUiOpen,
+    setCreateUiOpen,
+    setIsUpdateSkiPoleUiOpen,
+    setIsUpdateSkiUiOpen,
     tryLogout
 } from "../../redux/appStateSlice";
 
@@ -46,7 +50,7 @@ const DashboardComponent = () => {
     const isCreateUiOpen = useAppSelector(selectIsCreateUiOpen)
     const isUpdateSkiUiOpen = useAppSelector(selectIsUpdateSkiUiOpen)
     const isUpdateSkiPoleUiOpen = useAppSelector(selectIsUpdateSkiPoleUiOpen)
-    const allSkisData = useAppSelector(selectSkis)
+    const allSkisData = useAppSelector(selectAllSkisData)
     const allSkiPolesData = useAppSelector(selectSkiPoles)
     const skiStatus = useAppSelector(selectSkiStatus)
     const skiPoleStatus = useAppSelector(selectSkiPolesStatus)
@@ -65,7 +69,7 @@ const DashboardComponent = () => {
 
     useEffect(() => {
         if (skiStatus === 'idle' && skiPoleStatus === 'idle') {
-            dispatch(getAllSkisData())
+            dispatch(getAllSkiData())
             dispatch(getAllSkiPolesData())
         }
     }, [location, skiStatus, skiPoleStatus, dispatch])
@@ -131,7 +135,7 @@ const DashboardComponent = () => {
             <td>{ski.name}</td>
             <td>{skiTypeSwitcher(ski.type)}</td>
             <td>
-                <img src={ski.skiImg} alt={ski.id} className={styles.skiImage}/>
+                <img src={ski.skiImgArr[0]} alt={ski.id} className={styles.skiImage}/>
             </td>
             <td>
                 {(ski.hardTrack.length > 0) && <div>

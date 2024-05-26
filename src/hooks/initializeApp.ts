@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "./reduxHooks";
-import {getAllSkisData, selectSkis, selectSkiStatus} from "../redux/skisSlice";
+import {getViewAllSkisData, selectSkis, selectSkiStatus} from "../redux/skisSlice";
 import {useEffect} from "react";
 import {getAllSkiPolesData, selectSkiPoles, selectSkiPolesStatus} from "../redux/skiPolesSlice";
 
@@ -14,7 +14,7 @@ export function InitializeApp(){
 
     useEffect(() => {
         if (skiStatus === 'idle' && allSkis.length <= 0) {
-            dispatch(getAllSkisData())
+            dispatch(getViewAllSkisData())
         }
         if (skiPoleStatus === 'idle' && allSkiPoles.length <= 0){
             dispatch(getAllSkiPolesData())
