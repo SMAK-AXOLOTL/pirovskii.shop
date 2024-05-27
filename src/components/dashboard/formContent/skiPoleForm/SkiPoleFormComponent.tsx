@@ -1,4 +1,4 @@
-import styles from "../createForm/createSkiComponent/CreateSkiComponent.module.css";
+import styles from "./SkiPoleFormComponent.module.css";
 import {
     addNewSkiPoleLength,
     clearNewSkiPoleData,
@@ -8,14 +8,15 @@ import {
     setNewSkiPoleId,
     setNewSkiPoleName,
     setNewSkiPolePriceInRubles
-} from "../../../redux/skiPolesSlice";
-import ImagePreviewWithFullscreen from "../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
-import {convertToBase64} from "../../../commonFunctions/convertToBase64";
-import SkiPoleLengthComponent from "../createForm/createSkipoleComponent/lengthComponent/SkiPoleLengthComponent";
+} from "../../../../redux/skiPolesSlice";
+import ImagePreviewWithFullscreen
+    from "../../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
+import {convertToBase64} from "../../../../commonFunctions/convertToBase64";
+import SkiPoleLengthComponent from "../../createForm/createSkipoleComponent/lengthComponent/SkiPoleLengthComponent";
 import React, {useEffect} from "react";
-import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
-import {skiPoleType} from "../../../utils/types";
-import ResizableTextArea from "../../commonComponents/resizableTextArea/ResizableTextArea";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
+import {skiPoleType} from "../../../../utils/types";
+import ResizableTextArea from "../../../commonComponents/resizableTextArea/ResizableTextArea";
 
 type PropsType = {
     initialData?: skiPoleType
@@ -38,15 +39,20 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
     return <div className={styles.createForm}>
         <div>
             <label>ID</label>
-            <input type={"text"} value={skiPole.id} onChange={(e) => dispatch(setNewSkiPoleId(e.target.value))}/>
+            <input type={"text"}
+                   value={skiPole.id}
+                   onChange={(e) => dispatch(setNewSkiPoleId(e.target.value))}/>
         </div>
         <div>
             <label>Название модели</label>
-            <input type={"text"} value={skiPole.name} onChange={(e) => dispatch(setNewSkiPoleName(e.target.value))}/>
+            <input type={"text"}
+                   value={skiPole.name}
+                   onChange={(e) => dispatch(setNewSkiPoleName(e.target.value))}/>
         </div>
         <div>
             <label>Описание модели</label>
-            <ResizableTextArea value={skiPole.desc} dispatchCallback={setNewSkiPoleDesc}/>
+            <ResizableTextArea value={skiPole.desc}
+                               dispatchCallback={setNewSkiPoleDesc}/>
         </div>
         <div>
             <label>Цена модели в рублях</label>
@@ -67,15 +73,14 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
         <div>
             <label>
                 Длина для обрезки
-                <button
-
-                    onClick={handleCreateLengthClick}
-                >
+                <button onClick={handleCreateLengthClick} className={styles.addNewLengthButton}>
                     +
                 </button>
             </label>
             {skiPole && skiPole.lengthArray.map((l, index) =>
-                <SkiPoleLengthComponent key={l.lengthString + index} length={l.lengthString} isReserved={l.isReserved}
+                <SkiPoleLengthComponent key={l.lengthString + index}
+                                        length={l.lengthString}
+                                        isReserved={l.isReserved}
                                         index={index}/>
             )}
         </div>

@@ -22,11 +22,11 @@ const UpdateFormComponent: React.FC<PropsType> = ({index, updateType}) => {
         }
     }
 
-    return (<div className={styles.wrapper}>
-            <div className={styles.createFormContainer}
-                 onClick={(e) => {
-                     e.stopPropagation()
-                     dispatch(closeUpdateUi())}}>
+    return (<div className={styles.wrapper} onClick={(e) => {
+            dispatch(closeUpdateUi())
+        }
+        }>
+            <div className={styles.createFormContainer} onClick={e => e.stopPropagation()}>
                 <h1>Изменить</h1>
                 {switcher(updateType)}
             </div>

@@ -20,3 +20,15 @@
     background-color: white;
     border: 1px solid black;
 }
+
+.photosBlock{
+    display: flex;
+    flex-flow: row nowrap;
+    width: 20vw;
+    overflow: auto;
+    scroll-snap-type: both;
+}
+
+.photosBlock  * {
+    width: 10vw;
+}

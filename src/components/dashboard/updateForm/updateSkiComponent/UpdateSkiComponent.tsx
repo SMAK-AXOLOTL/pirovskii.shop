@@ -2,13 +2,13 @@ import React, {useEffect} from "react";
 import styles from '../../createForm/createSkiComponent/CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
+    selectAllSkisData,
     selectNewSkiData,
-    selectSkis,
     setNewSkiData,
     setSkiDataByIndex,
     updateOneSkiData
 } from "../../../../redux/skisSlice";
-import SkiFormComponent from "../../skiForm/SkiFormComponent";
+import SkiFormComponent from "../../formContent/skiForm/SkiFormComponent";
 import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
 import {setIsUpdateSkiUiOpen} from "../../../../redux/appStateSlice";
 
@@ -17,7 +17,7 @@ type PropsType = {
 }
 
 const UpdateSkiComponent: React.FC<PropsType> = ({index}) => {
-    const initialData = useAppSelector(selectSkis)[index]
+    const initialData = useAppSelector(selectAllSkisData)[index]
     const ski = useAppSelector(selectNewSkiData)
 
 

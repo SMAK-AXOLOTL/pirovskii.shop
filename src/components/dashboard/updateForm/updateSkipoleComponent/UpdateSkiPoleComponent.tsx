@@ -9,7 +9,7 @@ import {
 } from "../../../../redux/skiPolesSlice";
 import {validateSkiPole} from "../../../../commonFunctions/validationFunctions/skiPoleValidationFunctions";
 import {setIsUpdateSkiPoleUiOpen} from "../../../../redux/appStateSlice";
-import SkiPoleFormComponent from "../../skiPoleForm/SkiPoleFormComponent";
+import SkiPoleFormComponent from "../../formContent/skiPoleForm/SkiPoleFormComponent";
 
 type PropsType = {
     index: number
@@ -38,7 +38,7 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
 
     return <div className={styles.createForm}>
         <SkiPoleFormComponent initialData={initialData}/>
-        <button onClick={handleUpdateClick} className={styles.editButton}>
+        <button onClick={handleUpdateClick} className={styles.redButton}>
             Изменить
         </button>
     </div>

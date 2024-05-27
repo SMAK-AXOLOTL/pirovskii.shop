@@ -1,5 +1,5 @@
 import {skiType} from "../utils/types";
-import {skiTypeEnum} from "../utils/skiTypeEnum";
+import {skiTypeEnum} from "../enums/skiTypeEnum";
 
 export const skiData: skiType = [{
     id: "new_ski_id1",

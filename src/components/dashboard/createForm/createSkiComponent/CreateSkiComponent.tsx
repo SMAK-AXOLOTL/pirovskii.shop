@@ -1,11 +1,10 @@
 import React, {useEffect} from "react";
 import styles from './CreateSkiComponent.module.css'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
-import {createSki, selectNewSkiData, selectSkis} from "../../../../redux/skisSlice";
-import SkiFormComponent from "../../skiForm/SkiFormComponent";
+import {clearNewSkiData, createSki, selectNewSkiData, selectSkis} from "../../../../redux/skisSlice";
+import SkiFormComponent from "../../formContent/skiForm/SkiFormComponent";
 import {validateSki} from "../../../../commonFunctions/validationFunctions/skiValidationFunctions";
 import {setCreateUiOpen} from "../../../../redux/appStateSlice";
-import {clearNewSkiPoleData} from "../../../../redux/skiPolesSlice";
 
 
 const CreateSkiComponent = () => {
@@ -14,7 +13,7 @@ const CreateSkiComponent = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(clearNewSkiPoleData())
+        dispatch(clearNewSkiData())
     }, [dispatch]);
 
     function handleCreateClick() {

@@ -98,9 +98,11 @@ td button {
     height: 120%;
 }
 
-td img {
-    width: 25%;
-    max-width: 100%;
+
+.skiImage{
+    object-fit: contain;
+    width: 15vw;
+    height: 15vh;
 }
 
 button:hover {

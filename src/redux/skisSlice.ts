@@ -2,7 +2,7 @@ import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "./store";
 import {skisApi} from '../api/skisApi'
 import {skiModel, skiType, skiViewAllType} from "../utils/types";
-import {skiTypeEnum} from "../utils/skiTypeEnum";
+import {skiTypeEnum} from "../enums/skiTypeEnum";
 
 type initialStateType = {
     skiViewAllData: skiViewAllType,
@@ -23,7 +23,7 @@ const initialStateData: initialStateType = {
         desc: "",
         priceInRubles: 0,
         type: skiTypeEnum.CLASSIC,
-        skiImgArr: [''],
+        skiImgArr: [],
         hardTrack: [],
         universalTrack: []
     },
@@ -33,7 +33,7 @@ const initialStateData: initialStateType = {
         desc: "Описание модели лыж",
         priceInRubles: 0,
         type: skiTypeEnum.CLASSIC,
-        skiImgArr: [''],
+        skiImgArr: [],
         hardTrack: [],
         universalTrack: []
     },
@@ -52,11 +52,11 @@ export const skisSlice = createSlice({
         setSkiStatus: (state, action) => {
             state.status = action.payload
         },
-        setAllSkisData: (state,action) => {
+        setAllSkisData: (state, action) => {
             state.allSkiData = action.payload
         },
         setSkiDataByIndex: (state, action) => {
-            state.skiViewAllData[action.payload.index] = action.payload.data
+            state.allSkiData[action.payload.index] = action.payload.data
         },
         setNewSkiData: (state, action) => {
             state.newSkiData = action.payload
@@ -68,7 +68,7 @@ export const skisSlice = createSlice({
                 desc: "",
                 priceInRubles: 0,
                 type: skiTypeEnum.CLASSIC,
-                skiImgArr: [''],
+                skiImgArr: [],
                 hardTrack: [],
                 universalTrack: []
             }
@@ -87,6 +87,9 @@ export const skisSlice = createSlice({
         },
         setNewSkiPriceInRubles: (state, action) => {
             state.newSkiData.priceInRubles = action.payload
+        },
+        addNewSkiImg: (state, action) => {
+            state.newSkiData.skiImgArr.push(action.payload)
         },
         setNewSkiImg: (state, action) => {
             state.newSkiData.skiImgArr[0] = action.payload
@@ -230,6 +233,7 @@ export const {
     setNewSkiName,
     setNewSkiDesc,
     setNewSkiPriceInRubles,
+    addNewSkiImg,
     setNewSkiImg,
     setNewSkiUniTrack,
     setNewSkiHardTrack,

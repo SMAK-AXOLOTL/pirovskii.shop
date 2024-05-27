@@ -1,6 +1,6 @@
 .skiImg {
-    height: 12vh;
-    width: 12vh;
+    height: 10vh;
+    width: 10vw;
     object-fit: contain;
     border: 1px solid var(--background-color);
     z-index: -1;

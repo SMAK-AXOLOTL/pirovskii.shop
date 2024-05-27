@@ -1,4 +1,4 @@
-import {skiTypeEnum} from "./skiTypeEnum";
+import {skiTypeEnum} from "../enums/skiTypeEnum";
 
 export type skiType = skiModel[]
 

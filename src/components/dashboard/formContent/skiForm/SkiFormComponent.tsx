@@ -1,8 +1,8 @@
 import styles from "./SkiFormComponent.module.css";
-import SkiLengthComponent from "../createForm/createSkiComponent/createTrackComponent/SkiLengthComponent";
+import SkiLengthComponent from "../../createForm/createSkiComponent/createTrackComponent/SkiLengthComponent";
 import React, {useState} from "react";
-import {useAppDispatch} from "../../../hooks/reduxHooks";
-import {skiModel} from "../../../utils/types";
+import {useAppDispatch} from "../../../../hooks/reduxHooks";
+import {skiModel} from "../../../../utils/types";
 import {
     addNewSkiHardTrack,
     addNewSkiUniTrack,
@@ -13,11 +13,12 @@ import {
     setNewSkiPriceInRubles,
     setNewSkiType,
     setNewSkiUniTrack
-} from "../../../redux/skisSlice";
-import {skiTypeEnum} from "../../../utils/skiTypeEnum";
-import {convertToBase64} from "../../../commonFunctions/convertToBase64";
-import ImagePreviewWithFullscreen from "../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
-import ResizableTextArea from "../../commonComponents/resizableTextArea/ResizableTextArea";
+} from "../../../../redux/skisSlice";
+import {skiTypeEnum} from "../../../../enums/skiTypeEnum";
+import {convertToBase64} from "../../../../commonFunctions/convertToBase64";
+import ImagePreviewWithFullscreen
+    from "../../../commonComponents/imagePreviewWithFullscreen/ImagePreviewWithFullscreen";
+import ResizableTextArea from "../../../commonComponents/resizableTextArea/ResizableTextArea";
 
 type PropsType = {
     ski: skiModel,
@@ -87,11 +88,18 @@ const SkiFormComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         </div>
         <div>
             <p>Картинка</p>
-            <ImagePreviewWithFullscreen src={ski.skiImgArr[0]} id={ski.id}/>
-            <input type={"file"}
-                   onChange={e => convertToBase64(e, "ski", dispatch)}
-                   required={true}
-                   accept={'image/*'}
+            <div className={styles.photosBlock}>
+                {ski.skiImgArr.length > 0 &&
+                    ski.skiImgArr.map((_, index) =>
+                        <ImagePreviewWithFullscreen key={"skiImage " + index} src={ski.skiImgArr[index]} id={ski.id}/>
+                    )
+                }
+            </div>
+            <input
+                type={"file"}
+                onChange={e => convertToBase64(e, "ski", dispatch, "add")}
+                required={true}
+                accept={'image/*'}
             />
         </div>
         <div>

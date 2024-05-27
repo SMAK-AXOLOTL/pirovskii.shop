@@ -6,8 +6,12 @@ import LengthItemComponent from "./lengthItemComponent/lengthItemComponent";
 import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
 import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
 
+import {Swiper, SwiperSlide} from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import "swiper/css/pagination"
+import {Navigation, Pagination} from 'swiper/modules';
 
-//fixMe: ui not showing skiModel info
 const SkiModelComponent = () => {
     const {modelId} = useParams()
     const skiModel = useAppSelector(selectSkiModel)
@@ -21,12 +25,21 @@ const SkiModelComponent = () => {
         {skiModel && <div className={styles.classicModelContainer}>
             <GoBackButtonComponent/>
             <div className={styles.skiInfo}>
-                <img src={skiModel.skiImgArr[0]} alt={modelId}/>
+                <Swiper navigation={true}
+                        pagination={true}
+                        modules={[Navigation, Pagination]} className={styles.swiper}>
+                    {skiModel.skiImgArr.map((skiImage, index) =>
+                        <SwiperSlide className={styles.swiperSlide} key={"skiImage " + index}>
+                            <img src={skiImage} alt={"skis"}/>
+                        </SwiperSlide>
+                    )
+                    }
+                </Swiper>
+            </div>
+            <div className={styles.sizesTableContainer}>
                 <h1>{skiModel.name}</h1>
                 <p>{skiModel.desc}</p>
                 <h2>Цена: {skiModel.priceInRubles} руб / 300$</h2>
-            </div>
-            <div className={styles.sizesTableContainer}>
                 {skiModel.universalTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>

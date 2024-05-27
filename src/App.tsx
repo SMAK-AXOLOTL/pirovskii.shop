@@ -4,7 +4,7 @@ import HeaderComponent from "./components/header/HeaderComponent";
 import LandingComponent from "./components/landing/LandingComponent";
 import {Navigate, Route, Routes} from "react-router-dom";
 import ContactsComponent from "./components/contacts/ContactsComponent";
-import {skiTypeEnum} from "./utils/skiTypeEnum";
+import {skiTypeEnum} from "./enums/skiTypeEnum";
 import SkiPolesComponent from "./components/skipoles/SkiPolesComponent";
 import {LoginComponent} from "./components/login/LoginComponent";
 import AllSkisComponent from "./components/skis/AllSkisComponent";

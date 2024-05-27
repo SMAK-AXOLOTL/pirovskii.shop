@@ -19,12 +19,6 @@
     border-radius: 3vh;
 }
 
-.classicModelContainer img {
-    max-width: 50vw;
-    border-radius: 5vh;
-    margin-bottom: 3%;
-}
-
 .classicModelContainer p {
     max-width: 85%;
 }
@@ -56,12 +50,34 @@
     min-width: 33%;
 }
 
+
+.swiper {
+    width: 20rem;
+    height: 65vh;
+}
+
+.swiperSlide {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiperSlide img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 @media screen and (max-width: 1230px) {
     .classicModelContainer{
         flex-flow: column wrap;
-    }
-    .classicModelContainer img {
-        max-width: 95%;
     }
     .sizesTableContainer {
         width: 100%;
@@ -69,7 +85,6 @@
         justify-self: center;
         flex-flow: column nowrap;
     }
-
     .sizesTable {
         align-self: center;
         width: 90%;

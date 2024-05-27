@@ -7,7 +7,7 @@
 
 .createFormContainer {
     width: 35%;
-    height: 80%;
+    height: fit-content;
     overflow: scroll;
     padding: 1%;
     margin-top: 10vh;

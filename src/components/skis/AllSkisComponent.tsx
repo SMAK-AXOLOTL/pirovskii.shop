@@ -2,7 +2,7 @@ import React from "react";
 import styles from './AllSkisComponent.module.css'
 import {useAppSelector} from "../../hooks/reduxHooks";
 import {selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux/skisSlice";
-import {skiTypeEnum} from "../../utils/skiTypeEnum";
+import {skiTypeEnum} from "../../enums/skiTypeEnum";
 import {skiViewAllModel} from "../../utils/types";
 import {NavLink} from "react-router-dom";
 import {rotateImg90deg} from "../commonComponents/rotateImg90deg/rotateImg90deg";
