@@ -4,6 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 2;
 }
 
 .dialogWrapper{
@@ -18,6 +19,7 @@
     height: fit-content;
 }
 
-textarea {
+.textarea {
     resize: none;
+
 }

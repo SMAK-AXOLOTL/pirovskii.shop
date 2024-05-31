@@ -52,7 +52,7 @@
 
 
 .swiper {
-    width: 20rem;
+    width: 15rem;
     height: 65vh;
 }
 
@@ -75,16 +75,18 @@
     object-fit: contain;
 }
 
-@media screen and (max-width: 1230px) {
-    .classicModelContainer{
+@media screen and (max-width: 1023px) {
+    .classicModelContainer {
         flex-flow: column wrap;
     }
+
     .sizesTableContainer {
         width: 100%;
         align-self: center;
         justify-self: center;
         flex-flow: column nowrap;
     }
+
     .sizesTable {
         align-self: center;
         width: 90%;

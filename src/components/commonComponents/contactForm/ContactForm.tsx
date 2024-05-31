@@ -1,28 +1,29 @@
 import React, {useState} from "react";
 import styles from './ContactForm.module.css'
 import whatAppImg from "../../../media/whatsAppImg.png"
+import ResizableTextArea from "../resizableTextArea/ResizableTextArea";
 
 //todo: style contactForm
-//todo: make textarea auto resize
 const ContactForm: React.FC<{
     productName: string,
     productLength: string,
     productSize?: string,
     callBackFunc: React.Dispatch<React.SetStateAction<boolean>>
 }> = ({productName, productLength, productSize, callBackFunc}) => {
-    const [messageText, setMessageText] = useState(`Здравствуйте! Хочу узнать, есть ли ${productName.concat(" ", productLength, " ", (productSize ? productSize : ""))} в наличии и можно ли их забронировать?`)
+    const [messageText, setMessageText] = useState(
+        `Здравствуйте! Хочу узнать, есть ли ${productName.concat(" длины ", productLength, " ", (productSize ? "на вес " + productSize : ""))} в наличии и можно ли их забронировать?`
+    )
 
     return <div className={styles.backdrop} onClick={() => callBackFunc(false)}>
         <dialog open className={styles.dialogWrapper} onClick={(event) => event.stopPropagation()}>
             <h2>Для связи:</h2>
             <p>Телефон: +1-234-567-89-00</p>
-            <textarea
-                autoFocus={true}
-                className={styles.messageArea}
+            <ResizableTextArea
                 value={messageText}
-                onChange={(event) => setMessageText(event.target.value)}
+                inputType={"setState"}
+                setStateCallback={setMessageText}
             />
-            <p>WhatsApp:
+            <p>
                 <a
                     target="_blank"
                     rel="noopener noreferrer"

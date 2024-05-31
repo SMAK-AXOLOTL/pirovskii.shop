@@ -52,9 +52,6 @@ export const skisSlice = createSlice({
         setSkiStatus: (state, action) => {
             state.status = action.payload
         },
-        setAllSkisData: (state, action) => {
-            state.allSkiData = action.payload
-        },
         setSkiDataByIndex: (state, action) => {
             state.allSkiData[action.payload.index] = action.payload.data
         },
@@ -224,7 +221,6 @@ export const selectCurrentOpenedSkiIndex = (state: RootState) => state.skis.curr
 export const {
     setCurrentOpenedSkiIndex,
     setSkiStatus,
-    setAllSkisData,
     setSkiDataByIndex,
     setNewSkiData,
     clearNewSkiData,

@@ -10,7 +10,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import "swiper/css/pagination"
-import {Navigation, Pagination} from 'swiper/modules';
+import {Mousewheel, Navigation, Pagination, Autoplay} from 'swiper/modules';
 
 const SkiModelComponent = () => {
     const {modelId} = useParams()
@@ -26,8 +26,11 @@ const SkiModelComponent = () => {
             <GoBackButtonComponent/>
             <div className={styles.skiInfo}>
                 <Swiper navigation={true}
-                        pagination={true}
-                        modules={[Navigation, Pagination]} className={styles.swiper}>
+                        mousewheel={true}
+                        pagination={{clickable: true}}
+                        autoplay={{delay: 2500, disableOnInteraction: true}}
+                        modules={[Navigation, Pagination, Mousewheel, Autoplay]}
+                        className={styles.swiper}>
                     {skiModel.skiImgArr.map((skiImage, index) =>
                         <SwiperSlide className={styles.swiperSlide} key={"skiImage " + index}>
                             <img src={skiImage} alt={"skis"}/>

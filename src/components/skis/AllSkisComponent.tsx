@@ -5,32 +5,31 @@ import {selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux
 import {skiTypeEnum} from "../../enums/skiTypeEnum";
 import {skiViewAllModel} from "../../utils/types";
 import {NavLink} from "react-router-dom";
-import {rotateImg90deg} from "../commonComponents/rotateImg90deg/rotateImg90deg";
 
 const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
     const status = useAppSelector(selectSkiStatus)
     const classicSkis = useAppSelector(selectClassicSkis)
     const skatingSkis = useAppSelector(selectSkatingSkis)
 
-    function hrefSwitcher(model: skiViewAllModel) {
-        return <NavLink key={model.id} to={`/${model.type.toLowerCase()}/${model.id}`} className={styles.skiModel}>
-            <h2>{model.name}</h2>
-            <span
-                className={styles.tooltip}>{model.desc}</span>
-            {
-                rotateImg90deg(model.skiImg)
-            }
-        </NavLink>
+    function slideGenerator(model: skiViewAllModel) {
+        return <div className={styles.skiModel} key={model.id}>
+            <img src={model.skiImg} className={styles.skiImg} alt={model.name}/>
+            <div className={styles.nameAndDescBlock}>
+                <h2 className={styles.skiName}>{model.name}</h2>
+                <h3 className={styles.skiDesc}>{model.desc}</h3>
+            </div>
+            <NavLink to={`/${model.type.toLowerCase()}/${model.id}`} className={styles.navLink}>
+                <button className={styles.goToButton}>Перейти</button>
+            </NavLink>
+        </div>
+
     }
 
-    return status === "loading" ?
-        <div>Loading</div>
+    return status === "loading" ? <div>Loading</div>
         : <div className={styles.wrapper}>
-            <div className={styles.allSkisContainer}>
-                {skiType === skiTypeEnum.CLASSIC ?
-                    classicSkis.map(c => hrefSwitcher(c))
-                    : skatingSkis.map(s => hrefSwitcher(s))}
-            </div>
+            {skiType === skiTypeEnum.CLASSIC
+                ? classicSkis.map(c => slideGenerator(c))
+                : skatingSkis.map(s => slideGenerator(s))}
         </div>
 }
 

@@ -1,12 +1,11 @@
 .rotatedImage {
-    position: absolute;
-    top: 33%;
-    justify-self: center;
-    min-width: 100%;
+    width: 90%;
+    height: 100vw;
     z-index: -1;
+    object-fit: contain;
 }
 
-@media screen and (min-width: 1230px){
+@media screen and (min-width: 1024px) , (orientation: landscape){
     .rotatedImage{
         transform: rotate(-90deg);
     }

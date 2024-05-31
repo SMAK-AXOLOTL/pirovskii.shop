@@ -4,15 +4,17 @@ import {useAppDispatch} from "../../../hooks/reduxHooks";
 
 type PropsType = {
     value: string,
-    dispatchCallback: (payload: any) => {payload: any, type: string}
+    inputType: "setState" | "dispatch",
+    dispatchCallback?: (payload: any) => { payload: any, type: string },
+    setStateCallback?: React.Dispatch<React.SetStateAction<string>>
 }
 
-const ResizableTextArea:React.FC<PropsType> = ({value, dispatchCallback}) => {
+const ResizableTextArea: React.FC<PropsType> = ({value, inputType, dispatchCallback, setStateCallback}) => {
     let descRef: any = useRef()
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        descRef.current = document.getElementById("desc")
+        descRef.current = document.getElementById("textArea")
     }, []);
 
     const resizeDescTextArea = () => {
@@ -21,12 +23,26 @@ const ResizableTextArea:React.FC<PropsType> = ({value, dispatchCallback}) => {
     }
 
     return <textarea
-        id={"desc"}
+        id={"textArea"}
         className={styles.textArea}
         value={value}
         onChange={(e) => {
             resizeDescTextArea()
-            dispatch(dispatchCallback(e.target.value))
+            switch (inputType) {
+                case "setState":
+                    if (!setStateCallback) {
+                        throw new Error("No setState callback provided")
+                    }
+                    setStateCallback(e.target.value)
+                    break;
+
+                case "dispatch":
+                    if (!dispatchCallback) {
+                        throw new Error("No dispatch-able callback provided")
+                    }
+                    dispatch(dispatchCallback(e.target.value))
+                    break;
+            }
         }}
         required={true}/>
 }

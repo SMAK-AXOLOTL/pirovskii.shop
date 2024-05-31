@@ -67,7 +67,7 @@ img {
     background-color: white;
 }
 
-@media screen and (max-width: 1230px){
+@media screen and (max-width: 1024px){
     .paragraph {
         flex-flow: column nowrap;
     }

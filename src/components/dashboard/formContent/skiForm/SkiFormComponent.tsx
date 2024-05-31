@@ -76,7 +76,11 @@ const SkiFormComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
         </div>
         <div>
             <p>Описание модели</p>
-            <ResizableTextArea value={ski.desc} dispatchCallback={setNewSkiDesc}/>
+            <ResizableTextArea
+                value={ski.desc}
+                inputType={"dispatch"}
+                dispatchCallback={setNewSkiDesc}
+            />
         </div>
         <div>
             <p>Цена модели в рублях</p>

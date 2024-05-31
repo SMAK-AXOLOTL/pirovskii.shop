@@ -9,6 +9,7 @@
     width: 100%;
     align-items: center;
     z-index: 2;
+    border-bottom: 1px solid lightgrey;
 }
 
 .wrapper button:hover {
@@ -28,13 +29,17 @@
 }
 
 .navLinks {
-    width: 75%;
+    width: 90%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
 }
 
-@media screen and (max-width: 1230px) {
+.navLinks > {
+    width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
     .wrapper {
         flex-flow: column nowrap;
     }

@@ -6,44 +6,43 @@ import {NavLink} from "react-router-dom";
 
 //todo: animate menu open-close sequence
 const HeaderComponent = () => {
+    const desktopScreenWidthInPx = 1023
     const [screenWidth] = useState(window.innerWidth)
-    const [isOpen, setIsOpen] = useState((screenWidth > 930))
+    const [isOpen, setIsOpen] = useState((screenWidth > desktopScreenWidthInPx))
 
-    function ifMobileClickHandler(){
-        if(screenWidth <= 930){
+    function ifMobileClickHandler() {
+        if (screenWidth <= desktopScreenWidthInPx) {
             setIsOpen(!isOpen)
         }
     }
 
+    const HeaderItem: React.FC<{ buttonText: string, whereTo?: string }> = ({buttonText, whereTo}) => {
+        return whereTo
+            ? <NavLink to={`/${whereTo}`}>
+                <button onClick={ifMobileClickHandler}>{buttonText}</button>
+            </NavLink>
+            : <NavLink to={"/"}>
+                <button onClick={ifMobileClickHandler}>{buttonText}</button>
+            </NavLink>
+    }
+
     return <div className={styles.wrapper}>
         <div className={styles.menuControls} onClick={() => {
-            if (screenWidth <= 930) setIsOpen(!isOpen)
+            if (screenWidth <= desktopScreenWidthInPx) setIsOpen(!isOpen)
         }}>
-            <span hidden={(screenWidth > 930)}>
+            <span hidden={(screenWidth > desktopScreenWidthInPx)}>
                 ☰
             </span>
             <img src={logo} alt={'peltonen'}/> В СПб и ЛО
         </div>
         {isOpen &&
             <div className={styles.navLinks}>
-                <NavLink to={'/'}>
-                    <button onClick={ifMobileClickHandler}>Главная</button>
-                </NavLink>
-                <NavLink to={'/allClassic'}>
-                    <button onClick={ifMobileClickHandler}>Классика</button>
-                </NavLink>
-                <NavLink to={'/allSkating'}>
-                    <button onClick={ifMobileClickHandler}>Коньковый Ход</button>
-                </NavLink>
-                <NavLink to={'/ski-poles/'}>
-                    <button onClick={ifMobileClickHandler}>Лыжные палки</button>
-                </NavLink>
-                <NavLink to={'/contacts'}>
-                    <button onClick={ifMobileClickHandler}>Контакты</button>
-                </NavLink>
-                <NavLink to={'/login'}>
-                    <button onClick={ifMobileClickHandler}>админ</button>
-                </NavLink>
+                <HeaderItem buttonText={"Главная"} key={"main"}/>
+                <HeaderItem buttonText={"Классика"} whereTo={"allClassic"} key={"classic"}/>
+                <HeaderItem buttonText={"Коньковый Ход"} whereTo={"allSkating"} key={"skating"}/>
+                <HeaderItem buttonText={"Лыжные палки"} whereTo={"ski-poles"} key={"ski-poles"}/>
+                <HeaderItem buttonText={"Контакты"} whereTo={"contacts"} key={"contacts"}/>
+                <HeaderItem buttonText={"админ"} whereTo={"login"} key={"loginPage"}/>
             </div>}
     </div>
 }

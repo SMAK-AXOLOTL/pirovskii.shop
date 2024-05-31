@@ -51,8 +51,11 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
         </div>
         <div>
             <label>Описание модели</label>
-            <ResizableTextArea value={skiPole.desc}
-                               dispatchCallback={setNewSkiPoleDesc}/>
+            <ResizableTextArea
+                value={skiPole.desc}
+                inputType={"dispatch"}
+                dispatchCallback={setNewSkiPoleDesc}
+            />
         </div>
         <div>
             <label>Цена модели в рублях</label>
