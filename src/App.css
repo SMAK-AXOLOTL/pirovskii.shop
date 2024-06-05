@@ -9,21 +9,29 @@
     text-align: center;
     align-items: center;
     color: white;
-    background-image: url("./media/forest-background.jpg");
+    background-image: url("./media/snowjpg.jpg");
+    min-height: 100vh;
+    height: fit-content;
 }
 
 button {
     background-color: white;
     border: 1px solid #d9d9d9;
     border-radius: 5rem;
-    font-size: 2vh;
+    font-size: 1rem;
 }
 
 .Content {
-    margin-top: 5vh;
+    margin-top: 2.5rem;
     width: 100%;
-    min-height: 95vh;
+    height: fit-content;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
+}
+
+@media screen and (min-width: 1024px) {
+    .App{
+        background-image: url("./media/forest-background.jpg");
+    }
 }

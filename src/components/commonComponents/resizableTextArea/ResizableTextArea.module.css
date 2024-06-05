@@ -1,4 +1,5 @@
 textarea {
     resize: none;
     width: 90%;
+    height: 4rem;
 }

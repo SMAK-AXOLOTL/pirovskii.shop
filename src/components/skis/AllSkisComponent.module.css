@@ -1,6 +1,7 @@
 .wrapper {
-    width: 100%;
+    width: 80%;
     margin: 1%;
+    box-sizing: border-box;
 }
 
 .navLink{
@@ -29,17 +30,22 @@
 }
 
 .nameAndDescBlock {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 80%;
     color: var(--white-button-text);
 }
 
 .skiName {
+    width: fit-content;
     text-decoration: none;
 }
 
 .skiDesc {
-
+    padding: 0 5%;
 }
 
 .goToButton {

@@ -3,7 +3,6 @@ import styles from './ContactForm.module.css'
 import whatAppImg from "../../../media/whatsAppImg.png"
 import ResizableTextArea from "../resizableTextArea/ResizableTextArea";
 
-//todo: style contactForm
 const ContactForm: React.FC<{
     productName: string,
     productLength: string,

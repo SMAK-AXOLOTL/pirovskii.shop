@@ -1,5 +1,5 @@
 .backdrop{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -8,9 +8,12 @@
 }
 
 .dialogWrapper{
-    position: absolute;
-    inset: 0;
-    margin: auto;
+    position: fixed;
+    top:40%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 
     background-color: white;
     border: 1px solid black;
@@ -21,5 +24,5 @@
 
 .textarea {
     resize: none;
-
+    height: 2vh;
 }

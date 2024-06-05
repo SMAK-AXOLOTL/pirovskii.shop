@@ -29,14 +29,23 @@ const LengthItemComponent: React.FC<PropsType> = ({length, skiName}) => {
 
     return <div className={styles.wrapper}>
         <div className={styles.lengthContainer}>
-            <h2 style={{marginRight: '1vh'}}>{length.lengthString}</h2>
-            <div className={styles.weightsContainer}>
-                {length.weights.map((w, index) =>
-                    w.isReserved ?
-                        <button key={w.weightString + index} id={w.weightString} disabled={true}
-                                className={styles.weightItemContainer}>Бронь</button>
-                        : <ContactButton key={w.weightString + index} weightString={w.weightString} index={index}/>
-                )}
+            <div className={styles.tableSection}>
+                <h4 className={styles.tableSectionTooltip}>Рост</h4>
+                <h2 style={{marginRight: '1vh'}}>{length.lengthString}</h2>
+            </div>
+            <div className={styles.tableSection}>
+                <h4 className={styles.tableSectionTooltip}>Вес</h4>
+                <div className={styles.weightsContainer}>
+
+                    {length.weights.map((w, index) =>
+                        w.isReserved ? <div>
+                                <button key={w.weightString + index} id={w.weightString} disabled={true}
+                                        className={styles.weightItemContainer}>Бронь
+                                </button>
+                            </div>
+                            : <ContactButton key={w.weightString + index} weightString={w.weightString} index={index}/>
+                    )}
+                </div>
             </div>
         </div>
     </div>

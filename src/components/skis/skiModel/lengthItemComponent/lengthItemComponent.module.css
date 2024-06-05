@@ -4,6 +4,20 @@
     border-radius: 5vh;
 }
 
+.tableSection{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+
+.tableSection:last-of-type{
+    width: 100%;
+}
+
+.tableSectionTooltip{
+    margin: 0;
+}
+
 .lengthContainer {
     display: flex;
     align-items: flex-start;
@@ -36,7 +50,7 @@
     padding: 0.1vh 0.5vh;
     min-width: 5ch;
     width: fit-content;
-    font-size: 1.5vh;
+    font-size: 1.2rem;
     margin: 0.5vh;
     white-space: nowrap;
 }
@@ -53,4 +67,18 @@
     color: white;
     border: 1px solid black;
     cursor: auto;
+}
+
+@media screen and (orientation: portrait)  {
+    .tableSection:last-of-type{
+        width: fit-content;
+    }
+    .weightsContainer{
+        flex-flow: column;
+        width: fit-content;
+    }
+    .lengthContainer{
+        width: 100%;
+        justify-content: space-evenly;
+    }
 }

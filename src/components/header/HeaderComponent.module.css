@@ -30,13 +30,27 @@
 
 .navLinks {
     width: 90%;
+
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+
+    animation: onOpen;
+    animation-duration: 0.5s;
 }
 
 .navLinks > {
     width: 100%;
+}
+
+@keyframes onOpen {
+    0% {
+        opacity: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 90%;
+    }
 }
 
 @media screen and (max-width: 1023px) {
