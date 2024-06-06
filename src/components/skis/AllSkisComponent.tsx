@@ -5,6 +5,13 @@ import {selectClassicSkis, selectSkatingSkis, selectSkiStatus} from "../../redux
 import {skiTypeEnum} from "../../enums/skiTypeEnum";
 import {skiViewAllModel} from "../../utils/types";
 import {NavLink} from "react-router-dom";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Navigation, Pagination} from "swiper/modules";
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 
 const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
     const status = useAppSelector(selectSkiStatus)
@@ -25,12 +32,37 @@ const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
 
     }
 
-    return status === "loading" ? <div>Loading</div>
-        : <div className={styles.wrapper}>
+    function allSkisLayoutChanger() {
+        if (window.innerWidth < 1024) {
+            return <Swiper
+                className={styles.wrapper}
+                slidesPerView={1}
+                spaceBetween={30}
+                loop={true}
+                navigation={true}
+                pagination={true}
+                modules={[Navigation, Pagination]}
+            >
+                {skiType === skiTypeEnum.CLASSIC
+                    ? classicSkis.map(c =>
+                        <SwiperSlide key={c.id}>
+                            {slideGenerator(c)}
+                        </SwiperSlide>)
+                    : skatingSkis.map(s =>
+                        <SwiperSlide key={s.id}>
+                            {slideGenerator(s)}
+                        </SwiperSlide>)}
+            </Swiper>
+        }
+        return <div className={styles.wrapper}>
             {skiType === skiTypeEnum.CLASSIC
                 ? classicSkis.map(c => slideGenerator(c))
                 : skatingSkis.map(s => slideGenerator(s))}
         </div>
+    }
+
+    return status === "loading" ? <div>Loading</div>
+        : allSkisLayoutChanger()
 }
 
 export default AllSkisComponent

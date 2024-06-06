@@ -1,4 +1,5 @@
 .wrapper {
+    wrap-option: wrap;
     width: 80%;
     margin: 1%;
     box-sizing: border-box;
@@ -20,6 +21,7 @@
     padding: 1%;
     box-sizing: border-box;
 }
+
 
 .skiImg {
     width: 20rem;
@@ -48,8 +50,11 @@
     padding: 0 5%;
 }
 
+.navLink{
+    margin-top: auto;
+}
+
 .goToButton {
-    justify-self: flex-end;
     height: 100%;
     width: auto;
     text-decoration: none;
@@ -68,6 +73,7 @@
     .skiModel{
         flex-flow: column nowrap;
         border-radius: 3rem;
+        min-height: 100%;
     }
     .goToButton{
         width: 100%;
