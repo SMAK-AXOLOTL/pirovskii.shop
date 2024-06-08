@@ -5,13 +5,34 @@
     width: 25%;
     background-color: white;
     border: 1px solid black;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
-.changeWeightUi {
-    position: absolute;
-    background-color: white;
-    border: 1px solid black;
+
+.weightsWrapper {
+    display: flex;
+    flex-flow: column;
+    width: fit-content;
 }
-.closeButton{
+
+.weightComponent {
+    align-self: center;
+    width: fit-content;
+}
+
+.weightInputWrapper {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+.weightInput {
+    z-index: 2;
+}
+
+.closeButton {
     position: absolute;
     top: 1vh;
     right: 1vh;
@@ -23,6 +44,6 @@
     color: var(--red-button-text);
 }
 
-.closeButton:hover{
+.closeButton:hover {
     color: var(--white-button-text);
 }

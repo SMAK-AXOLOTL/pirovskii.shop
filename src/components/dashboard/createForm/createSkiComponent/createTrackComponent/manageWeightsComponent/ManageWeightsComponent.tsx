@@ -7,15 +7,16 @@ import {
     addNewSkiUniTrackWeight,
     deleteNewSkiHardTrackWeight,
     deleteNewSkiUniTrackWeight,
-    selectNewSkiData
+    selectNewSkiData,
+    setNewSkiHardTrackWeight,
+    setNewSkiUniTrackWeight
 } from "../../../../../../redux/skisSlice";
-import ChangeWeightComponent from "./changeWeightComponent/ChangeWeightComponent";
 
 type PropsType = {
     track: skiLengthType,
     trackIndex: number,
     trackType: 'hard' | 'universal',
-    uiControlCallBack:  React.Dispatch<React.SetStateAction<boolean>>
+    uiControlCallBack: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackType, uiControlCallBack}) => {
@@ -54,30 +55,56 @@ const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackTy
         }
     }
 
-    function reservationChecker(isReserved: boolean) {
-        if (!isReserved) {
-            return '!R'
+    function handleUpdateWeightClick(index: number, weightString: string, isReserved: boolean) {
+        const actionPayloadDTO = {
+            track: trackIndex,
+            index: index,
+            weight: weightString,
+            isReserved: isReserved
         }
-        return 'R'
+        switch (trackType) {
+            case "hard":
+                dispatch(setNewSkiHardTrackWeight(actionPayloadDTO));
+                break;
+            case "universal":
+                dispatch(setNewSkiUniTrackWeight(actionPayloadDTO));
+                break;
+        }
     }
 
-    const WeightComponent:React.FC<{weight: skiWeightType, index: number}> = ({weight, index}) => {
-        const [isChangeWeightStringUiOpen, setIsChangeWeightStringUiOpen] = useState(false)
 
-        return <div>
-            <button onClick={() => setIsChangeWeightStringUiOpen(!isChangeWeightStringUiOpen)}>
-                {weight.weightString + reservationChecker(weight.isReserved)}
+    const WeightComponent: React.FC<{ weight: skiWeightType, index: number }> = ({weight, index}) => {
+        const [isEditWeightUiHidden, setEditWeightUiHidden] = useState(true)
+        const [inputValueAccumulator, setInputValueAccumulator] = useState(weight.weightString)
+        const [checkboxValueAccumulator] = useState(weight.isReserved)
+
+        function onBlurHandler() {
+            handleUpdateWeightClick(index, inputValueAccumulator, checkboxValueAccumulator)
+            setEditWeightUiHidden(!isEditWeightUiHidden)
+        }
+
+        return <div className={styles.weightComponent}>
+            <button hidden={!isEditWeightUiHidden}
+                    onClick={() => setEditWeightUiHidden(!isEditWeightUiHidden)}>
+                {weight.weightString}
             </button>
-            {isChangeWeightStringUiOpen &&
-                <ChangeWeightComponent
-                    trackIndex={trackIndex}
-                    trackType={trackType}
-                    weightIndex={index}
-                    weight={weight.weightString}
-                    reservation={weight.isReserved}
-                    uiControlCallback={setIsChangeWeightStringUiOpen}
-                />
-            }
+            <input
+                hidden={isEditWeightUiHidden}
+                value={inputValueAccumulator}
+                onChange={(e) => setInputValueAccumulator(e.target.value)}
+                onClick={event => event.stopPropagation()}
+            />
+            <div
+                className={styles.weightInputWrapper}
+                hidden={isEditWeightUiHidden}
+                onClick={onBlurHandler}
+            />
+            <input
+                type={"checkbox"}
+                onChange={(e) => {
+                    handleUpdateWeightClick(index, inputValueAccumulator, e.target.checked)
+                }}
+                defaultChecked={checkboxValueAccumulator}/>
             <button onClick={() => handleDeleteWeightClick(index)}>X</button>
         </div>
     }
@@ -89,7 +116,7 @@ const ManageWeightsComponent: React.FC<PropsType> = ({track, trackIndex, trackTy
             {track.lengthString}
             <button onClick={() => handleCreateWeightClick()}>+</button>
         </h2>
-        <div>
+        <div className={styles.weightsWrapper}>
             {track.weights.map((w, index) =>
                 <WeightComponent key={index} weight={w} index={index}/>
             )}
