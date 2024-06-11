@@ -20,8 +20,12 @@
     border-radius: 5rem;
     padding: 1%;
     box-sizing: border-box;
+    height: 30%;
 }
 
+.skiModel:not(:last-of-type){
+    margin-bottom: 2%;
+}
 
 .skiImg {
     width: 20rem;
@@ -55,7 +59,7 @@
 }
 
 .goToButton {
-    height: 100%;
+    height: 95%;
     width: auto;
     text-decoration: none;
     color: var(--red-button-text);

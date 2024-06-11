@@ -89,7 +89,10 @@ export const skisSlice = createSlice({
             state.newSkiData.skiImgArr.push(action.payload)
         },
         setNewSkiImg: (state, action) => {
-            state.newSkiData.skiImgArr[0] = action.payload
+            state.newSkiData.skiImgArr[action.payload.index] = action.payload.data
+        },
+        deleteNewSkiImgById: (state, action) => {
+            state.newSkiData.skiImgArr.splice(action.payload, 1)
         },
         setNewSkiHardTrack: (state, action) => {
             state.newSkiData.hardTrack = action.payload
@@ -231,6 +234,7 @@ export const {
     setNewSkiPriceInRubles,
     addNewSkiImg,
     setNewSkiImg,
+    deleteNewSkiImgById,
     setNewSkiUniTrack,
     setNewSkiHardTrack,
     addNewSkiHardTrack,

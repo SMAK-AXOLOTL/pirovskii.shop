@@ -6,21 +6,32 @@ import {setNewSkiPoleImg} from "../redux/skiPolesSlice";
 export function convertToBase64(event: React.ChangeEvent<HTMLInputElement>,
                                 callBackType: "ski" | "skiPole",
                                 dispatch: Dispatch<UnknownAction>,
-                                actionType?: "add" | "set") {
+                                actionType?: "add" | "set",
+                                index?: number
+) {
     if (event.target.files) {
         const file = event.target.files[0];
 
         const reader = new FileReader();
         reader.readAsDataURL(file);
-
-        if (callBackType === "ski") {
-            actionType === "add" ?
-                reader.onload = () => {
-                    dispatch(addNewSkiImg(reader.result))
-                }
-                : reader.onload = () => {
-                    dispatch(setNewSkiImg(reader.result))
-                }
+        if (callBackType === 'ski') {
+            switch (actionType) {
+                case "add":
+                    reader.onload = () => {
+                        dispatch(addNewSkiImg(reader.result))
+                    }
+                    break;
+                case "set":
+                    reader.onload = () => {
+                        dispatch(setNewSkiImg({index: index, data: reader.result}))
+                    }
+                    break;
+                default:
+                    reader.onload = () => {
+                        dispatch(setNewSkiImg({index: index, data: reader.result}))
+                    }
+                    break;
+            }
         } else {
             reader.onload = () => {
                 dispatch(setNewSkiPoleImg(reader.result))

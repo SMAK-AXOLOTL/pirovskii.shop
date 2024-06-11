@@ -1,35 +1,73 @@
 import styles from "./ImagePreviewWithFullscreen.module.css"
 import React, {useState} from "react";
+import {useAppDispatch} from "../../../hooks/reduxHooks";
+import {deleteNewSkiImgById} from "../../../redux/skisSlice";
+import {convertToBase64} from "../../../commonFunctions/convertToBase64";
 
 type PropsType = {
     src: string,
-    id: string
+    id: string,
+    index: number
 }
 
-//fixMe: onHover image not moving with container
 
-const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id}) => {
+const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id, index}) => {
     const [isOpenFullscreenUiHidden, setOpenFullscreenUiHidden] = useState(true)
     const [isSkiImgFullscreenHidden, setIsSkiImgFullscreenHidden] = useState(true)
+    const dispatch = useAppDispatch()
 
     return <div>
-        <div className={styles.imgAndHoverElemContainer}>
-            <img className={styles.skiImg} src={src} alt={id}
-                 onMouseEnter={() => {
-                     if (src) setOpenFullscreenUiHidden(false)
-                 }}
-                 onMouseLeave={() => {
-                     if (src) setOpenFullscreenUiHidden(true)
-                 }}
-                 onClick={() => {
-                     if (src) setIsSkiImgFullscreenHidden(false)
-                 }}
+        <div
+            className={styles.imgAndHoverElemContainer}
+            onMouseEnter={() => {
+                if (src) setOpenFullscreenUiHidden(false)
+            }}
+            onMouseLeave={() => {
+                if (src) setOpenFullscreenUiHidden(true)
+            }}
+            onClick={() => {
+                if (src) setIsSkiImgFullscreenHidden(false)
+            }}>
+            <img
+                className={styles.skiImg}
+                src={src}
+                alt={id}
             />
-            <h1 hidden={isOpenFullscreenUiHidden} className={styles.openImgFullscreenOnHover}>🔎</h1>
+            <button
+                hidden={isOpenFullscreenUiHidden}
+                onClick={event => event.stopPropagation()}
+                className={styles.changeImgButton}>
+                <label
+                    onClick={event => event.stopPropagation()}>
+                    <input
+                        hidden
+                        type={"file"}
+                        onChange={e => convertToBase64(e, "ski", dispatch, "set", index)}
+                        required={true}
+                        accept={'image/*'}
+                    />
+                    c
+                </label>
+            </button>
+
+            <button
+                hidden={isOpenFullscreenUiHidden}
+                className={styles.deleteButton}
+                onClick={event => {
+                    event.stopPropagation()
+                    dispatch(deleteNewSkiImgById(index))
+                }}>X
+            </button>
         </div>
-        <div className={styles.skiImgFullscreen} hidden={isSkiImgFullscreenHidden}>
-            <button onClick={() => setIsSkiImgFullscreenHidden(true)}>X</button>
-            <img src={src} alt={id}/>
+        <div
+            className={styles.skiImgFullscreen}
+            hidden={isSkiImgFullscreenHidden}>
+            <button
+                onClick={() => setIsSkiImgFullscreenHidden(true)}>X
+            </button>
+            <img
+                src={src} alt={id}
+            />
         </div>
     </div>
 }

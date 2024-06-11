@@ -1,3 +1,8 @@
+.imgAndHoverElemContainer {
+    position: relative;
+}
+
+
 .skiImg {
     height: 10vh;
     width: 10vw;
@@ -5,6 +10,24 @@
     border: 1px solid var(--background-color);
     z-index: -1;
     cursor: pointer;
+}
+
+.changeImgButton {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top: 0;
+    left: 0;
+    margin: auto;
+}
+
+.deleteButton {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top: 0;
+    right: 0;
+    margin: auto;
 }
 
 .skiImgFullscreen {
@@ -15,7 +38,7 @@
     background-color: rgba(0, 0, 0, 0.8);
     top: 5vh;
     left: 3rem;
-    position: absolute;
+    position: fixed;
 }
 
 [hidden] {
@@ -42,11 +65,4 @@
     max-width: 75%;
     max-height: 75%;
     padding-top: 5%;
-}
-
-.openImgFullscreenOnHover {
-    position: absolute;
-    top: 62%;
-    left: 52%;
-    cursor: pointer;
 }
