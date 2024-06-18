@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from './lengthItemComponent.module.css'
 import {skiLengthType} from "../../../../utils/types";
-import ContactForm from "../../../commonComponents/contactForm/ContactForm";
+import ContactButtonComponent from "../../../commonComponents/contactButton/ContactButtonComponent";
 
 type PropsType = {
     length: skiLengthType,
@@ -9,23 +9,6 @@ type PropsType = {
 }
 
 const LengthItemComponent: React.FC<PropsType> = ({length, skiName}) => {
-
-    const ContactButton: React.FC<{ weightString: string, index: number }> = ({weightString, index}) => {
-        const [isOpen, setOpen] = useState(false)
-
-        return <div>
-            <button key={weightString + index}
-                    id={weightString}
-                    className={styles.weightItemContainer}
-                    onClick={() => setOpen(!isOpen)}
-            >
-                {weightString}
-            </button>
-            {isOpen && <ContactForm productName={skiName} productLength={length.lengthString}
-                                    productSize={weightString} callBackFunc={setOpen}/>}
-        </div>
-    }
-
 
     return <div className={styles.wrapper}>
         <div className={styles.lengthContainer}>
@@ -39,11 +22,16 @@ const LengthItemComponent: React.FC<PropsType> = ({length, skiName}) => {
 
                     {length.weights.map((w, index) =>
                         w.isReserved ? <div key={w.weightString + index}>
-                                <button  id={w.weightString} disabled={true}
+                                <button id={w.weightString} disabled={true}
                                         className={styles.weightItemContainer}>Бронь
                                 </button>
                             </div>
-                            : <ContactButton key={w.weightString + index} weightString={w.weightString} index={index}/>
+                            : <ContactButtonComponent
+                                key={w.weightString + index}
+                                productName={skiName}
+                                productLength={length.lengthString}
+                                productWeight={w.weightString}
+                            />
                     )}
                 </div>
             </div>

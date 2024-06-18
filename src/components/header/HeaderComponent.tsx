@@ -39,7 +39,7 @@ const HeaderComponent = () => {
                 <HeaderItem buttonText={"Главная"} key={"main"}/>
                 <HeaderItem buttonText={"Классика"} whereTo={"allClassic"} key={"classic"}/>
                 <HeaderItem buttonText={"Коньковый Ход"} whereTo={"allSkating"} key={"skating"}/>
-                <HeaderItem buttonText={"Лыжные палки"} whereTo={"ski-poles"} key={"ski-poles"}/>
+                <HeaderItem buttonText={"Лыжные палки"} whereTo={"allSkiPoles"} key={"allSkiPoles"}/>
                 <HeaderItem buttonText={"Контакты"} whereTo={"contacts"} key={"contacts"}/>
                 <HeaderItem buttonText={"админ"} whereTo={"login"} key={"loginPage"}/>
             </div>}

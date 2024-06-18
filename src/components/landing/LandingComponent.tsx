@@ -3,7 +3,7 @@ import styles from './LandingComponent.module.css'
 import infra from '../../media/landing/26226_1663764843.jpeg'
 import tech1 from '../../media/landing/techs1.png'
 import tech2 from '../../media/landing/techs2.png'
-import onBench from '../../media/landing/skies_on_bench.jpg'
+import longSkies from '../../media/landing/long_skies.png'
 import {NavLink} from "react-router-dom";
 
 const LandingComponent = () => {
@@ -14,22 +14,37 @@ const LandingComponent = () => {
                     <img src={infra} alt={'infra skis'}/>
                 </div>
                 <div className={styles.textContainer}>
-                    <h1>Supra X</h1>
-                    <div style={{width: '70%'}}>
-                        Все мы знаем и любим надёжные лыжи Peltonen!
-                        Однако, реалии жизни таковы, что достать их сегодня в Санкт-Петербурге и Ленинградской Области
-                        задача не из простых.
+                    <h1>О нас</h1>
+                    <div className={styles.plainText}>
+                        Компания PELTONEN выпускает беговые лыжи самого высокого уровня с 1945
+                        года. А в 2011 году была запущена современная фабрика в городе Heinola,на
+                        данный момент – самая новая в мире.
+                    </div>
+                    <div className={styles.plainText}>
+                        Мы продаём в Санкт-Петербурге верхние модели лыж PELTONEN – уровня
+                        WORLD CUP, Racing и Sport. А так же лыжные палки Rex и PELTONEN топ-
+                        уровня по приемлемым ценам.
                     </div>
                 </div>
             </div>
             <div className={styles.divider}/>
             <div className={styles.paragraph}>
                 <div className={styles.textContainer}>
-                    <h1>Новейшие технологии</h1>
-                    <div style={{width: '70%'}}>
-                        Все мы знаем и любим надёжные лыжи Peltonen!
-                        Однако, реалии жизни таковы, что достать их сегодня в Санкт-Петербурге и Ленинградской Области
-                        задача не из простых.
+                    <h1>Современные технологии</h1>
+                    <div className={styles.plainText}>
+                        Компания PELTONEN первой в мире применила нанотехнологии в
+                        производстве лыж – все модели класса WORLD CUP получили скользящую
+                        поверхность Nano High Speed Base, прекрасно работающую в любых
+                        погодных условиях и не содержащую фтора.
+                    </div>
+                    <div className={styles.plainText}>
+                        В конструкции топовых моделей так же используется сотовый сердечник
+                        NOMEX на основе кевларового волокна - легкий и прочный, без потери
+                        жёсткости.
+                    </div>
+                    <div className={styles.plainText}>
+                        Прочный карбоновый ламинат XTT Light встроен в носок и пятку лыжи для
+                        снижения веса и крутящего момента.
                     </div>
                 </div>
                 <div className={styles.imageContainer}>
@@ -40,14 +55,20 @@ const LandingComponent = () => {
             <div className={styles.divider}/>
             <div className={styles.paragraph}>
                 <div className={styles.imageContainer}>
-                    <img src={onBench} alt={'skis on bench'}/>
+                    <img src={longSkies} alt={'skis on bench'}/>
                 </div>
                 <div className={styles.textContainer}>
-                    <h1>Нанесем Вам покрытие</h1>
-                    <div style={{width: '70%'}}>
-                        Все мы знаем и любим надёжные лыжи Peltonen!
-                        Однако, реалии жизни таковы, что достать их сегодня в Санкт-Петербурге и Ленинградской Области
-                        задача не из простых.
+                    <h1>Структуры и Крепления</h1>
+                    <div className={styles.plainText}>
+                        На все лыжи PELTONEN установлены пластины NIS под крепления Rottefella,
+                        но по вашему желанию мы можем установить на шурупы крепления систем
+                        SNS или ProLink. Пластина NIS держит шурупы намного лучше просто
+                        поверхности лыж.
+                    </div>
+                    <div className={styles.plainText}>
+                        Также на все модели нанесена базовая мелкая структура, хорошо работающая на
+                        сухом и морозном снегу. А по специальному заказу можно нанести структуры
+                        на тёплый и влажный снег – 3 вида.
                     </div>
                 </div>
             </div>

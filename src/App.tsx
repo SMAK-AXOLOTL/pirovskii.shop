@@ -10,6 +10,7 @@ import {LoginComponent} from "./components/login/LoginComponent";
 import AllSkisComponent from "./components/skis/AllSkisComponent";
 import SkiModelComponent from "./components/skis/skiModel/SkiModelComponent";
 import {InitializeApp} from "./hooks/initializeApp";
+import SkiPoleModelComponent from "./components/skipoles/skiPoleModel/SkiPoleModelComponent";
 
 const DashboardComponent = lazy(() => import('./components/dashboard/DashboardComponent'))
 
@@ -25,11 +26,12 @@ function App() {
                     <Route path={'/'} element={<LandingComponent/>}/>
                     <Route path={'/skating/:modelId?'} element={<SkiModelComponent/>}/>
                     <Route path={'/classic/:modelId?'} element={<SkiModelComponent/>}/>
-                    <Route path={'/ski-poles/:modelId?'} element={<SkiPolesComponent/>}/>
+                    <Route path={'/ski-poles/:modelId?'} element={<SkiPoleModelComponent/>}/>
                     <Route path={'/contacts'} element={<ContactsComponent/>}/>
                     <Route path={'/login'} element={<LoginComponent/>}/>
                     <Route path={'/allClassic'} element={<AllSkisComponent skiType={skiTypeEnum.CLASSIC}/>}/>
                     <Route path={'/allSkating'} element={<AllSkisComponent skiType={skiTypeEnum.SKATING}/>}/>
+                    <Route path={'/allSkiPoles'} element={<SkiPolesComponent/>}/>
 
                     <Route path={'/dashboard'} element={<DashboardComponent/>}/>
                     <Route path={''} element={<Navigate to={'/landing'}/>}/>

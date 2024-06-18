@@ -20,7 +20,9 @@ const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
 
     function slideGenerator(model: skiViewAllModel) {
         return <div className={styles.skiModel} key={model.id}>
-            <img src={model.skiImg} className={styles.skiImg} alt={model.name}/>
+            <div className={styles.imgContainer}>
+                <img src={model.skiImg} className={styles.skiImg} alt={model.name}/>
+            </div>
             <div className={styles.nameAndDescBlock}>
                 <h2 className={styles.skiName}>{model.name}</h2>
                 <h3 className={styles.skiDesc}>{model.desc}</h3>
@@ -29,7 +31,6 @@ const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
                 <button className={styles.goToButton}>Перейти</button>
             </NavLink>
         </div>
-
     }
 
     function allSkisLayoutChanger() {

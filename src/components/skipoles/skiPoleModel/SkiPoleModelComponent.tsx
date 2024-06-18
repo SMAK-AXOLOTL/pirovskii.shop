@@ -4,7 +4,10 @@ import {useParams} from "react-router-dom";
 import {selectSkiPoles} from "../../../redux/skiPolesSlice";
 import {useAppSelector} from "../../../hooks/reduxHooks";
 import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
+import ContactButtonComponent from "../../commonComponents/contactButton/ContactButtonComponent";
 
+
+//toDo: set margins and wrapper position
 const SkiPoleModelComponent = () => {
     const {modelId} = useParams()
     const skiPole = useAppSelector(selectSkiPoles).find((x) => x.id === modelId)
@@ -21,14 +24,16 @@ const SkiPoleModelComponent = () => {
             <div className={styles.lengthTableContainer}>
                 <h4>Длины под обрезку</h4>
                 <div className={styles.lengthTable}>
-                    {skiPole.lengthArray?.map((x, index) => (
-                        x.isReserved ?
-                            <button key={x.lengthString + index} disabled={true} className={styles.lengthItm}>
+                    {skiPole.lengthArray?.map((lengthItem, index) => (
+                        lengthItem.isReserved ?
+                            <button key={lengthItem.lengthString + index} disabled={true} className={styles.lengthItm}>
                                 Бронь
                             </button>
-                            : <button key={x.lengthString + index} className={styles.lengthItm}>
-                                {x.lengthString}
-                            </button>
+                            : <ContactButtonComponent
+                                key={lengthItem.lengthString + index}
+                                productName={skiPole.name}
+                                productLength={lengthItem.lengthString}
+                            />
                     ))}
                 </div>
             </div>

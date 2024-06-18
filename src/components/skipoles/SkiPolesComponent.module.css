@@ -1,53 +1,107 @@
 .wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    top: 5vh;
+    wrap-option: wrap;
+    width: 80%;
+    margin: 1%;
+    box-sizing: border-box;
 }
 
-.skatingContainer {
+.navLink {
+    height: 20rem;
+    text-decoration: none;
+}
+
+.skiModel {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 2vh 0;
+    flex-flow: row nowrap;
     align-items: center;
-    border-radius: 5vh;
-}
-
-.wrapper img {
+    background-color: white;
     width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 5rem;
+    padding: 1%;
+    box-sizing: border-box;
+    height: 30%;
 }
 
+.skiModel:not(:last-of-type) {
+    margin-bottom: 2%;
+}
 
-.buttonsContainer {
-    margin: 5vh 0;
+.imgContainer {
+    width: 20rem;
+    height: 20rem;
+}
+
+.skiImg {
+    width: 20rem;
+    height: 20rem;
+    object-fit: contain;
+    border: 1px solid lightgrey;
+    border-radius: 5rem;
+}
+
+.nameAndDescBlock {
     display: flex;
-    width: 60%;
-    justify-content: space-evenly;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    color: var(--white-button-text);
 }
 
-.buttonsContainer  button {
-    height: 5vh;
-    border-radius: 3vh;
+.skiName {
+    width: fit-content;
+    text-decoration: none;
+}
+
+.skiDesc {
+    padding: 0 5%;
+}
+
+.navLink {
+    margin-top: auto;
+}
+
+.goToButton {
+    height: 95%;
+    width: auto;
+    text-decoration: none;
+    color: var(--red-button-text);
+    background-color: var(--peltonen-red);
     border: 1px solid var(--peltonen-red);
 }
 
-.buttonsContainer  button:hover {
-    background-color: var(--peltonen-red);
-    color: var(--red-button-text);
+.goToButton:hover {
     cursor: pointer;
-}
-
-.active {
-    background-color: var(--peltonen-red);
-    color: var(--red-button-text);
-
-}
-
-.notActive {
-    background-color: white;
     color: var(--peltonen-red);
-    border-color: var(--peltonen-red);
+    background-color: var(--red-button-text);
+}
+
+@media screen and (max-width: 1023px) {
+    .wrapper {
+        min-height: 90vh;
+    }
+
+    .skiModel {
+        flex-flow: column nowrap;
+        border-radius: 3rem;
+        min-height: 100%;
+    }
+
+    .goToButton {
+        width: 100%;
+        height: 5rem;
+    }
+
+    .navLink {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .wrapper {
+        min-height: 115vh;
+    }
 }
