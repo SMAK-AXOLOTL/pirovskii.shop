@@ -1,5 +1,5 @@
 .App {
-    --peltonen-red: #ff3403;
+    --peltonen-red: rgb(255, 41, 3);
     --red-button-text: #fff;
     --white-button-text: #000;
     --background-color: #eeeeee;
@@ -19,6 +19,8 @@ button {
     border: 1px solid #d9d9d9;
     border-radius: 5rem;
     font-size: 1rem;
+
+    box-shadow: 0 0.1rem lightgrey;
 }
 
 .Content {

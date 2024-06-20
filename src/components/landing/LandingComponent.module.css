@@ -3,7 +3,6 @@
     justify-content: center;
     width: 100%;
     height: 95vh;
-
 }
 
 .landingContainer {
@@ -70,7 +69,8 @@
 }
 
 .navButton {
-    height: 4vh;
+    height: 4rem;
+    width: 10rem;
     background-color: var(--peltonen-red);
     color: var(--red-button-text);
     border: 1px solid var(--peltonen-red);
@@ -98,6 +98,7 @@
     }
 
     .landingContainer {
+        margin: 2vw 3vw;
         scroll-snap-type: y proximity;
     }
 

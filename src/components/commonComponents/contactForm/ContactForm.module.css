@@ -19,7 +19,21 @@
     border: 1px solid black;
 
     width: fit-content;
+    max-width: 95%;
     height: fit-content;
+
+    inset: 0;
+    margin: auto;
+
+    box-sizing: border-box;
+}
+
+.whatsAppButton{
+    margin-top: 5%;
+}
+
+.whatsAppButton img{
+    width: 90%;
 }
 
 .textarea {

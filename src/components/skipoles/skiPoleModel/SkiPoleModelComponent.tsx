@@ -6,8 +6,6 @@ import {useAppSelector} from "../../../hooks/reduxHooks";
 import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
 import ContactButtonComponent from "../../commonComponents/contactButton/ContactButtonComponent";
 
-
-//toDo: set margins and wrapper position
 const SkiPoleModelComponent = () => {
     const {modelId} = useParams()
     const skiPole = useAppSelector(selectSkiPoles).find((x) => x.id === modelId)

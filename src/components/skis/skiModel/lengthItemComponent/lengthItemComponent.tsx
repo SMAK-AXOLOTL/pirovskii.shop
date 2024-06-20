@@ -19,7 +19,6 @@ const LengthItemComponent: React.FC<PropsType> = ({length, skiName}) => {
             <div className={styles.tableSection}>
                 <h4 className={styles.tableSectionTooltip}>Вес</h4>
                 <div className={styles.weightsContainer}>
-
                     {length.weights.map((w, index) =>
                         w.isReserved ? <div key={w.weightString + index}>
                                 <button id={w.weightString} disabled={true}

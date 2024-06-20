@@ -22,14 +22,13 @@ const ContactForm: React.FC<{
                 inputType={"setState"}
                 setStateCallback={setMessageText}
             />
-            <p>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={`https://wa.me/79046095822?text=${encodeURI(messageText)}`}>
-                    <img alt={'whatsApp'} src={whatAppImg}/>
-                </a>
-            </p>
+            <a
+                className={styles.whatsAppButton}
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://wa.me/79046095822?text=${encodeURI(messageText)}`}>
+                <img alt={'whatsApp'} src={whatAppImg}/>
+            </a>
         </dialog>
     </div>
 

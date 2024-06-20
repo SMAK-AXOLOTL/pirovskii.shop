@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styles from "../../skis/skiModel/lengthItemComponent/lengthItemComponent.module.css";
+import styles from "../contactButton/ContactButtonComponent.module.css";
 import ContactForm from "../contactForm/ContactForm";
 
 type PropsType = {

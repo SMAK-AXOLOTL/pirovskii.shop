@@ -1,0 +1,27 @@
+.weightItemContainer {
+    background-color: var(--background-color);
+    color: black;
+
+    border: 1px solid lightgrey;
+    border-radius: 5rem;
+
+    padding: 0.1vh 0.5vh;
+    margin: 0.5vh;
+    min-width: 6rem;
+
+    font-size: 1.5rem;
+    white-space: nowrap;
+
+    box-shadow: 0 0.1rem lightgrey;
+}
+
+.weightItemContainer:hover {
+    background-color: var(--peltonen-red);
+    color: var(--red-button-text);
+
+    border: 1px solid var(--peltonen-red);
+
+    cursor: pointer;
+
+    box-shadow: 0 0.1rem rgba(255, 41, 3, 0.38);
+}

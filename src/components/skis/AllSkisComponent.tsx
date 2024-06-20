@@ -12,7 +12,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-
 const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
     const status = useAppSelector(selectSkiStatus)
     const classicSkis = useAppSelector(selectClassicSkis)
