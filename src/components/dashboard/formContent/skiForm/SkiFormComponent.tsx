@@ -79,6 +79,7 @@ const SkiFormComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
             <ResizableTextArea
                 value={ski.desc}
                 inputType={"dispatch"}
+                maxLength={210}
                 dispatchCallback={setNewSkiDesc}
             />
         </div>

@@ -10,12 +10,14 @@
     display: flex;
     flex-direction: row;
     width: 80%;
-    padding: 2% 5% 10%;
-    margin: 2% 10%;
+    padding: 1.5% 5%;
+    margin: 1.5% 10%;
     align-items: center;
     box-sizing: border-box;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border-radius: 3vh;
+
+    gap: 0.5rem;
 }
 
 .classicModelContainer p {

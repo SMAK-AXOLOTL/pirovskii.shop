@@ -19,8 +19,6 @@ button {
     border: 1px solid #d9d9d9;
     border-radius: 5rem;
     font-size: 1rem;
-
-    box-shadow: 0 0.1rem lightgrey;
 }
 
 .Content {

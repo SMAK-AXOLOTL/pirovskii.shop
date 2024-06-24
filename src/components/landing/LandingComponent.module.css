@@ -76,6 +76,8 @@
     border: 1px solid var(--peltonen-red);
     border-radius: 5vh;
     margin: 0 0 5vh;
+
+    box-shadow: 0 0.3rem rgb(200,10,40);
 }
 
 .navButton:hover {

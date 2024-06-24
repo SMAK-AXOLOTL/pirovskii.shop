@@ -5,11 +5,16 @@ import {useAppDispatch} from "../../../hooks/reduxHooks";
 type PropsType = {
     value: string,
     inputType: "setState" | "dispatch",
+    maxLength?: number,
     dispatchCallback?: (payload: any) => { payload: any, type: string },
     setStateCallback?: React.Dispatch<React.SetStateAction<string>>
 }
 
-const ResizableTextArea: React.FC<PropsType> = ({value, inputType, dispatchCallback, setStateCallback}) => {
+const ResizableTextArea: React.FC<PropsType> = ({value,
+                                                    inputType,
+                                                    maxLength,
+                                                    dispatchCallback,
+                                                    setStateCallback}) => {
     let descRef: any = useRef()
     const dispatch = useAppDispatch()
 
@@ -26,6 +31,7 @@ const ResizableTextArea: React.FC<PropsType> = ({value, inputType, dispatchCallb
         id={"textArea"}
         className={styles.textArea}
         value={value}
+        maxLength={maxLength}
         onChange={(e) => {
             resizeDescTextArea()
             switch (inputType) {

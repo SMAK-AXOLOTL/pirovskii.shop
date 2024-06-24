@@ -18,10 +18,10 @@ const HeaderComponent = () => {
     const HeaderItem: React.FC<{ buttonText: string, whereTo?: string }> = ({buttonText, whereTo}) => {
         return whereTo
             ? <NavLink to={`/${whereTo}`}>
-                <button onClick={ifMobileClickHandler}>{buttonText}</button>
+                <button onClick={ifMobileClickHandler} className={styles.navButton}>{buttonText}</button>
             </NavLink>
             : <NavLink to={"/"}>
-                <button onClick={ifMobileClickHandler}>{buttonText}</button>
+                <button onClick={ifMobileClickHandler} className={styles.navButton}>{buttonText}</button>
             </NavLink>
     }
 
