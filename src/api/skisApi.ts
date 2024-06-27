@@ -1,16 +1,16 @@
 import {skiModel} from "../utils/types";
 import {createInstance} from "./api";
-import {skiData} from "../dataMocks/skiDataMocks";
+
 
 export const skisApi = {
     async getViewAllSkis() {
-        return process.env.NODE_ENV === "production" ? skiData : await createInstance().get("/rest/skis").then(response =>
+        return await createInstance().get("/rest/skis").then(response =>
             response.data.map((x: any) => {
                 return x.data
             }))
     },
     async getAllSkisData() {
-        return process.env.NODE_ENV === "production" ? skiData : await createInstance().get("rest/skis/allSkisData").then(response =>
+        return await createInstance().get("rest/skis/allSkisData").then(response =>
             response.data.map((x: any) => {
                 return x.data
             }))

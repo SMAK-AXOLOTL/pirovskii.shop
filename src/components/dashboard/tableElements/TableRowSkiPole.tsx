@@ -33,7 +33,7 @@ const TableRowSkiPole: React.FC<{ skiPole: skiPoleType, index: number }> = ({ski
         <td>{skiPole.name}</td>
         <td>Палки</td>
         <td>
-            <img src={skiPole.poleImg} alt={skiPole.id} className={styles.skiImage}/>
+            <img src={skiPole.poleImgArr[0]} alt={skiPole.id} className={styles.skiImage}/>
         </td>
         <td>{skiPole.lengthArray.map((l, index) => <button
             key={l.lengthString + index}>{l.lengthString}</button>)}</td>

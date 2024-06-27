@@ -42,7 +42,7 @@ const SkiModelComponent = () => {
             <div className={styles.sizesTableContainer}>
                 <h1 className={styles.plainText}>{skiModel.name}</h1>
                 <p className={styles.plainText}>{skiModel.desc}</p>
-                <h2 className={styles.plainText}>Цена: {skiModel.priceInRubles} руб / 300$</h2>
+                <h2 className={styles.plainText}>Цена: {skiModel.priceInRubles} руб</h2>
                 {skiModel.universalTrack?.length !== 0 &&
                     <div className={styles.sizesTable}>
                         <h2>

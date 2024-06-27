@@ -1,7 +1,7 @@
 import React, {Dispatch} from "react";
 import {addNewSkiImg, setNewSkiImg} from "../redux/skisSlice";
 import {UnknownAction} from "@reduxjs/toolkit";
-import {setNewSkiPoleImg} from "../redux/skiPolesSlice";
+import {addNewSkiPoleImg, setNewSkiPoleImg} from "../redux/skiPolesSlice";
 
 export function convertToBase64(event: React.ChangeEvent<HTMLInputElement>,
                                 callBackType: "ski" | "skiPole",
@@ -33,9 +33,23 @@ export function convertToBase64(event: React.ChangeEvent<HTMLInputElement>,
                     break;
             }
         } else {
-            reader.onload = () => {
-                dispatch(setNewSkiPoleImg(reader.result))
-            };
+            switch (actionType) {
+                case "add":
+                    reader.onload = () => {
+                        dispatch(addNewSkiPoleImg(reader.result))
+                    }
+                    break;
+                case "set":
+                    reader.onload = () => {
+                        dispatch(setNewSkiPoleImg({index: index, data: reader.result}))
+                    }
+                    break;
+                default:
+                    reader.onload = () => {
+                        dispatch(setNewSkiPoleImg({index: index, data: reader.result}))
+                    }
+                    break;
+            }
         }
         reader.onerror = (error) => {
             console.log('Error: ', error);

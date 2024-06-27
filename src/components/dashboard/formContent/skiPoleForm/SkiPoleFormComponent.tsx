@@ -67,9 +67,14 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
         </div>
         <div>
             <label>Картинка</label>
-            <ImagePreviewWithFullscreen src={skiPole.poleImg} id={skiPole.id} index={0}/>
+            {skiPole.poleImgArr.length > 0 &&
+                skiPole.poleImgArr.map((_, index) =>
+                    <ImagePreviewWithFullscreen key={"skiPoleImage " + index} src={skiPole.poleImgArr[index]}
+                                                id={skiPole.id} index={index}/>
+                )
+            }
             <input type={"file"}
-                   onChange={e => convertToBase64(e, "skiPole", dispatch)}
+                   onChange={e => convertToBase64(e, "skiPole", dispatch, "add")}
                    required={true}
                    accept={'image/*'}
             />

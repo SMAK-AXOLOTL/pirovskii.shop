@@ -3,7 +3,7 @@ import styles from '../skis/AllSkisComponent.module.css'
 import {NavLink} from "react-router-dom";
 import {selectSkiPoles, selectSkiPolesStatus} from "../../redux/skiPolesSlice";
 import {useAppSelector} from "../../hooks/reduxHooks";
-import {skiPoleType} from "../../utils/types";
+import {skiPoleViewAllModel} from "../../utils/types";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation, Pagination} from "swiper/modules";
 
@@ -15,7 +15,7 @@ const SkiPolesComponent: React.FC = () => {
     const status = useAppSelector(selectSkiPolesStatus)
     const skiPolesModels = useAppSelector(selectSkiPoles)
 
-    function slideGenerator(model: skiPoleType) {
+    function slideGenerator(model: skiPoleViewAllModel) {
         return <div className={styles.skiModel} key={model.id}>
             <div className={styles.imgContainer}>
                 <img src={model.poleImg} className={styles.skiImg} alt={model.name}/>

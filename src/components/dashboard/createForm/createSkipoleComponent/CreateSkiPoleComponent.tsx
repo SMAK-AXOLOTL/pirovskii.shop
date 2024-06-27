@@ -5,7 +5,7 @@ import {
     clearNewSkiPoleData,
     createSkiPole,
     selectNewSkiPoleData,
-    selectSkiPoles
+    selectSkiPolesData
 } from "../../../../redux/skiPolesSlice";
 import {validateSkiPole} from "../../../../commonFunctions/validationFunctions/skiPoleValidationFunctions";
 import {setCreateUiOpen} from "../../../../redux/appStateSlice";
@@ -13,7 +13,7 @@ import SkiPoleFormComponent from "../../formContent/skiPoleForm/SkiPoleFormCompo
 
 const CreateSkiPoleComponent = () => {
     const skiPole = useAppSelector(selectNewSkiPoleData)
-    const allSkiPolesData = useAppSelector(selectSkiPoles)
+    const allSkiPolesData = useAppSelector(selectSkiPolesData)
     const dispatch = useAppDispatch()
 
     useEffect(() => {

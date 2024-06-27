@@ -3,7 +3,12 @@ import styles from './DashboardComponent.module.css'
 import {getAllSkiData, selectAllSkisData, selectSkiStatus, setSkiStatus} from "../../redux/skisSlice";
 import {AppDispatch} from "../../redux/store";
 import {useLocation} from "react-router-dom";
-import {getAllSkiPolesData, selectSkiPoles, selectSkiPolesStatus, setSkiPolesStatus} from "../../redux/skiPolesSlice";
+import {
+    getAllSkiPolesData,
+    selectSkiPolesData,
+    selectSkiPolesStatus,
+    setSkiPolesStatus
+} from "../../redux/skiPolesSlice";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useAuthRedirect} from "../../hooks/useAuthRedirect";
 import CreateFormComponent from "./createForm/CreateFormComponent";
@@ -19,7 +24,7 @@ const DashboardComponent = () => {
     const [filter, setFilter] = useState(filters.ALL)
     const isCreateUiOpen = useAppSelector(selectIsCreateUiOpen)
     const allSkisData = useAppSelector(selectAllSkisData)
-    const allSkiPolesData = useAppSelector(selectSkiPoles)
+    const allSkiPolesData = useAppSelector(selectSkiPolesData)
     const skiStatus = useAppSelector(selectSkiStatus)
     const skiPoleStatus = useAppSelector(selectSkiPolesStatus)
     const appStatus = useAppSelector(selectAppStatus)

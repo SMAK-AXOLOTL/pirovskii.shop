@@ -23,7 +23,7 @@ export function validateSkiPole(skiPole: skiPoleType, allSkiPolesData?: skiPoleT
     } else if (!skiPole.priceInRubles || skiPole.priceInRubles <= 0) {
         error = "Ski pole price is required and cannot be less or equal to 0"
         return error
-    }else if(!skiPole.poleImg || skiPole.poleImg === ''){
+    }else if(!skiPole.poleImgArr || skiPole.poleImgArr.includes('')){
         error = "Ski must have an image"
         return error
     }else if (skiPole.lengthArray.length <= 0) {

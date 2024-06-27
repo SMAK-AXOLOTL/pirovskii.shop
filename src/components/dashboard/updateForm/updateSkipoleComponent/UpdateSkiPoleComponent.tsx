@@ -3,7 +3,7 @@ import styles from '../../createForm/createSkiComponent/CreateSkiComponent.modul
 import {useAppDispatch, useAppSelector} from "../../../../hooks/reduxHooks";
 import {
     selectNewSkiPoleData,
-    selectSkiPoles,
+    selectSkiPolesData,
     setSkiPoleDataByIndex,
     updateOneSkiPoleData
 } from "../../../../redux/skiPolesSlice";
@@ -17,7 +17,7 @@ type PropsType = {
 
 const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
     const skiPole = useAppSelector(selectNewSkiPoleData)
-    const initialData = useAppSelector(selectSkiPoles)[index]
+    const initialData = useAppSelector(selectSkiPolesData)[index]
     const dispatch = useAppDispatch()
 
     function handleUpdateClick() {

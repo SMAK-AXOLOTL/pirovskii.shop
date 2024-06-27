@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
 import {deleteNewSkiImgById} from "../../../redux/skisSlice";
 import {convertToBase64} from "../../../commonFunctions/convertToBase64";
+import {deleteNewSkiPoleImgById} from "../../../redux/skiPolesSlice";
 
 type PropsType = {
     src: string,
@@ -56,6 +57,7 @@ const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id, index}) => {
                 onClick={event => {
                     event.stopPropagation()
                     dispatch(deleteNewSkiImgById(index))
+                    dispatch(deleteNewSkiPoleImgById(index))
                 }}>X
             </button>
         </div>

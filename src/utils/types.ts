@@ -41,7 +41,7 @@ export interface skiPoleType{
     name: string,
     desc: string,
     priceInRubles: number,
-    poleImg: string,
+    poleImgArr: string[],
     lengthArray: skiPoleLengthType[]
 }
 
@@ -49,4 +49,13 @@ export interface skiPoleType{
 export interface skiPoleLengthType{
     lengthString: string,
     isReserved: boolean
+}
+
+export type skiPoleViewAllType = skiPoleViewAllModel[]
+
+export type skiPoleViewAllModel = {
+    id: string,
+    name: string,
+    desc: string,
+    poleImg: string
 }
