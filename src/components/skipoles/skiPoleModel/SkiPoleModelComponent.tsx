@@ -13,7 +13,6 @@ import "swiper/css/pagination"
 import {Autoplay, Mousewheel, Navigation, Pagination} from 'swiper/modules';
 
 
-//toDo: adjust ui
 const SkiPoleModelComponent = () => {
     const {modelId} = useParams()
     const skiPole = useAppSelector(selectSkiPoleModel)
@@ -26,7 +25,7 @@ const SkiPoleModelComponent = () => {
     return <div className={styles.wrapper}>
         {skiPole && <div className={styles.container}>
             <GoBackButtonComponent/>
-            <div className={styles.skiPoleImgAndDescContainer}>
+            <div className={styles.swiperContainer}>
                 <Swiper navigation={true}
                         mousewheel={true}
                         pagination={{clickable: true}}
@@ -40,11 +39,11 @@ const SkiPoleModelComponent = () => {
                     )
                     }
                 </Swiper>
+            </div>
+            <div className={styles.skiPoleImgAndDescContainer}>
                 <h1>{skiPole.name}</h1>
                 <p>{skiPole.desc}</p>
                 <h2>Цена: {skiPole.priceInRubles} руб</h2>
-            </div>
-            <div className={styles.lengthTableContainer}>
                 <h4>Длины под обрезку</h4>
                 <div className={styles.lengthTable}>
                     {skiPole.lengthArray?.map((lengthItem, index) => (

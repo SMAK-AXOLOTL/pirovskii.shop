@@ -24,7 +24,7 @@ const SkiModelComponent = () => {
     return <div className={styles.wrapper}>
         {skiModel && <div className={styles.classicModelContainer}>
             <GoBackButtonComponent/>
-            <div className={styles.skiInfo}>
+            <div className={styles.swiperContainer}>
                 <Swiper navigation={true}
                         mousewheel={true}
                         pagination={{clickable: true}}

@@ -1,6 +1,7 @@
 .wrapper {
     wrap-option: wrap;
     width: 80%;
+    max-height: 90vh;
     margin: 1%;
     box-sizing: border-box;
 }
@@ -87,6 +88,26 @@
         flex-flow: column nowrap;
         border-radius: 3rem;
         min-height: 100%;
+        max-height: 90vh;
+    }
+
+    .skiImg {
+        margin-top: 0.3rem;
+        width: 18rem;
+        border-radius: 3rem;
+    }
+
+    .skiDesc {
+        padding: 0;
+        margin-bottom: 0;
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 10;
+        white-space: pre-wrap;
+
+        width: 100%;
     }
 
     .goToButton {

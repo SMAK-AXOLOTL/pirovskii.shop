@@ -75,7 +75,6 @@
 
 .skiDesc {
     margin-top: 0.5rem;
-
 }
 
 .navLink {
@@ -127,6 +126,19 @@
 
     .nameAndDescBlock {
         justify-content: flex-start;
+    }
+
+    .skiDesc {
+        padding: 0;
+        margin-bottom: 0;
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 10;
+        white-space: pre-wrap;
+
+        width: 100%;
     }
 
     .goToButton {

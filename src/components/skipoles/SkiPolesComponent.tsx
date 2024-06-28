@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '../skis/AllSkisComponent.module.css'
+import styles from '../skipoles/SkiPolesComponent.module.css'
 import {NavLink} from "react-router-dom";
 import {selectSkiPoles, selectSkiPolesStatus} from "../../redux/skiPolesSlice";
 import {useAppSelector} from "../../hooks/reduxHooks";

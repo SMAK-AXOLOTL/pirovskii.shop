@@ -1,4 +1,4 @@
-.backdrop{
+.backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -7,9 +7,9 @@
     z-index: 2;
 }
 
-.dialogWrapper{
+.dialogWrapper {
     position: fixed;
-    top:40%;
+    top: 40%;
 
     display: flex;
     flex-flow: column nowrap;
@@ -28,11 +28,41 @@
     box-sizing: border-box;
 }
 
-.whatsAppButton{
+.dialogWrapper p {
+    width: fit-content;
+}
+
+.dialogWrapper p {
+    margin-bottom: 0;
+}
+
+.contactButton {
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    height: 2rem;
+
+    border: 1px solid darkgrey;
+
+    box-shadow: 0 0.2rem darkgrey;
+}
+
+.contactButton:hover {
+    color: var(--red-button-text);
+
+    background-color: var(--peltonen-red);
+
+    border: 1px solid rgb(160, 10, 10);
+
+    box-shadow: 0 0.2rem rgb(160, 10, 10);
+}
+
+.whatsAppButton {
     margin-top: 5%;
 }
 
-.whatsAppButton img{
+.whatsAppButton img {
     width: 90%;
 }
 
