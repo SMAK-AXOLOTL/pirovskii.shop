@@ -69,7 +69,7 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
             <label>Картинка</label>
             {skiPole.poleImgArr.length > 0 &&
                 skiPole.poleImgArr.map((_, index) =>
-                    <ImagePreviewWithFullscreen key={"skiPoleImage " + index} src={skiPole.poleImgArr[index]}
+                    <ImagePreviewWithFullscreen dispatchType={"skiPole"} key={"skiPoleImage " + index} src={skiPole.poleImgArr[index]}
                                                 id={skiPole.id} index={index}/>
                 )
             }

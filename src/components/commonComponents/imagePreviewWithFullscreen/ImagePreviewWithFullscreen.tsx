@@ -6,13 +6,14 @@ import {convertToBase64} from "../../../commonFunctions/convertToBase64";
 import {deleteNewSkiPoleImgById} from "../../../redux/skiPolesSlice";
 
 type PropsType = {
+    dispatchType: "ski" | "skiPole",
     src: string,
     id: string,
     index: number
 }
 
 
-const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id, index}) => {
+const ImagePreviewWithFullscreen: React.FC<PropsType> = ({dispatchType, src, id, index}) => {
     const [isOpenFullscreenUiHidden, setOpenFullscreenUiHidden] = useState(true)
     const [isSkiImgFullscreenHidden, setIsSkiImgFullscreenHidden] = useState(true)
     const dispatch = useAppDispatch()
@@ -43,7 +44,7 @@ const ImagePreviewWithFullscreen: React.FC<PropsType> = ({src, id, index}) => {
                     <input
                         hidden
                         type={"file"}
-                        onChange={e => convertToBase64(e, "ski", dispatch, "set", index)}
+                        onChange={e => convertToBase64(e, dispatchType, dispatch, "set", index)}
                         required={true}
                         accept={'image/*'}
                     />

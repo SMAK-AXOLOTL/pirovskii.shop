@@ -96,7 +96,7 @@ const SkiFormComponent: React.FC<PropsType> = ({ski, isInitialized}) => {
             <div className={styles.photosBlock}>
                 {ski.skiImgArr.length > 0 &&
                     ski.skiImgArr.map((_, index) =>
-                        <ImagePreviewWithFullscreen key={"skiImage " + index} src={ski.skiImgArr[index]} id={ski.id} index={index}/>
+                        <ImagePreviewWithFullscreen dispatchType={"ski"} key={"skiImage " + index} src={ski.skiImgArr[index]} id={ski.id} index={index}/>
                     )
                 }
             </div>

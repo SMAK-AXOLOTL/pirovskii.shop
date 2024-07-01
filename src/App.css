@@ -31,7 +31,7 @@ button {
 }
 
 @media screen and (min-width: 1024px) {
-    .App{
+    .App {
         background-image: url("./media/forest-background.jpg");
     }
 }

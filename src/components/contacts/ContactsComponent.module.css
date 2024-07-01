@@ -8,14 +8,64 @@
 }
 
 .contactsContainer {
-    background-color: white;
     align-self: center;
-    width: 75%;
+
+    width: fit-content;
     height: 50vh;
+    padding: 0 5rem;
+
     border-radius: 5vh;
+
     display: flex;
     flex-direction: column;
-    color: black;
+
     justify-content: center;
     align-items: center;
+
+    color: black;
+    background-color: white;
+}
+
+.contactsContainer h2 {
+    margin-bottom: 0;
+}
+
+.contactButton {
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    height: 2rem;
+
+    border: 1px solid darkgrey;
+
+    box-shadow: 0 0.2rem darkgrey;
+}
+
+.contactButton:hover {
+    color: var(--red-button-text);
+
+    background-color: var(--peltonen-red);
+
+    border: 1px solid rgb(160, 10, 10);
+
+    box-shadow: 0 0.2rem rgb(160, 10, 10);
+}
+
+.whatsAppButton {
+    margin-top: 5%;
+}
+
+.whatsAppButton img {
+    width: 20rem;
+}
+
+@media screen and (max-width: 1023px){
+    .contactsContainer{
+        margin: 0 1%;
+    }
+
+    .whatsAppButton img {
+        width: 90%;
+    }
 }

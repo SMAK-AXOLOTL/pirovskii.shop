@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './LandingComponent.module.css'
 import infra from '../../media/landing/26226_1663764843.jpeg'
 import tech1 from '../../media/landing/techs1.png'
@@ -7,8 +7,18 @@ import longSkies from '../../media/landing/long_skies.png'
 import {NavLink} from "react-router-dom";
 
 const LandingComponent = () => {
+    const [isBottomTextVisible, setIsBottomTextVisible] = useState(true)
+
+    function onScroll(e: any){
+        const isBottom = Math.abs(e.target.scrollHeight - (e.target.scrollTop + e.target.clientHeight)) <= 100
+
+        if (isBottom){
+            setIsBottomTextVisible(false)
+        }
+    }
+
     return <div className={styles.wrapper}>
-        <div className={styles.landingContainer}>
+        <div className={styles.landingContainer} onScroll={onScroll}>
             <div className={styles.paragraph}>
                 <div className={styles.imageContainer}>
                     <img src={infra} alt={'infra skis'}/>
@@ -17,13 +27,12 @@ const LandingComponent = () => {
                     <h1>О нас</h1>
                     <div className={styles.plainText}>
                         Компания PELTONEN выпускает беговые лыжи самого высокого уровня с 1945
-                        года. А в 2011 году была запущена современная фабрика в городе Heinola,на
+                        года. А в 2011 году была запущена современная фабрика в городе Heinola, на
                         данный момент – самая новая в мире.
                     </div>
                     <div className={styles.plainText}>
                         Мы продаём в Санкт-Петербурге верхние модели лыж PELTONEN – уровня
-                        WORLD CUP, Racing и Sport. А так же лыжные палки Rex и PELTONEN топ-
-                        уровня по приемлемым ценам.
+                        WORLD CUP, Racing и Sport. А так же лыжные палки Rex и PELTONEN топ-уровня по приемлемым ценам.
                     </div>
                 </div>
             </div>
@@ -84,6 +93,7 @@ const LandingComponent = () => {
                 </NavLink>
             </div>
         </div>
+        {isBottomTextVisible && <div className={styles.footer}>BottomText</div>}
     </div>
 }
 

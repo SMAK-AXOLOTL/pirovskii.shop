@@ -47,6 +47,10 @@
     box-shadow: 0 0.15rem lightgray;
 }
 
+.navButton:hover{
+    box-shadow: 0 0.15rem darkgrey;
+}
+
 @keyframes onOpen {
     0% {
         opacity: 0;

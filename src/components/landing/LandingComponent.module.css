@@ -16,6 +16,20 @@
     overflow-y: scroll;
 }
 
+.landingContainer::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.landingContainer::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+.landingContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
 .paragraph {
     display: flex;
     width: 100%;
@@ -77,13 +91,17 @@
     border-radius: 5vh;
     margin: 0 0 5vh;
 
-    box-shadow: 0 0.3rem rgb(200,10,40);
+    box-shadow: 0 0.3rem rgb(200, 10, 40);
 }
 
 .navButton:hover {
     cursor: pointer;
     color: var(--peltonen-red);
     background-color: white;
+}
+
+.footer {
+    display: none;
 }
 
 @media screen and (max-width: 1024px) {
@@ -101,10 +119,12 @@
 
     .landingContainer {
         margin: 2vw 3vw;
-        scroll-snap-type: y proximity;
     }
 
-    .paragraph {
-        scroll-snap-align: start;
+    .footer {
+        color: black;
+        display: inline;
+        position: absolute;
+        bottom: 0;
     }
 }
