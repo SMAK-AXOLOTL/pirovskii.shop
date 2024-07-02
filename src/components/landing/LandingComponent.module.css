@@ -100,10 +100,6 @@
     background-color: white;
 }
 
-.footer {
-    display: none;
-}
-
 @media screen and (max-width: 1024px) {
     .paragraph {
         flex-flow: column nowrap;
@@ -119,12 +115,5 @@
 
     .landingContainer {
         margin: 2vw 3vw;
-    }
-
-    .footer {
-        color: black;
-        display: inline;
-        position: absolute;
-        bottom: 0;
     }
 }
