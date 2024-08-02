@@ -18,15 +18,29 @@ import TableRowSki from "./tableElements/TableRowSki";
 import TableRowSkiPole from "./tableElements/TableRowSkiPole";
 import TableFiltersComponent from "./tableElements/TableFiltersComponent";
 import {filters} from "../../enums/filtersEnum";
+import {
+    getAllAccessoriesData,
+    selectAccessoriesData,
+    selectAccessoriesStatus,
+    setAccessoriesStatus
+} from "../../redux/accessoriesSlice";
+import TableRowAccessory from "./tableElements/TableRowAccessory";
 
 
 const DashboardComponent = () => {
     const [filter, setFilter] = useState(filters.ALL)
+
     const isCreateUiOpen = useAppSelector(selectIsCreateUiOpen)
+
     const allSkisData = useAppSelector(selectAllSkisData)
     const allSkiPolesData = useAppSelector(selectSkiPolesData)
+    const allAccessoriesData = useAppSelector(selectAccessoriesData)
+
     const skiStatus = useAppSelector(selectSkiStatus)
     const skiPoleStatus = useAppSelector(selectSkiPolesStatus)
+    const accessoryStatus = useAppSelector(selectAccessoriesStatus)
+
+
     const appStatus = useAppSelector(selectAppStatus)
 
     const dispatch = useAppDispatch() as AppDispatch
@@ -38,17 +52,21 @@ const DashboardComponent = () => {
     useEffect(() => {
         dispatch(setSkiStatus('idle'))
         dispatch(setSkiPolesStatus('idle'))
+        dispatch(setAccessoriesStatus('idle'))
     }, [dispatch, location])
 
     useEffect(() => {
-        if (skiStatus === 'idle' && skiPoleStatus === 'idle') {
+        if (skiStatus === 'idle' && skiPoleStatus === 'idle' && accessoryStatus === 'idle') {
             dispatch(getAllSkiData())
             dispatch(getAllSkiPolesData())
+            dispatch(getAllAccessoriesData())
         }
-    }, [location, skiStatus, skiPoleStatus, dispatch])
+    }, [location, skiStatus, skiPoleStatus, dispatch, accessoryStatus])
 
     function filterSkis(skiType: skiTypeEnum) {
         switch (filter) {
+            case filters.MISCELLANEOUS:
+            case filters.ACCESSORIES:
             case filters.SKIPOLES:
                 return false
             case filters.SKATING:
@@ -63,6 +81,18 @@ const DashboardComponent = () => {
     function filterSkiPoles() {
         switch (filter) {
             case filters.SKIPOLES:
+            case filters.MISCELLANEOUS:
+            case filters.ALL:
+                return true
+            default:
+                return false
+        }
+    }
+
+    function filterAccessories() {
+        switch (filter) {
+            case filters.ACCESSORIES:
+            case filters.MISCELLANEOUS:
             case filters.ALL:
                 return true
             default:
@@ -114,7 +144,7 @@ const DashboardComponent = () => {
                                 <th>Название</th>
                                 <th>Тип</th>
                                 <th>Картинка</th>
-                                <th>Длина</th>
+                                <th>Длина/Размер</th>
                                 <th>Удалить</th>
                             </tr>
                             </thead>
@@ -127,6 +157,11 @@ const DashboardComponent = () => {
                             {allSkiPolesData.map((sp, index) => (
                                     filterSkiPoles() &&
                                     <TableRowSkiPole key={sp.id} skiPole={sp} index={index}/>
+                                )
+                            )}
+                            {allAccessoriesData.map((a, index) => (
+                                    filterAccessories() &&
+                                    <TableRowAccessory key={a.id} accessory={a} index={index}/>
                                 )
                             )}
                             </tbody>

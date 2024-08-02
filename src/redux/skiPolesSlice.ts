@@ -95,8 +95,8 @@ export const skiPolesSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(getViewAllSkiPolesData.pending, (state) => {
-            state.status = 'loading'
-        })
+                state.status = 'loading'
+            })
             .addCase(getViewAllSkiPolesData.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 state.skiPolesViewAllData = action.payload
@@ -124,6 +124,17 @@ export const skiPolesSlice = createSlice({
                 state.skiPoleModel = action.payload
             })
             .addCase(getSkiPoleById.rejected, (state, action) => {
+                state.status = 'failed'
+                state.err = action.error.message
+            })
+            .addCase(createSkiPole.pending, (state) => {
+            state.status = 'loading'
+            })
+            .addCase(createSkiPole.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.skiPolesData = action.payload
+            })
+            .addCase(createSkiPole.rejected, (state, action) => {
                 state.status = 'failed'
                 state.err = action.error.message
             })

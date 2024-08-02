@@ -88,6 +88,7 @@ td {
 .modelNameCell {
     font-weight: bold;
 }
+
 .modelNameCell:hover {
     background-color: var(--peltonen-red);
     color: var(--white-button-text);
@@ -99,7 +100,7 @@ td button {
 }
 
 
-.skiImage{
+.skiImage {
     object-fit: contain;
     width: 15vw;
     height: 15vh;
@@ -122,4 +123,60 @@ button:hover {
     background-color: grey;
     cursor: wait;
     border: 1px solid grey;
+}
+
+
+.weightCell {
+    color: black;
+    border: 1px solid black;
+    margin-right: 0.5rem;
+
+    &:hover {
+        cursor: auto;
+    }
+
+    &.reserved {
+        color: black;
+        background-color: lightgrey;
+        border: 1px solid grey;
+        margin-right: 0.5rem;
+
+        text-decoration-line: line-through;
+        text-decoration-color: grey;
+
+        &:hover {
+            color: white;
+            background-color: darkgray;
+
+            border: 1px solid black;
+
+            text-decoration: none;
+
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+
+.lengthCell {
+    margin-bottom: 0.5rem;
+}
+
+.lengthCellText {
+    color: red;
+}
+
+.weightsContainer {
+}
+
+
+.bold {
+    font-weight: bold;
+}
+
+thead {
+    background-color: white;
+    position: sticky;
+    top: 0.1rem;
+    z-index: 1;
 }

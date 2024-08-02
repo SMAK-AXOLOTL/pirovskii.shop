@@ -26,8 +26,8 @@ const SkiPoleLengthComponent: React.FC<PropsType> = ({length, isReserved, index}
     }
 
     function reservationChecker(reservation: boolean) {
-        if (reservation) return 'R'
-        return 'R!'
+        if (reservation) return '☑'
+        return '☒'
     }
 
     function handleUpdateUiOpenerClick() {

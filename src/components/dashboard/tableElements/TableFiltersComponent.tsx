@@ -8,7 +8,6 @@ type PropsType = {
 
 const TableFiltersComponent:React.FC<PropsType> = ({setFilter}) => {
 
-
     return <div className={styles.filtersElements}>
         <button onClick={() => setFilter(filters.ALL)}>Все товары</button>
         <button onClick={() => setFilter(filters.SKIS)}>Лыжи</button>
@@ -16,8 +15,10 @@ const TableFiltersComponent:React.FC<PropsType> = ({setFilter}) => {
         </button>
         <button className={styles.subCategory} onClick={() => setFilter(filters.SKATING)}>Коньковые
         </button>
-        <button onClick={() => setFilter(filters.SKIPOLES)}>Прочее</button>
+        <button onClick={() => setFilter(filters.MISCELLANEOUS)}>Прочее</button>
         <button className={styles.subCategory} onClick={() => setFilter(filters.SKIPOLES)}>Палки
+        </button>
+        <button className={styles.subCategory} onClick={() => setFilter(filters.ACCESSORIES)}>Аксессуары
         </button>
     </div>
 }

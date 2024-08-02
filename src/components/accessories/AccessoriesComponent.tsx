@@ -1,36 +1,36 @@
 import React from "react";
-import styles from '../skipoles/SkiPolesComponent.module.css'
+import styles from '../accessories/AccessoriesComponent.module.css'
 import {NavLink} from "react-router-dom";
-import {selectSkiPoles, selectSkiPolesStatus} from "../../redux/skiPolesSlice";
 import {useAppSelector} from "../../hooks/reduxHooks";
-import {skiPoleViewAllModel} from "../../utils/types";
+import {accessoryViewAllModel} from "../../utils/types";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation, Pagination} from "swiper/modules";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import {selectAccessories, selectAccessoriesStatus} from "../../redux/accessoriesSlice";
 
-const SkiPolesComponent: React.FC = () => {
-    const status = useAppSelector(selectSkiPolesStatus)
-    const skiPolesModels = useAppSelector(selectSkiPoles)
+const AccessoriesComponent: React.FC = () => {
+    const status = useAppSelector(selectAccessoriesStatus)
+    const accessoriesModels = useAppSelector(selectAccessories)
 
-    function slideGenerator(model: skiPoleViewAllModel) {
+    function slideGenerator(model: accessoryViewAllModel) {
         return <div className={styles.skiModel} key={model.id}>
             <div className={styles.imgContainer}>
-                <img src={model.poleImg} className={styles.skiImg} alt={model.name}/>
+                <img src={model.accessoryImg} className={styles.skiImg} alt={model.name}/>
             </div>
             <div className={styles.nameAndDescBlock}>
                 <h2 className={styles.skiName}>{model.name}</h2>
                 <h3 className={styles.skiDesc}>{model.desc}</h3>
             </div>
-            <NavLink to={`/ski-poles/${model.id}`} className={styles.navLink}>
+            <NavLink to={`/accessories/${model.id}`} className={styles.navLink}>
                 <button className={styles.goToButton}>Перейти</button>
             </NavLink>
         </div>
     }
 
-    function allSkiPolesLayoutChanger() {
+    function allAccessoriesLayoutChanger() {
         if (window.innerWidth < 1024) {
             return <Swiper
                 className={styles.wrapper}
@@ -40,7 +40,7 @@ const SkiPolesComponent: React.FC = () => {
                 pagination={true}
                 modules={[Navigation, Pagination]}
             >
-                {skiPolesModels.map(s =>
+                {accessoriesModels.map(s =>
                     <SwiperSlide key={s.id}>
                         {slideGenerator(s)}
                     </SwiperSlide>
@@ -48,12 +48,12 @@ const SkiPolesComponent: React.FC = () => {
             </Swiper>
         }
         return <div className={styles.wrapper}>
-            {skiPolesModels.map(s => slideGenerator(s))}
+            {accessoriesModels.map(s => slideGenerator(s))}
         </div>
     }
 
     return status === "loading" ? <div>Loading</div>
-        : allSkiPolesLayoutChanger()
+        : allAccessoriesLayoutChanger()
 }
 
-export default SkiPolesComponent
+export default AccessoriesComponent

@@ -19,10 +19,11 @@ import {skiPoleType} from "../../../../utils/types";
 import ResizableTextArea from "../../../commonComponents/resizableTextArea/ResizableTextArea";
 
 type PropsType = {
-    initialData?: skiPoleType
+    initialData?: skiPoleType,
+    isInitialized: boolean
 }
 
-const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
+const SkiPoleFormComponent: React.FC<PropsType> = ({initialData, isInitialized}) => {
     const skiPole = useAppSelector(selectNewSkiPoleData)
     const dispatch = useAppDispatch()
 
@@ -41,6 +42,7 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
             <label>ID</label>
             <input type={"text"}
                    value={skiPole.id}
+                   disabled={isInitialized}
                    onChange={(e) => dispatch(setNewSkiPoleId(e.target.value))}/>
         </div>
         <div>
@@ -81,7 +83,7 @@ const SkiPoleFormComponent: React.FC<PropsType> = ({initialData}) => {
         </div>
         <div>
             <label>
-                Длина для обрезки
+                Длина
                 <button onClick={handleCreateLengthClick} className={styles.addNewLengthButton}>
                     +
                 </button>

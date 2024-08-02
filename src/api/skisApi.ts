@@ -10,7 +10,7 @@ export const skisApi = {
             }))
     },
     async getAllSkisData() {
-        return await createInstance().get("rest/skis/allSkisData").then(response =>
+        return await createInstance().get("/rest/skis/allSkisData").then(response =>
             response.data.map((x: any) => {
                 return x.data
             }))

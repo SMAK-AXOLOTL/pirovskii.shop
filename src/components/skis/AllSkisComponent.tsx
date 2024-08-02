@@ -38,7 +38,6 @@ const AllSkisComponent: React.FC<{ skiType: skiTypeEnum }> = ({skiType}) => {
                 className={styles.wrapper}
                 slidesPerView={1}
                 spaceBetween={30}
-                loop={true}
                 navigation={true}
                 pagination={true}
                 modules={[Navigation, Pagination]}

@@ -13,16 +13,15 @@ export interface skiModel {
     universalTrack: skiLengthType[]
 }
 
-export interface skiLengthType{
+export interface skiLengthType {
     lengthString: string,
     weights: skiWeightType[]
 }
 
-export interface skiWeightType{
+export interface skiWeightType {
     weightString: string,
     isReserved: boolean
 }
-
 
 export type skiViewAllType = skiViewAllModel[]
 
@@ -34,9 +33,10 @@ export type skiViewAllModel = {
     skiImg: string
 }
 
+
 export type skiPolesType = skiPoleType[]
 
-export interface skiPoleType{
+export interface skiPoleType {
     id: string,
     name: string,
     desc: string,
@@ -45,8 +45,7 @@ export interface skiPoleType{
     lengthArray: skiPoleLengthType[]
 }
 
-
-export interface skiPoleLengthType{
+export interface skiPoleLengthType {
     lengthString: string,
     isReserved: boolean
 }
@@ -58,4 +57,30 @@ export type skiPoleViewAllModel = {
     name: string,
     desc: string,
     poleImg: string
+}
+
+
+export type accessoriesType = accessoryType[]
+
+export interface accessoryType {
+    id: string,
+    name: string,
+    desc: string,
+    priceInRubles: number,
+    sizesArray: accessorySizeType[],
+    accessoriesImgArr: string[]
+}
+
+export interface accessorySizeType {
+    sizeString: string,
+    isReserved: boolean
+}
+
+export type accessoriesViewAllType = accessoryViewAllModel[]
+
+export type accessoryViewAllModel = {
+    id: string,
+    name: string,
+    desc: string,
+    accessoryImg: string
 }

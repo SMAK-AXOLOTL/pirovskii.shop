@@ -16,7 +16,7 @@ const ContactForm: React.FC<{
     )
 
     function onEmailButtonClick() {
-        window.location.href = `mailto:finn-ski.shop@gmail.com?subject=${messageSubject}&body=${messageText}`
+        window.location.href = `mailto:finn-ski@yandex.ru?subject=${messageSubject}&body=${messageText}`
     }
 
     function onTelButtonClick() {
@@ -31,7 +31,7 @@ const ContactForm: React.FC<{
                 inputType={"setState"}
                 setStateCallback={setMessageText}
             />
-            <p>Отправить E-Mail: <button onClick={onEmailButtonClick} className={styles.contactButton}>finn-ski.shop@gmail.com</button></p>
+            <p>Отправить E-Mail: <button onClick={onEmailButtonClick} className={styles.contactButton}>finn-ski@yandex.ru</button></p>
             <p>Позвонить: <button onClick={onTelButtonClick} className={styles.contactButton}>+7-950-026-95-23</button></p>
             <p>Написать в WhatsApp:</p>
             <a

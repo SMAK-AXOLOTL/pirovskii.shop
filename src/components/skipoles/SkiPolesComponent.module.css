@@ -6,11 +6,6 @@
     box-sizing: border-box;
 }
 
-.navLink {
-    height: 20rem;
-    text-decoration: none;
-}
-
 .skiModel {
     display: flex;
     flex-flow: row nowrap;
@@ -29,13 +24,16 @@
 }
 
 .imgContainer {
-    width: 20rem;
     height: 20rem;
+    max-height: 100%;
+
+    aspect-ratio: 1/1;
 }
 
 .skiImg {
-    width: 20rem;
-    height: 20rem;
+    width: 100%;
+    height: 100%;
+
     object-fit: contain;
     border: 1px solid lightgrey;
     border-radius: 5rem;
@@ -61,7 +59,14 @@
 }
 
 .navLink {
-    margin-top: auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
+    height: 20rem;
+    max-height: 100%;
+
+    text-decoration: none;
 }
 
 .goToButton {
@@ -78,6 +83,7 @@
     color: var(--peltonen-red);
     background-color: var(--red-button-text);
 }
+
 
 @media screen and (max-width: 1023px) {
     .wrapper {
@@ -104,7 +110,7 @@
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 10;
+        -webkit-line-clamp: 9;
         white-space: pre-wrap;
 
         width: 100%;
@@ -118,6 +124,21 @@
     .navLink {
         width: 100%;
         height: auto;
+    }
+}
+
+
+@media screen and (max-width: 376px) {
+    .skiImg {
+        margin: 0.3rem;
+        height: 18rem;
+        border-radius: 3rem;
+    }
+    .skiName{
+        margin-bottom: 0;
+    }
+    .skiDesc {
+        -webkit-line-clamp: 5;
     }
 }
 

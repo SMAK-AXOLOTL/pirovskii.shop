@@ -4,6 +4,7 @@ import CreateSkiComponent from "./createSkiComponent/CreateSkiComponent";
 import CreateSkiPoleComponent from "./createSkipoleComponent/CreateSkiPoleComponent";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
 import {setCreateUiOpen} from "../../../redux/appStateSlice";
+import CreateAccessoryComponent from "./createAccessoryComponent/CreateAccessoryComponent";
 
 
 const CreateFormComponent = () => {
@@ -17,9 +18,11 @@ const CreateFormComponent = () => {
                 <select onChange={(e) => setCreateType(e.target.value)}>
                     <option value={'ski'}>Лыжи</option>
                     <option value={'skipole'}>Палки</option>
+                    <option value={'accessory'}>Аксессуар</option>
                 </select>
                 {createType === 'ski' && <CreateSkiComponent/>}
                 {createType === 'skipole' && <CreateSkiPoleComponent/>}
+                {createType === 'accessory' && <CreateAccessoryComponent/>}
             </div>
         </div>
     );

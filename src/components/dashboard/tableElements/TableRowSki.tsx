@@ -1,5 +1,5 @@
 import React from "react";
-import {skiModel} from "../../../utils/types";
+import {skiLengthType, skiModel, skiWeightType} from "../../../utils/types";
 import {skiTypeEnum} from "../../../enums/skiTypeEnum";
 import styles from "../DashboardComponent.module.css";
 import {selectIsUpdateSkiUiOpen, setIsUpdateSkiUiOpen} from "../../../redux/appStateSlice";
@@ -18,6 +18,21 @@ const TableRowSki: React.FC<{ ski: skiModel, index: number }> = ({ski, index}) =
 
     function handleDeleteSkiClick(id: string) {
         dispatch(deleteSkiById(id))
+    }
+
+    function weightButtonComponent(weight: skiWeightType, index: number) {
+        switch (weight.isReserved) {
+            case false:
+                return <button key={weight.weightString + index} className={styles.weightCell}>{weight.weightString}</button>
+            case true:
+                return <button key={weight.weightString + index} className={`${styles.weightCell} ${styles.reserved}`}>{weight.weightString}</button>
+        }
+    }
+
+    function lengthCellComponent(skiLength: skiLengthType) {
+        return <div className={styles.lengthCell}>
+            <span className={`${styles.lengthCellText} ${styles.bold}`}>{skiLength.lengthString}</span>: <span className={styles.weightsContainer}>{skiLength.weights.map((w, index) => weightButtonComponent(w, index))}</span>
+        </div>
     }
 
     return <tr
@@ -41,14 +56,14 @@ const TableRowSki: React.FC<{ ski: skiModel, index: number }> = ({ski, index}) =
         </td>
         <td>
             {(ski.hardTrack.length > 0) && <div>
-                Жесткая трасса:
-                {ski.hardTrack.map(h => <button key={h.lengthString}>{h.lengthString}</button>)}
+                <span className={styles.bold}>Жесткая трасса:</span>
+                {ski.hardTrack.map(h => lengthCellComponent(h))}
             </div>
             }
             {(ski.universalTrack.length > 0) && <div>
-                Универсальные:
+                <span className={styles.bold}>Универсальные:</span>
                 {
-                    ski.universalTrack.map(u => <button key={u.lengthString}>{u.lengthString}</button>)
+                    ski.universalTrack.map(u => lengthCellComponent(u))
                 }
             </div>
             }

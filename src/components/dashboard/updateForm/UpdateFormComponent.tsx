@@ -4,10 +4,11 @@ import UpdateSkiComponent from "./updateSkiComponent/UpdateSkiComponent";
 import UpdateSkiPoleComponent from "./updateSkipoleComponent/UpdateSkiPoleComponent";
 import {useAppDispatch} from "../../../hooks/reduxHooks";
 import {closeUpdateUi} from "../../../redux/appStateSlice";
+import UpdateAccessoryComponent from "./updateAccessoryComponent/UpdateAccessoryComponent";
 
 type PropsType = {
     index: number,
-    updateType: "ski" | "skiPole"
+    updateType: "ski" | "skiPole" | "accessory"
 }
 
 const UpdateFormComponent: React.FC<PropsType> = ({index, updateType}) => {
@@ -19,6 +20,8 @@ const UpdateFormComponent: React.FC<PropsType> = ({index, updateType}) => {
                 return <UpdateSkiComponent index={index}/>
             case "skiPole":
                 return <UpdateSkiPoleComponent index={index}/>
+            case "accessory":
+                return <UpdateAccessoryComponent index={index}/>
         }
     }
 

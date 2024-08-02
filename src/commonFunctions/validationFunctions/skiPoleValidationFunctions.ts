@@ -24,10 +24,10 @@ export function validateSkiPole(skiPole: skiPoleType, allSkiPolesData?: skiPoleT
         error = "Ski pole price is required and cannot be less or equal to 0"
         return error
     }else if(!skiPole.poleImgArr || skiPole.poleImgArr.includes('')){
-        error = "Ski must have an image"
+        error = "Ski pole must have an image"
         return error
     }else if (skiPole.lengthArray.length <= 0) {
-        error = "You can't create new ski without tracks"
+        error = "You can't create new ski pole without lengths"
         return error
     }
     return error

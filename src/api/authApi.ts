@@ -1,9 +1,10 @@
 import inMemoryJWT from "../security/inMemoryJWT";
 import axios from "axios";
 
+//FixMe: change ports 8080 => 8083
 export const authApi = {
     async login(login: string, password: string) {
-        return await axios.post('http://localhost:8083/admin/dashboard/login',
+        return await axios.post('http://localhost:8080/admin/dashboard/login',
             {data: {login: login, password: password}})
             .then(response => {
                 if (response.status < 200 || response.status >= 300) {
@@ -13,9 +14,8 @@ export const authApi = {
             })
     },
     async logOut() {
-        return await axios.delete('http://localhost:8083/admin/dashboard/logout').then(response => {
+        return await axios.delete('http://localhost:8080/admin/dashboard/logout').then(response => {
             if (response.status < 200 || response.status >= 300) {
-                inMemoryJWT.eraseToken()
                 throw new Error("Logout unsuccessful")
             }
             inMemoryJWT.eraseToken()
@@ -23,7 +23,7 @@ export const authApi = {
     },
     async refresh(token: string) {
         return await axios.post(
-            'http://localhost:8083/admin/dashboard/refresh',
+            'http://localhost:8080/admin/dashboard/refresh',
             {token: token}
         ).then(response => {
             if (response.status < 200 || response.status >= 300) {

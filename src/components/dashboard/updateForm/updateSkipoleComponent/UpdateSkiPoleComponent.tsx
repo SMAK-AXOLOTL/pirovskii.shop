@@ -37,7 +37,7 @@ const UpdateSkiPoleComponent: React.FC<PropsType> = ({index}) => {
     }
 
     return <div className={styles.createForm}>
-        <SkiPoleFormComponent initialData={initialData}/>
+        <SkiPoleFormComponent initialData={initialData} isInitialized={true}/>
         <button onClick={handleUpdateClick} className={styles.redButton}>
             Изменить
         </button>

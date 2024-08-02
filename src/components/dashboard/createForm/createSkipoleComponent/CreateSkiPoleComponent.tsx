@@ -31,7 +31,7 @@ const CreateSkiPoleComponent = () => {
     }
 
     return <div className={styles.createForm}>
-        <SkiPoleFormComponent/>
+        <SkiPoleFormComponent isInitialized={false}/>
         <button onClick={handleCreateClick} className={styles.redButton}>
             Добавить
         </button>

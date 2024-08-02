@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import styles from './SkiPoleModelComponent.module.css'
+import styles from './AccessoryModelComponent.module.css'
 import {useParams} from "react-router-dom";
-import {getSkiPoleById, selectSkiPoleModel} from "../../../redux/skiPolesSlice";
+
 import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
 import GoBackButtonComponent from "../../commonComponents/goBackButton/GoBackButtonComponent";
 import ContactButtonComponent from "../../commonComponents/contactButton/ContactButtonComponent";
@@ -11,19 +11,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import "swiper/css/pagination"
 import {Autoplay, Mousewheel, Navigation, Pagination} from 'swiper/modules';
+import {getAccessoryById, selectAccessoryModel} from "../../../redux/accessoriesSlice";
 
 
-const SkiPoleModelComponent = () => {
+const AccessoryModelComponent = () => {
     const {modelId} = useParams()
-    const skiPole = useAppSelector(selectSkiPoleModel)
+    const accessory = useAppSelector(selectAccessoryModel)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        if (modelId) dispatch(getSkiPoleById(modelId))
+        if (modelId) dispatch(getAccessoryById(modelId))
     }, [dispatch, modelId]);
 
     return <div className={styles.wrapper}>
-        {skiPole && <div className={styles.container}>
+        {accessory && <div className={styles.container}>
             <GoBackButtonComponent/>
             <div className={styles.swiperContainer}>
                 <Swiper navigation={true}
@@ -32,29 +33,29 @@ const SkiPoleModelComponent = () => {
                         autoplay={{delay: 2500, disableOnInteraction: true}}
                         modules={[Navigation, Pagination, Mousewheel, Autoplay]}
                         className={styles.swiper}>
-                    {skiPole.poleImgArr.map((poleImg, index) =>
-                        <SwiperSlide className={styles.swiperSlide} key={"poleImg " + index}>
-                            <img src={poleImg} alt={"skis"}/>
+                    {accessory.accessoriesImgArr.map((accessoryImg, index) =>
+                        <SwiperSlide className={styles.swiperSlide} key={"accessoryImg " + index}>
+                            <img src={accessoryImg} alt={"skis"}/>
                         </SwiperSlide>
                     )
                     }
                 </Swiper>
             </div>
             <div className={styles.skiPoleImgAndDescContainer}>
-                <h1>{skiPole.name}</h1>
-                <p>{skiPole.desc}</p>
-                <h2>Цена: {skiPole.priceInRubles} руб</h2>
-                <h4>Представленные длины</h4>
+                <h1>{accessory.name}</h1>
+                <p>{accessory.desc}</p>
+                <h2>Цена: {accessory.priceInRubles} руб</h2>
+                <h4>Представленные размеры</h4>
                 <div className={styles.lengthTable}>
-                    {skiPole.lengthArray?.map((lengthItem, index) => (
-                        lengthItem.isReserved ?
-                            <button key={lengthItem.lengthString + index} disabled={true} className={styles.lengthItm}>
-                                {lengthItem.lengthString}
+                    {accessory.sizesArray?.map((sizeItem, index) => (
+                        sizeItem.isReserved ?
+                            <button key={sizeItem.sizeString + index} disabled={true} className={styles.lengthItm}>
+                                {sizeItem.sizeString}
                             </button>
                             : <ContactButtonComponent
-                                key={lengthItem.lengthString + index}
-                                productName={skiPole.name}
-                                productLength={lengthItem.lengthString}
+                                key={sizeItem.sizeString + index}
+                                productName={accessory.name}
+                                productLength={sizeItem.sizeString}
                             />
                     ))}
                 </div>
@@ -63,4 +64,4 @@ const SkiPoleModelComponent = () => {
     </div>
 }
 
-export default SkiPoleModelComponent
+export default AccessoryModelComponent

@@ -1,5 +1,5 @@
 import React from "react";
-import {skiPoleType} from "../../../utils/types";
+import {skiPoleLengthType, skiPoleType} from "../../../utils/types";
 import styles from "../DashboardComponent.module.css";
 import {selectIsUpdateSkiPoleUiOpen, setIsUpdateSkiPoleUiOpen} from "../../../redux/appStateSlice";
 import {selectCurrentOpenedSkiIndex, setCurrentOpenedSkiIndex} from "../../../redux/skisSlice";
@@ -14,6 +14,15 @@ const TableRowSkiPole: React.FC<{ skiPole: skiPoleType, index: number }> = ({ski
 
     function handleDeleteSkiPoleClick(id: string) {
         dispatch(deleteSkiPoleById(id))
+    }
+
+    function lengthButtonComponent(size: skiPoleLengthType, index: number) {
+        switch (size.isReserved) {
+            case false:
+                return <button className={styles.weightCell} key={size.lengthString + index}>{size.lengthString}</button>
+            case true:
+                return <button className={`${styles.weightCell} ${styles.reserved}`}  key={size.lengthString + index}>{size.lengthString}</button>
+        }
     }
 
     return <tr key={skiPole.id + '/' + skiPole.name}>
@@ -35,8 +44,9 @@ const TableRowSkiPole: React.FC<{ skiPole: skiPoleType, index: number }> = ({ski
         <td>
             <img src={skiPole.poleImgArr[0]} alt={skiPole.id} className={styles.skiImage}/>
         </td>
-        <td>{skiPole.lengthArray.map((l, index) => <button
-            key={l.lengthString + index}>{l.lengthString}</button>)}</td>
+        <td>
+            <div className={`${styles.bold}`}>Размеры в наличии:</div>
+            {skiPole.lengthArray.map((l, index) => lengthButtonComponent(l, index))}</td>
         <td>
             <button className={styles.deleteButton}
                     onClick={() => handleDeleteSkiPoleClick(skiPole.id)}>X

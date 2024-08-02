@@ -1,36 +1,22 @@
 .wrapper {
     wrap-option: wrap;
-
     width: 80%;
-
+    max-height: 90vh;
     margin: 1%;
-
     box-sizing: border-box;
-}
-
-.navLink {
-    height: 20rem;
-
-    text-decoration: none;
 }
 
 .skiModel {
     display: flex;
     flex-flow: row nowrap;
-
     align-items: center;
-
     background-color: white;
-
     width: 100%;
-    height: 30%;
-
     border: 1px solid lightgrey;
     border-radius: 5rem;
-
     padding: 1%;
-
     box-sizing: border-box;
+    height: 30%;
 }
 
 .skiModel:not(:last-of-type) {
@@ -56,57 +42,48 @@
 .nameAndDescBlock {
     display: flex;
     flex-flow: column nowrap;
-
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-
     height: 100%;
     width: 80%;
-
     color: var(--white-button-text);
 }
 
 .skiName {
     width: fit-content;
-
     text-decoration: none;
-
-    margin-bottom: 0.5rem;
 }
 
 .skiDesc {
-    margin-top: 0.5rem;
+    padding: 0 5%;
 }
 
 .navLink {
-    height: 90%;
-
     display: flex;
     flex-flow: column;
-
     justify-content: center;
 
-    box-sizing: border-box;
+    height: 20rem;
+    max-height: 100%;
+
+    text-decoration: none;
 }
 
 .goToButton {
-    height: 100%;
+    height: 95%;
     width: auto;
-
     text-decoration: none;
-
     color: var(--red-button-text);
     background-color: var(--peltonen-red);
-
     border: 1px solid var(--peltonen-red);
 }
 
 .goToButton:hover {
     cursor: pointer;
-
     color: var(--peltonen-red);
     background-color: var(--red-button-text);
 }
+
 
 @media screen and (max-width: 1023px) {
     .wrapper {
@@ -117,16 +94,17 @@
         flex-flow: column nowrap;
         border-radius: 3rem;
         min-height: 100%;
+        max-height: 90vh;
+    }
+
+    .imgContainer {
+        min-height: 18rem;
     }
 
     .skiImg {
         margin-top: 0.3rem;
         width: 18rem;
         border-radius: 3rem;
-    }
-
-    .nameAndDescBlock {
-        justify-content: flex-start;
     }
 
     .skiDesc {
@@ -136,7 +114,7 @@
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 10;
+        -webkit-line-clamp: 9;
         white-space: pre-wrap;
 
         width: 100%;
@@ -148,11 +126,11 @@
     }
 
     .navLink {
-        margin-top: auto;
         width: 100%;
         height: auto;
     }
 }
+
 
 @media screen and (max-width: 376px) {
     .skiImg {
@@ -160,15 +138,17 @@
         height: 18rem;
         border-radius: 3rem;
     }
-    .skiName{
+
+    .skiName {
         margin-bottom: 0;
     }
+
     .skiDesc {
         -webkit-line-clamp: 5;
     }
 }
 
-@media screen and (min-width: 1023px) {
+@media screen and (min-width: 1024px) {
     .wrapper {
         min-height: 115vh;
     }

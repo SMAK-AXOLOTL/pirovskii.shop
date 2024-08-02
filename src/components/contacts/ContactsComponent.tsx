@@ -7,7 +7,7 @@ const ContactsComponent = () => {
     const phoneNumber = "79500269523"
 
     function onEmailButtonClick() {
-        window.location.href = `mailto:finn-ski.shop@gmail.com`
+        window.location.href = `mailto:finn-ski@yandex.ru`
     }
 
     function onTelButtonClick() {
@@ -17,7 +17,7 @@ const ContactsComponent = () => {
     return <div className={styles.wrapper}>
         <div className={styles.contactsContainer}>
             <h2>Контакты</h2>
-            <p>Отправить E-Mail: <button onClick={onEmailButtonClick} className={styles.contactButton}>finn-ski.shop@gmail.com</button></p>
+            <p>Отправить E-Mail: <button onClick={onEmailButtonClick} className={styles.contactButton}>finn-ski@yandex.ru</button></p>
             <p>Позвонить: <button onClick={onTelButtonClick} className={styles.contactButton}>+7-950-026-95-23</button>
             </p>
             <div>Написать в WhatsApp:<a

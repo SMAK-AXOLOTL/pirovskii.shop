@@ -40,6 +40,7 @@ const HeaderComponent = () => {
                 <HeaderItem buttonText={"Классика"} whereTo={"allClassic"} key={"classic"}/>
                 <HeaderItem buttonText={"Коньковый Ход"} whereTo={"allSkating"} key={"skating"}/>
                 <HeaderItem buttonText={"Лыжные палки"} whereTo={"allSkiPoles"} key={"allSkiPoles"}/>
+                <HeaderItem buttonText={"Аксессуары"} whereTo={"allAccessories"} key={"allAccessories"}/>
                 <HeaderItem buttonText={"Контакты"} whereTo={"contacts"} key={"contacts"}/>
             </div>}
     </div>

@@ -22,7 +22,7 @@ const LengthItemComponent: React.FC<PropsType> = ({length, skiName}) => {
                     {length.weights.map((w, index) =>
                         w.isReserved ? <div key={w.weightString + index}>
                                 <button id={w.weightString} disabled={true}
-                                        className={styles.weightItemContainer}>Бронь
+                                        className={styles.weightItemContainer}>{w.weightString}
                                 </button>
                             </div>
                             : <ContactButtonComponent

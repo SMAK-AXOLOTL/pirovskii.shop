@@ -81,6 +81,9 @@ const LandingComponent = () => {
                 <NavLink to={'/allSkiPoles'}>
                     <button className={styles.navButton}>Лыжные Палки</button>
                 </NavLink>
+                <NavLink to={'/allAccessories'}>
+                    <button className={styles.navButton}>Аксессуары</button>
+                </NavLink>
             </div>
         </div>
     </div>
