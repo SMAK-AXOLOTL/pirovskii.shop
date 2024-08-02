@@ -25,7 +25,7 @@ const UpdateFormComponent: React.FC<PropsType> = ({index, updateType}) => {
         }
     }
 
-    return (<div className={styles.wrapper} onClick={(e) => {
+    return (<div className={styles.wrapper} onClick={() => {
             dispatch(closeUpdateUi())
         }
         }>
