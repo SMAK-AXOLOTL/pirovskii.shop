@@ -1,15 +1,19 @@
 .wrapper {
     position: fixed;
+
     display: flex;
     flex-flow: row nowrap;
-    box-sizing: border-box;
-    background-color: var(--peltonen-red);
-    padding: 1vh 5%;
     justify-content: space-between;
-    width: 100%;
     align-items: center;
+
+    box-sizing: border-box;
+
+    background-color: var(--peltonen-red);
+
+    width: 100%;
+
+
     z-index: 2;
-    border-bottom: 1px solid lightgrey;
 }
 
 .wrapper button:hover {
@@ -19,6 +23,10 @@
 }
 
 .menuControls {
+    padding: 1vh 0 0.5vh;
+
+    background: var(--peltonen-red);
+
     display: flex;
     flex-flow: row;
     justify-content: center;
@@ -30,13 +38,11 @@
 
 .navLinks {
     width: 90%;
+    padding: 0 5rem;
 
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-
-    animation: onOpen;
-    animation-duration: 0.5s;
 }
 
 .navLinks > {
@@ -53,28 +59,42 @@
 
 @keyframes onOpen {
     0% {
-        opacity: 0;
-        height: 0;
+        margin-top: -90vh;
     }
     100% {
-        opacity: 90%;
+        margin-top: 0;
     }
 }
 
 @media screen and (max-width: 1023px) {
     .wrapper {
         flex-flow: column nowrap;
+
     }
 
     .navLinks {
-        padding: 2vh 0;
         flex-flow: column nowrap;
         height: 50vh;
+
+        margin-bottom: 2vh;
+
+        animation: onOpen ease;
+        animation-duration: 0.75s;
+        z-index: -1;
     }
 
     .wrapper button {
-        height: 8vh;
+        height: 7vh;
         width: 50vw;
+    }
+
+    .menuControls{
+        width: 100%;
+        padding-bottom: 1vh;
+    }
+
+    .navLinks{
+        padding: 0;
     }
 
     .menuControls img {

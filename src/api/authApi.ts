@@ -1,10 +1,10 @@
 import inMemoryJWT from "../security/inMemoryJWT";
 import axios from "axios";
 
-//FixMe: change ports 8080 => 8083
+const baseUrl = process.env.NODE_ENV === "development" ? process.env.REACT_APP_HTTP : process.env.REACT_APP_HTTPS
 export const authApi = {
     async login(login: string, password: string) {
-        return await axios.post('http://localhost:8080/admin/dashboard/login',
+        return await axios.post(`${baseUrl}/admin/dashboard/login`,
             {data: {login: login, password: password}})
             .then(response => {
                 if (response.status < 200 || response.status >= 300) {
@@ -14,7 +14,7 @@ export const authApi = {
             })
     },
     async logOut() {
-        return await axios.delete('http://localhost:8080/admin/dashboard/logout').then(response => {
+        return await axios.delete(`${baseUrl}/admin/dashboard/logout`).then(response => {
             if (response.status < 200 || response.status >= 300) {
                 throw new Error("Logout unsuccessful")
             }
@@ -23,7 +23,7 @@ export const authApi = {
     },
     async refresh(token: string) {
         return await axios.post(
-            'http://localhost:8080/admin/dashboard/refresh',
+            `${baseUrl}/admin/dashboard/refresh`,
             {token: token}
         ).then(response => {
             if (response.status < 200 || response.status >= 300) {

@@ -3,7 +3,7 @@ import styles from './HeaderComponent.module.css'
 import logo from '../../media/logo.png'
 import {NavLink} from "react-router-dom";
 
-
+//FixMe: Peltonen img padding
 const HeaderComponent = () => {
     const desktopScreenWidthInPx = 1023
     const [screenWidth] = useState(window.innerWidth)
